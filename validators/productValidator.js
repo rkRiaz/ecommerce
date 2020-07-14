@@ -1,0 +1,30 @@
+const Product = require('../models/Product')
+const { body } = require('express-validator')
+
+const productValidator = [
+    
+        body('name')
+        .not().isEmpty().withMessage('Product Name Required')
+        .custom(async name => {
+            let product = await Product.findOne({name: name})
+            if(product) {
+                return Promise.reject('This Name Of Product is Already Added. Add Unique Name')
+            } 
+        }),
+        body('price')
+        .not().isEmpty().withMessage('Please Enetr Product Price'),
+
+        body('type')
+        .not().isEmpty().withMessage('Enter Product Types (like: mobile, watch, cloth)'),
+
+        body('tag')
+        .not().isEmpty().withMessage('Enter Product Tags (trending, best-seller)'),
+        body('productImgsName')
+        .not().isEmpty().withMessage('Please select at-least one image'),
+
+
+
+]
+
+module.exports = productValidator
+
