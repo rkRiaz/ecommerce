@@ -20,7 +20,6 @@ class EditProduct extends Component {
         updatedProduct:''
     }
 
-
     componentDidMount() {
         const { match: { params } } = this.props;
         // this.props.aProduct(params.productId)
