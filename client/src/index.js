@@ -26,15 +26,26 @@ if(token) {
   })
 }
 
-let busket_products = JSON.parse(localStorage.getItem('busket_products'))
-if(busket_products) {
-  store.dispatch({
-      type: Types.ADD_TO_BUSKET,
+// let busket_products = JSON.parse(localStorage.getItem('busket_products'))
+// if(busket_products) {
+//   store.dispatch({
+//       type: Types.ADD_TO_BUSKET,
+//       payload: {
+//           products: busket_products
+//       },
+//   })
+// }
+
+let admin_auth = localStorage.getItem('admin_auth')
+  if(admin_auth) {
+    store.dispatch({
+      type: Types.ADMIN_AUTH,
       payload: {
-          products: busket_products
+          admin: admin_auth
       },
+     
   })
-}
+  }
 
 
 

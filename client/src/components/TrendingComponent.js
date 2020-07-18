@@ -37,8 +37,9 @@ function TrendingComponent(props) {
             <div className="text-center"><h6> top view in this week </h6></div>
 
             <div className="row mt-5">
+                {/* <div className="display-4">No Products Available</div>  */}
+                
                 {props.products.reverse().map(product => (
-                    
                     <div key={product._id} className="col-6 col-sm-4 col-md-3 p-2">
                         <div className="productCard">
                             <Link to={`products/${product._id}`} style={{textDecoration: 'none'}}>
@@ -53,8 +54,7 @@ function TrendingComponent(props) {
                     </div>
                 ))}
 
-
-
+                
             </div>
         </div>
     )

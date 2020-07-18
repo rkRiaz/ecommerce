@@ -12,15 +12,16 @@ const productValidator = [
             } 
         }),
         body('price')
-        .not().isEmpty().withMessage('Please Enetr Product Price'),
-
+        .not().isEmpty().withMessage('Please Eneter Product Price'),
+        body('department')
+        .not().isEmpty().withMessage('Select Department'),
         body('type')
         .not().isEmpty().withMessage('Enter Product Types (like: mobile, watch, cloth)'),
 
         body('tag')
         .not().isEmpty().withMessage('Enter Product Tags (trending, best-seller)'),
-        body('productImgsName')
-        .not().isEmpty().withMessage('Please select at-least one image'),
+        // body('productImgsName')
+        // .not().isEmpty().withMessage('Please select at-least one image'),
 
 
 

@@ -15,6 +15,11 @@ const productSchema = new Schema({
         type: 'String',
         trim: true,
     },
+    department: {
+        type: String,
+        require: true,
+        trim: true
+    },
     type: {
         type: String,
         require: true,
@@ -27,8 +32,8 @@ const productSchema = new Schema({
     },
     productImgs: {
         type: [],
-        required: true
-    }
+    },
+    soldOut: false
 }, {timestamps: true})
 
 const Product = model('Product', productSchema)

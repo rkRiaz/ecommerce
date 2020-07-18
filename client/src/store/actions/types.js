@@ -10,6 +10,13 @@ export const ADD_TO_BUSKET = 'ADD_TO_BUSKET'
 export const INCREASE_QUANTITY = 'INCREASE_QUANTITY'
 export const DECREASE_QUANTITY = 'DECREASE_QUANTITY'
 
+export const ADMIN_AUTH = 'ADMIN_AUTH'
+export const ADMIN_ERROR = 'ADMIN_ERROR'
+
+
+
+
+
 
 
 

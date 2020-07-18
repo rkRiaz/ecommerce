@@ -85,6 +85,11 @@ class ProductDetailsPage extends Component {
         })
         return true
     }
+    removeHandler = event => {
+        event.preventDefault()
+        axios.delete(`/products/delete/${this.state.productId}`)
+        this.props.history.push("/")
+    }
 
     imgClickHandler = event => {
         // let imgBoxes = document.getElementsByClassName('imgBox')
@@ -177,7 +182,14 @@ class ProductDetailsPage extends Component {
 
 
 
-                                      <Link to={"/customers/cart"} onClick={() => this.props.addToBusket(productId, quantity, size)} className="btn btn-primary"> Add to Cart </Link>
+                                      <Link to="" onClick={() => this.props.addToBusket(productId, quantity, size, this.props.history)} className="btn btn-primary"> Add to Cart </Link>
+                                    {
+                                        this.props.admin.adminLoggedIn ? 
+                                        <div className="mt-2">
+                                            <Link to={`/admin/edit-product/${productId}`} className="btn btn-warning"> Edit this product </Link>
+                                            <Link to="" onClick={this.removeHandler} className="ml-2 btn btn-danger"> Remove this product </Link> 
+                                        </div> : ''
+                                    }
                                   
                                 </div>
                             </div>
@@ -198,7 +210,8 @@ class ProductDetailsPage extends Component {
 
 
 const mapStateToProps = state => ({
-    busket : state.busket
+    busket : state.busket,
+    admin: state.admin
 })
 
 export default connect(mapStateToProps, {addToBusket})(ProductDetailsPage)

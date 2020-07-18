@@ -6,7 +6,7 @@ router.get('/', allProducts)
 router.get('/:productId', product)
 router.post('/add-product', productValidator, addProduct)
 router.put('/edit-product/:productId',productValidator, editProduct)
-router.delete('/delete-product/:productId', deleteProduct)
+router.delete('/delete/:productId', deleteProduct)
 
 
 

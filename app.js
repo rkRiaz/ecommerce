@@ -3,6 +3,7 @@ const chalk = require('chalk')
 const mongoose = require('mongoose')
 const config = require('config')
 
+const adminRoute = require('./routes/adminRoute')
 const productsRoute = require('./routes/productsRoute')
 const customersRoute = require('./routes/customersRoute')
 const uploadsRoute = require('./routes/uploadsRoute')
@@ -16,7 +17,7 @@ app.use(express.static('public')),  //make the public directory public
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
-
+app.use('/admin', adminRoute)
 app.use('/products', productsRoute)
 app.use('/customers', customersRoute)
 app.use('/uploads', uploadsRoute)

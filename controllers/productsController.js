@@ -1,6 +1,7 @@
 const Product = require('../models/Product')
 const { validationResult } = require('express-validator')
 const { errorFormatter }  = require('../utils/errorFormatter')
+const fs = require('fs')
 const { productImgsUpload } =require('./uploadController')
 
 
@@ -33,7 +34,7 @@ exports.product = async(req, res, next) => {
 
 
 exports.addProduct = async(req, res, next) => {
-    let { name, price, details, type, tag, productImgsName } = req.body
+    let { name, price, details, department, type, tag, productImgsName } = req.body
     let errors = validationResult(req).formatWith(errorFormatter)
 
     if(!errors.isEmpty()) {
@@ -42,13 +43,17 @@ exports.addProduct = async(req, res, next) => {
 
     try{
         if(errors.isEmpty()) {
+            
+            let productImgs = productImgsName ? productImgsName : ['no-image.jpg']
             const product = new Product({
                 name,
                 price,
                 details,
+                department,
                 type,
                 tag,
-                productImgs: productImgsName
+                productImgs: productImgs,
+                soldOut: false
             })
             const newProduct = await product.save()
             return res.status(200).json(newProduct)
@@ -59,7 +64,7 @@ exports.addProduct = async(req, res, next) => {
 }
 
 exports.editProduct = async(req, res, next) => {
-    let { name, price, details, type, tag } = req.body
+    let { name, price, details, department, type, tag, soldOut } = req.body
     let { productId } = req.params
     let errors = validationResult(req).formatWith(errorFormatter)
 
@@ -71,7 +76,7 @@ exports.editProduct = async(req, res, next) => {
         if(errors.isEmpty()) {
             const updatedProduct = await Product.findOneAndUpdate(
                 {_id: productId},
-                {$set: {name, price, details, type, tag}},
+                {$set: {name, price, details, department, type, tag, soldOut}},
                 {new: true}
             ) 
             // const updatedProduct = await product.
@@ -92,6 +97,12 @@ exports.deleteProduct = async(req, res, next) => {
     try{
         let {productId} = req.params
         let deletedProduct = await Product.findByIdAndDelete(productId)
+        let filter = deletedProduct.productImgs.filter(p => p !== 'no-image.jpg')
+        filter.map(p => {
+            fs.unlink(`client/public/images/${p}`, err => {
+                console.log(err)
+              })
+        })
     } catch(e) {
         next(e)
     }

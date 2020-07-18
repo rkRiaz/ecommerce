@@ -7,13 +7,13 @@ const init = {
 
 const adminReducer = (state=init, action) => {
     switch(action.type) {
-        case Types.SET_ADMIN: {
+        case Types.ADMIN_AUTH: {
             return {
-                adminLoggedIn: action.payload.message,
+                adminLoggedIn: action.payload.admin ? true : false,
                 error: {}
             }
         }
-        case Types.SET_ADMIN_ERROR: {
+        case Types.ADMIN_ERROR: {
             return {
                 ...state,
                 error: action.payload.error,

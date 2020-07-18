@@ -3,9 +3,10 @@ import{ Link } from 'react-router-dom'
 import {FaStarOfLife} from 'react-icons/fa'
 import axios from 'axios'
 
-class AddProductPage extends Component {
+class EditProduct extends Component {
 
     state = {
+        productId: '',
         name: '',
         price: '',
         details: '',
@@ -16,7 +17,33 @@ class AddProductPage extends Component {
         productImgs: [],
         productImgsName: null,
         error: {},
-        newProduct: {}
+        updatedProduct:''
+    }
+
+
+    componentDidMount() {
+        const { match: { params } } = this.props;
+        // this.props.aProduct(params.productId)
+        axios.get(`/products/${params.productId}`)
+            .then(res => {
+                let {name, price, details, department, soldOut, type, tag, productImgs, productImgsName} = res.data
+                this.setState({
+                    productId: params.productId,
+                    name,
+                    details,
+                    size: 'M',
+                    department,
+                    soldOut,
+                    quantity: 1,
+                    price: price,
+                    type: type,
+                    tag: tag,
+                    productImgs: productImgs,
+                    productImgsName
+                })
+            })
+
+
     }
     
     fileSelectHandler = event => {
@@ -40,17 +67,19 @@ class AddProductPage extends Component {
 
 
         let {name, price, details, department, soldOut, type, tag, productImgsName} = this.state 
-        let product = {name, price, department, details, type, tag, productImgsName}
+        let product = {name, price, department, soldOut, details, type, tag, productImgsName}
+        console.log(product)
       
-        axios.post('/products/add-product', product)
+        axios.put(`/products/edit-product/${this.state.productId}`, product)
             .then(res => {
+                console.log(res.data.updatedProduct)
                 this.setState({
-                    newProduct: res.data
+                    updatedProduct: res.data.updatedProduct
                 })
             })
             .catch(err => {
                 this.setState({
-                    error: err.response.data
+                    error: err.response
                 })
                 
             })
@@ -69,42 +98,51 @@ class AddProductPage extends Component {
 
 
     render() {
-        let { tag, error, newProduct } = this.state
+        let {name, price, details, department, soldOut, type, tag, error } = this.state
+   
         return (
             <div className="container">
-               { Object.keys(newProduct).length !== 0 ? <div className ="alert alert-success" role="alert"> Product added as {tag} successfully </div> : null }
-               <div className="text-center my-2 h1">Product Adding Page</div>
+              
+               <div className="text-center my-5 h1">Product Editing Page</div>
                <div className="row">
                    <div className="col-md-6">
                         <form onSubmit={this.submitHandler}>
                             <div className="form-group">
                                 <label className="font-weight-bold" htmlFor="name">Product Name <sup><FaStarOfLife style={{color: 'red', fontSize:'8px'}}/></sup></label>
-                                <input name="name" type="text" onChange={this.changeHandler} className={error.name ? "is-invalid form-control" : "form-control"} placeholder="Casio fx, Realme ..." />
+                                <input name="name" type="text" onChange={this.changeHandler} className={error.name ? "is-invalid form-control" : "form-control"} value={name} />
                                 <div className="invalid-feedback">{error.name}</div>
                             </div>
                             <div className="form-group">
                                 <label className="font-weight-bold" htmlFor="price">Product Price <sup><FaStarOfLife style={{color: 'red', fontSize:'8px'}}/></sup></label>
-                                <input name="price" type="number" onChange={this.changeHandler} className={error.price ? "is-invalid form-control" : "form-control"} placeholder="100, 4099 ..." />
+                                <input name="price" type="number" onChange={this.changeHandler} className={error.price ? "is-invalid form-control" : "form-control"} value={price} />
                                 <div className="invalid-feedback">{error.price}</div>
                             </div>
                             <div className="form-group">
                                 <label className="font-weight-bold" htmlFor="details">Product Details</label>
-                                <textarea name="details" style={{height: '200px'}}type="text" onChange={this.changeHandler} className="form-control" placeholder="Type product information..."/>
+                                <textarea name="details" style={{height: '200px'}}type="text" onChange={this.changeHandler} className="form-control" value={details}/>
                             </div>
                             <div className="form-group">
                                 <label className="font-weight-bold" htmlFor="department">Department<sup><FaStarOfLife style={{color: 'red', fontSize:'8px'}}/></sup></label>
-                                <input name="department" type="text" onChange={this.changeHandler} className={error.department ? "is-invalid form-control" : "form-control"} placeholder="electronics, cloths..." />
+                                <input name="department" type="text" onChange={this.changeHandler} className={error.department ? "is-invalid form-control" : "form-control"} value={department} />
                                 <div className="invalid-feedback">{error.department}</div>
                             </div>
                             <div className="form-group">
                                 <label className="font-weight-bold" htmlFor="type">Product Type <sup><FaStarOfLife style={{color: 'red', fontSize:'8px'}}/></sup></label>
-                                <input name="type" type="text" onChange={this.changeHandler} className={error.type ? "is-invalid form-control" : "form-control"} placeholder="mobile, watch..." />
+                                <input name="type" type="text" onChange={this.changeHandler} className={error.type ? "is-invalid form-control" : "form-control"} value={type} />
                                 <div className="invalid-feedback">{error.type}</div>
                             </div>
                             <div className="form-group">
                                 <label className="font-weight-bold" htmlFor="tag">Product Tag <sup><FaStarOfLife style={{color: 'red', fontSize:'8px'}}/></sup></label>
-                                <input name="tag" type="text" onChange={this.changeHandler} className={error.tag ? "is-invalid form-control" : "form-control"} placeholder="trending, best-seller..." />
+                                <input name="tag" type="text" onChange={this.changeHandler} className={error.tag ? "is-invalid form-control" : "form-control"} value={tag}/>
                                 <div className="invalid-feedback">{error.tag}</div>
+                            </div>
+
+                            <label className="font-weight-bold" htmlFor="soldOut">SoldOut? <sup><FaStarOfLife style={{color: 'red', fontSize:'8px'}}/></sup></label>
+                            <div className="soldOut d-flex">
+                                <input type="radio" id="true" name="soldOut" value="true" onChange={this.changeHandler}/>
+                                <label htmlFor="true">Yes</label>
+                                <input type="radio" id="false" name="soldOut" value="false" onChange={this.changeHandler}/>
+                                <label htmlFor="female">No</label>      
                             </div> 
                         
 
@@ -115,7 +153,7 @@ class AddProductPage extends Component {
                             </div>
 
 
-                            <button type="submit" className="my-3 btn btn-primary">Add Product</button>
+                            <button type="submit" className="my-3 btn btn-primary">update Product</button>
                             <Link to="/"><button className="btn btn-danger ml-2">Home</button></Link>
                         </form>
 
@@ -138,4 +176,4 @@ class AddProductPage extends Component {
 
 
 
-export default AddProductPage
+export default EditProduct
