@@ -1,0 +1,130 @@
+.banner{
+  overflow-x: hidden;
+}
+.mySlides{
+    position: relative;
+    width: 100%;
+  }
+  .active{
+    background: rgb(46, 46, 46) !important;
+  }
+  #slide2, #slide3 {
+    display: none;
+  }
+  .text{
+    position: absolute;
+    left: 25%;
+    top: 50%;
+    transform: translate(-25%, -50%);
+  }
+  .dots{
+    display: flex;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    margin-top: -30px;
+  }
+  .dot{
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    background-color: #bbb;
+  }
+  
+  .prev, .next{
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      margin-top: -30px;
+      width: auto;
+      padding: 16px;
+      color: black;
+      font-weight: bold;
+      font-size: 50px;
+      transition: 0.6s ease;
+      border-radius: 0 3px 3px 0;
+      user-select: none;
+  }
+  .next{
+    right: 0;
+  }
+  .prev{
+    left: 0;
+  }
+  .subBanner{
+    padding: 0 10px; 
+    margin: 0 auto;
+    max-width: 1200px;
+  }
+  
+  .women-btn, .watch-btn, .mid-btn{
+    width: 150px;
+    padding: 10px 30px; 
+    background: white;
+    text-align: center;
+    box-shadow: var(--lightShadow);
+    position: absolute;
+    left: 50%;
+    top: 88%;
+    font-weight: bold;
+    transform: translate(-50%);
+    background: white !important;
+  }
+  .mid-btn{
+    top: 75%;
+  }
+  
+  @media screen and (max-width: 992px) {
+    .mySlides img{
+      height: 60vh !important;
+    }
+    .leftColumn{
+      padding-right: 5px;
+    }
+    .rightColumn{
+      padding-left: 5px;
+    }
+    .rightColumn__left{
+      padding-right: 5px;
+    }
+    .rightColumn__right{
+      padding-left: 5px;
+    }
+    .rightColumn__left .box2{
+      margin-top: 10px !important;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .mySlides img{
+      height: 250px !important;
+    }
+    .text h4{
+      font-size: 12px;
+    }
+    .text .heading{
+      font-size: 20px;
+    }
+    .subBanner{
+     
+      padding-bottom: 50px;
+      
+    }
+    .leftColumn{
+      padding-right: 0px;
+      padding-left: 0px;
+    }
+    .rightColumn{
+      padding-left: 0px;
+      padding-right: 0px;
+    }
+  }
+  @media screen and (max-width: 576px) {
+  
+  }
+  @media screen and (max-width: 350px) {
+    .subBanner .women-btn, .watch-btn, .mid-btn{
+      padding: 5px 15px; 
+      width: 120px;
+    }
+  }

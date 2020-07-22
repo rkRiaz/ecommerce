@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
+import './Banner.css'
 import { Link } from 'react-router-dom'
 import banner1 from '../imgs/banner1.jpg'
 import banner2 from '../imgs/banner2.jpg'
 import banner3 from '../imgs/banner3.jpg'
+import subBanner1 from '../imgs/subBanner1.jpg'
+import subBanner2 from '../imgs/subBanner2.jpg'
+import subBanner3 from '../imgs/subBanner3.jpg'
+
+
 
 
 
@@ -37,10 +43,11 @@ class Banner extends Component {
 
         return (
 
-            <div>
+            <div className="banner">
+                
                 <div className="slideshow-container">
                     <div id="slide1" className="mySlides">
-                        <img src={`https://cdn.shopify.com/s/files/1/0332/6420/5963/files/slider13_49090674-d1ef-4c34-95b9-19c1edac4d15_3750x.jpg?v=1585640180`} alt="banner" style={{ objectFit: "cover", height: "70vh", width: "100%" }} />
+                        <img src={banner1} alt="banner" style={{ objectFit: "cover", height: "70vh", width: "100%" }} />
                         <div className="text">
                             <h4>SUMMER 2020</h4>
                             <div className="heading font-weight-bolder display-4">New Arrival Collection</div>
@@ -80,24 +87,27 @@ class Banner extends Component {
                     <div className="col-12 col-md-6 leftColumn">
                         <Link to="">
                             <div style={{ position: "relative", height: "87%" }}>
-                                <img src={"https://cdn.shopify.com/s/files/1/0332/6420/5963/files/p-21_1512x.jpg?v=1582087410"} alt="" style={{ objectFit: "cover", width: "100%", height: "100%" }} />
+                                <img src={subBanner1} alt="" style={{ objectFit: "cover", width: "100%", height: "100%" }} />
                                 <div to="" className="women-btn">Women</div>
                             </div>
                         </Link>
                     </div>
+
+
+                    {/* problem starting from here */}
                     <div className="col-12 col-md-6 rightColumn">
                         <div className="row">
                             <div className="col-6 col-md-6 rightColumn__left">
                                 <div>
                                     <Link to="">
                                         <div className="box" style={{ position: "relative" }}>
-                                            <img src={"https://cdn.shopify.com/s/files/1/0332/6420/5963/files/bag2_720x.jpg?v=1581730050"} alt="" style={{ objectFit: "cover", width: "100%" }} />
+                                            <img src={subBanner2} alt="" style={{ objectFit: "cover", width: "100%" }} />
                                             <div to="" className="mid-btn">Accessories</div>
                                         </div>
                                     </Link>
                                     <Link to="">
                                         <div className="box2" style={{ marginTop: 30, position: "relative" }}>
-                                            <img src={"https://cdn.shopify.com/s/files/1/0332/6420/5963/files/bag2_720x.jpg?v=1581730050"} alt="" style={{ objectFit: "cover", width: "100%" }} />
+                                            <img src={subBanner2} alt="" style={{ objectFit: "cover", width: "100%" }} />
                                             <div className="mid-btn">Footwear</div>
                                         </div>
                                     </Link>
@@ -106,7 +116,7 @@ class Banner extends Component {
                             <div className="col-6 col-md-6 rightColumn__right">
                                 <Link to="">
                                     <div style={{ height: "100%", position: "relative" }}>
-                                        <img src={"https://cdn.shopify.com/s/files/1/0332/6420/5963/files/p24-21_720x.jpg?v=1581731327"} alt="" style={{ objectFit: "cover", width: "100%", height: "100%" }} />
+                                        <img src={subBanner3} alt="" style={{ objectFit: "cover", width: "100%", height: "100%" }} />
                                         <div to="" className="watch-btn">Watch</div>
                                     </div>
                                 </Link>

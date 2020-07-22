@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './MegaMenu.css'
 import {Link} from 'react-router-dom'
 import {FaSearch, FaUser, FaHeart, FaBars, FaShoppingCart,FaShoppingBag, FaTimes, FaPhone, FaEnvelope, FaStarOfLife} from 'react-icons/fa'
 import {login} from '../store/actions/customerAction'
@@ -51,7 +52,7 @@ class MegaMenu extends Component {
     render() {
         let{error} = this.props.customer
         return (
-            <div>
+            <div className="megamenu">
                 <div className="megamenu__top-menu row text-center text-dark">
                     <div className="col-lg-4">
                         <p className="float-left"><FaPhone  style={{fontSize: 10}}/> +99011-XXXXX &nbsp;&nbsp; <FaEnvelope style={{fontSize: 10}}/> johnDoe@yahho.com</p>
@@ -60,7 +61,9 @@ class MegaMenu extends Component {
                         <p>Summer sale discount off 50%!<Link to="">Shop Now</Link></p>   
                     </div>
                     <div className="col-lg-4">
-                        <p className="float-right"> Language</p> 
+                        <p className="float-right"> Language <br/>
+                        <p className="text-dark"><Link to="/admin/login">Admin</Link></p>
+                        </p> 
                     </div>
                 </div>
                 <div className="megamenu__mid-menu pt-3 pb-5">
@@ -71,7 +74,7 @@ class MegaMenu extends Component {
                     <div id="megamenu__mid-menu_menu__id" className="megamenu__mid-menu_menu mt-2">
                         <div className="child">
                             <Link to="" onClick={this.closeNav} className="sidenav-closebtn d-none"><FaTimes/></Link><br/>
-                            <Link to="" className="menu__demo">Demo</Link><br/>
+                            <Link to="" className="menu__demo">Demo</Link>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
                             <Link to="/">Shop</Link>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
                             <Link to="">Product</Link>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
                             <Link to="">Sale</Link>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
@@ -82,7 +85,7 @@ class MegaMenu extends Component {
                     </div>
                     <div className="megamenu___mid-menu_menu-icons text-right" style={{fontSize: 20}}>
                         <Link to="" className="pr-3 search-icon" ><FaSearch/></Link>
-                        <Link to="/customers/cart" className="pr-3 shopping-icon" ><FaShoppingCart/> <sup className="cartAmount">{this.state.cart}</sup> </Link>
+                        <Link to="/customer/cart" className="pr-3 shopping-icon" ><FaShoppingCart/> <sup className="cartAmount">{this.state.cart}</sup> </Link>
                         <Link to="" className="remove-icon pr-3" ><FaHeart/></Link>
                         <Link to="" className="remove-icon pr-3" onClick={this.login__openNav}><FaUser/></Link>
                     </div>
@@ -91,7 +94,7 @@ class MegaMenu extends Component {
                     <Link to ="/"><FaShoppingBag style={{fontSize: 20}}/><br/>Shop</Link> 
                     <Link to ="/customers/signup-login"><FaUser style={{fontSize: 20}} /><br/>Account</Link>
                     <Link to =""><FaHeart style={{fontSize: 20}}/><br/>WishList</Link>
-                    <Link to ="/customers/cart" className="shopping-icon"><FaShoppingCart style={{fontSize: 20}}/><sup className="cartAmount">{this.state.cart}</sup><br/>Cart</Link>
+                    <Link to ="/customer/cart" className="shopping-icon"><FaShoppingCart style={{fontSize: 20}}/><sup className="cartAmount">{this.state.cart}</sup><br/>Cart</Link>
                     <Link to =""><FaSearch style={{fontSize: 20}}/><br/>Search</Link>
                 </div>
 
@@ -109,8 +112,8 @@ class MegaMenu extends Component {
                                 <input name="loginPassword" type="password" onChange={this.changeHandler} className={error.loginPassword ? "is-invalid form-control" : "form-control"} placeholder="" />
                                 <div className="invalid-feedback">{error.loginPassword}</div>
                             </div>
-                            <Link to="customer/dashboard"><button type="submit" className="my-3 btn btn-outline-dark">Login</button></Link>
-                            <Link to="customers/signup-login"><p>Not have an account? <span className="text-primary">Click here to register</span></p></Link>
+                            <Link><button type="submit" className="my-3 btn btn-outline-dark">Login</button></Link>
+                            <Link to="/customer/signup-login"><p>Not have an account? <span className="text-primary">Click here to register</span></p></Link>
                         </form>
                     </div>
                 </div>

@@ -1,0 +1,44 @@
+.top-menu{
+    padding: 10px;
+    background: rgb(135, 135, 135, 0.1);
+}
+
+input[type=radio]{
+    width   : 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid black;
+  }
+label{
+   margin-right: 10px;
+}
+.productQuantityController{
+    font-size:25px;
+    background: rgb(135, 135, 135, 0.1);
+    width: 120px;
+    padding: 2px;
+    border-radius: 50px;
+    border: 2px solid black;
+}
+.product__rating{
+  display: flex;
+}
+
+@media screen and (max-width: 1040px) {
+
+  .products{
+      background: white !important;
+   }
+  .flex-container {
+      flex-direction: column-reverse;
+  }
+  .productImgs{
+      max-height: 100%;
+      display: flex;
+  }
+  .imgBox{
+    max-width: 300px !important;
+    max-height: 500px !important;
+    margin-left: 5px;
+  }
+}

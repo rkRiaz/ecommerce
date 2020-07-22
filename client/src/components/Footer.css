@@ -1,0 +1,12 @@
+.footer__top{
+    background: var(--lightGrey);
+    padding: 100px;
+    line-height: 40px;
+}
+.grid {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+}
+ .newsLetter input {
+    width: 200px;
+}

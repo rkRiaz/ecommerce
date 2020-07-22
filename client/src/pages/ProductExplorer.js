@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import './ProductExplorer.css'
 import {FaBars, FaArrowCircleLeft, FaArrowCircleRight} from 'react-icons/fa'
 import axios from 'axios'
 import MegaMenu from '../components/MegaMenu'
+import Footer from '../components/Footer'
 import {connect} from 'react-redux'
 import {addToBusket} from '../store/actions/busketActions'
 import {Link} from 'react-router-dom'
@@ -10,7 +12,7 @@ import {Link} from 'react-router-dom'
 
 
 
-class ProductDetailsPage extends Component {
+class ProductExplorer extends Component {
     state={
         productId: '',
         productName: '',
@@ -20,6 +22,8 @@ class ProductDetailsPage extends Component {
         type:'',
         tag:'',
         price: '',
+        soldOut: '',
+        department: '',
         productImgs: [],
         largeImg: ''
     }
@@ -41,7 +45,7 @@ class ProductDetailsPage extends Component {
         // this.props.aProduct(params.productId)
         axios.get(`/products/${params.productId}`)
             .then(res => {
-                let {name, price, details, type, tag, productImgs} = res.data
+                let {name, price, details, department, soldOut, type, tag, productImgs} = res.data
                 this.setState({
                     productId: params.productId,
                     productName: name,
@@ -49,6 +53,8 @@ class ProductDetailsPage extends Component {
                     size: 'M',
                     quantity: 1,
                     price: price,
+                    soldOut: soldOut,
+                    department,
                     type: type,
                     tag: tag,
                     productImgs: productImgs,
@@ -107,7 +113,7 @@ class ProductDetailsPage extends Component {
 
 
     render() {
-        let {productImgs, productId, quantity, size} = this.state
+        let {productImgs, productId, soldOut, department, quantity, size} = this.state
         
         return (
             <div>
@@ -116,49 +122,45 @@ class ProductDetailsPage extends Component {
             <div className="top-menu">
                     <div className="container d-flex justify-content-between">
                         <div> Home > watch > {this.state.productName} </div>
-                        <div><a href="http://fb.com"> <FaArrowCircleLeft/> </a>   <a href="http://fb.com"><FaBars /></a>    <a href="http://fb.com"> <FaArrowCircleRight/> </a></div>
+                        <div><Link to=""> <FaArrowCircleLeft/> </Link>   <Link to=""><FaBars /></Link>    <Link to="">  <FaArrowCircleRight/></Link> </div>
                     </div>
                 </div>
-
-
-
 
                 <div className="productDetails container mt-5">
                     <div className=" row">
                         <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-
-
                             <div className="flex-container row">
-                                <div className="col-xl-3 col-lg-3 col-md-12  " >
+                                <div className="col-xl-3 col-lg-3 col-12" >
                                     <div className="productImgs">
-
                                     { productImgs.map(img => (
-                                            <div key={img} onClick={this.imgClickHandler} className="imgBox my-2" data-img={img} style={{cursor: 'pointer'}}>
-                                                 <img style={{ width: '100%', height: '100px', background: '#eaeaea'}} src={`/images/${img}`} alt="img"/>
-                                            </div> 
+                                        <div key={img} onClick={this.imgClickHandler} className="imgBox my-2" data-img={img} style={{cursor: 'pointer'}}>
+                                            <img style={{ maxWidth: "100%", maxHeight: '90px', background: '#eaeaea'}} src={`/images/${img}`} alt="img"/>
+                                        </div> 
                                     ))}
-                                
                                     </div>
                                 </div>
-                                <div className="col-xl-9 col-lg-9 col-md-12 ">
+                                <div className="col-xl-9 col-lg-9 col-12">
                                     <div className="largeImg mt-1" style={{background: '#eaeaea'}}>
-                                        <img className="" style={{width: '100%', height: '480px'}} src={`/images/${this.state.largeImg}`} alt=""/>
+                                        <img className="" style={{ maxWidth: '100%', maxHeight: '480px'}} src={`/images/${this.state.largeImg}`} alt=""/>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
-                        <div className="col-xl-6 right col-lg-6 col-md-6 col-sm-12 ">
-                            <div className="font-weight-bold">{this.state.productName}</div>
+                        <div className="col-xl-6 right col-lg-6 col-md-6 col-sm-12">
+                            <div className="font-weight-bold h3">{this.state.productName}</div>
                             <div>
-                                <div className="price text-dark my-2" style={{fontSize: "20px"}}>TK-{this.state.price}</div>
-                                <div className="review"></div>
+                                <div className="price text-dark my-2" style={{fontSize: "20px"}}><small>TK-</small><strong>{this.state.price}</strong></div>
+                                <div className="product__rating">
+                                    {Array(5)
+                                    .fill()
+                                    .map((_) => (
+                                        <p>&#11088;</p>
+                                    ))}
+                                </div>
                                 <p className="productInfo">{this.state.productDetails}</p>
                                 <p className="font-weight-bold">Please Select Your Size</p>
-                                <div className="font-weight-bold my-3">Size: {this.state.size}</div>
+                                <div className="font-weight-bold">Size: {this.state.size}</div>
                                 <div className="sizeRadio">
-                                   
-                                        
                                         <div className="sizing d-flex">
                                             <input type="radio" id="xs" name="size" value="XS" onChange={this.changeHandler}/>
                                             <label htmlFor="male">XS</label>
@@ -182,19 +184,23 @@ class ProductDetailsPage extends Component {
 
 
 
-                                      <Link to="" onClick={() => this.props.addToBusket(productId, quantity, size, this.props.history)} className="btn btn-primary"> Add to Cart </Link>
+                                      {soldOut === "true" ? <button type="button" className="btn btn-primary" disabled>Sold Out</button>
+                                       :
+                                       <button to="" onClick={() => this.props.addToBusket(productId, quantity, size, this.props.history)} className="btn btn-primary"> Add to Cart </button>
+                                       }
                                     {
                                         this.props.admin.adminLoggedIn ? 
-                                        <div className="mt-2">
-                                            <Link to={`/admin/edit-product/${productId}`} className="btn btn-warning"> Edit this product </Link>
-                                            <Link to="" onClick={this.removeHandler} className="ml-2 btn btn-danger"> Remove this product </Link> 
+                                        <div className="">
+                                            <Link to={`/admin/edit-product/${productId}`} className="btn btn-warning mr-2 mt-2"> Edit this product </Link>
+                                            <Link to="" onClick={this.removeHandler} className="btn btn-danger mt-2"> Remove this product </Link> 
                                         </div> : ''
                                     }
                                   
                                 </div>
                             </div>
-                            <div className="advertise" style={{height: '60px'}}></div>
-                            <div className="d-flex">
+
+
+                            <div className="d-flex mt-3">
                                 <div className="">Size guide</div>
                                 <div className="mx-3" style={{}}>Delevary and return</div>
                                 <div className="">Ask a question</div>
@@ -202,6 +208,7 @@ class ProductDetailsPage extends Component {
                         </div>
                     </div>
                 </div>
+                <Footer/>
             </div>
         );
     }
@@ -214,4 +221,4 @@ const mapStateToProps = state => ({
     admin: state.admin
 })
 
-export default connect(mapStateToProps, {addToBusket})(ProductDetailsPage)
+export default connect(mapStateToProps, {addToBusket})(ProductExplorer)

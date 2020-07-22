@@ -18,7 +18,7 @@ export const addToBusket = (productId, quantity, size, history) => dispatch => {
                }
            })
 
-           history.push("/customers/cart")
+           history.push("/customer/cart")
        
         })
         .catch(e => {

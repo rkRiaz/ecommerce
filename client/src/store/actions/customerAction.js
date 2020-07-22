@@ -30,7 +30,7 @@ export const login = (customer, history) => dispatch => {
             //     }
             // })
 
-            // history.push('/')
+            history.push('/customer/dashboard')
             
         })
         .catch(error => {

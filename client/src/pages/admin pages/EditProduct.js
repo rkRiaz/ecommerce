@@ -24,6 +24,7 @@ class EditProduct extends Component {
         const { match: { params } } = this.props;
         // this.props.aProduct(params.productId)
         axios.get(`/products/${params.productId}`)
+        
             .then(res => {
                 let {name, price, details, department, soldOut, type, tag, productImgs, productImgsName} = res.data
                 this.setState({
@@ -64,39 +65,38 @@ class EditProduct extends Component {
     submitHandler = event => {
         event.preventDefault()
 
-
         let {name, price, details, department, soldOut, type, tag, productImgsName} = this.state 
         let product = {name, price, department, soldOut, details, type, tag, productImgsName}
-        console.log(product)
-      
+    
         axios.put(`/products/edit-product/${this.state.productId}`, product)
             .then(res => {
-                console.log(res.data.updatedProduct)
+                
                 this.setState({
                     updatedProduct: res.data.updatedProduct
                 })
             })
             .catch(err => {
                 this.setState({
-                    error: err.response
+                    error: err.response.data
                 })
                 
             })
             
-    
 
-                let formData = new FormData()
-                for(const key of Object.keys(this.state.productImgs)) {
-                    formData.append('productImgs', this.state.productImgs[key])
-                }
-                
-                axios.post('/uploads/product-imgs', formData)
+            let formData = new FormData()
+            for(const key of Object.keys(this.state.productImgs)) {
+                formData.append('productImgs', this.state.productImgs[key])
+            }
+            axios.post('/uploads/product-imgs', formData)
+
+            this.props.history.push('/')
 
     }
 
 
 
     render() {
+        console.log(this.state.updatedProduct)
         let {name, price, details, department, soldOut, type, tag, error } = this.state
    
         return (

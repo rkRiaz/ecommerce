@@ -40,7 +40,7 @@ export const adminLogout = history => dispatch => {
     //         user: {}
     //     }
     // })
-    history.push('/admin/login')
+    history.push('/')
 }
 
 

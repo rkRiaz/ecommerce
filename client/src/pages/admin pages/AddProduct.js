@@ -69,6 +69,7 @@ class AddProductPage extends Component {
 
 
     render() {
+        console.log(this.state)
         let { tag, error, newProduct } = this.state
         return (
             <div className="container">
@@ -88,24 +89,57 @@ class AddProductPage extends Component {
                                 <div className="invalid-feedback">{error.price}</div>
                             </div>
                             <div className="form-group">
-                                <label className="font-weight-bold" htmlFor="details">Product Details</label>
-                                <textarea name="details" style={{height: '200px'}}type="text" onChange={this.changeHandler} className="form-control" placeholder="Type product information..."/>
-                            </div>
-                            <div className="form-group">
                                 <label className="font-weight-bold" htmlFor="department">Department<sup><FaStarOfLife style={{color: 'red', fontSize:'8px'}}/></sup></label>
-                                <input name="department" type="text" onChange={this.changeHandler} className={error.department ? "is-invalid form-control" : "form-control"} placeholder="electronics, cloths..." />
+                                <div className="">
+                                    <select name="department" id="department" onChange={this.changeHandler}>
+                                        <option value="">Please select department</option>
+                                        <option value="Electronics">Electronics</option>
+                                        <option value="Fashion And Fashion Accessories">Fashion And Fashion Accessories</option>
+                                        <option value="Grocery, Household, Food & Pets">Grocery, Household, Food & Pets</option>
+                                        <option value="Baby">Baby</option>
+                                        <option value="Vehicles, Tires & Industria">Vehicles, Tires & Industria</option>
+                                        <option value="Property, Construction & Improvements">Property, Construction & Improvements</option>
+                                        <option value="Home, Furniture & Appliances">Home, Furniture & Appliances</option>
+                                        <option value="Pharmacy, Health & Beauty">Pharmacy, Health & Beauty</option>
+                                        <option value="Movies, Music, Books & Stationaries">Movies, Music, Books & Stationaries</option>
+                                        <option value="Sports, Fitness & Outdoor">Sports, Fitness & Outdoor</option>
+                                        <option value="Service">Service</option>
+                                        <option value="Corporate">Corporate</option>
+                                        <option value="Art, Craft, Personalized shops">Art, Craft, Personalized shops</option>
+                                        <option value="Agricultural">Agricultural</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
                                 <div className="invalid-feedback">{error.department}</div>
                             </div>
                             <div className="form-group">
-                                <label className="font-weight-bold" htmlFor="type">Product Type <sup><FaStarOfLife style={{color: 'red', fontSize:'8px'}}/></sup></label>
-                                <input name="type" type="text" onChange={this.changeHandler} className={error.type ? "is-invalid form-control" : "form-control"} placeholder="mobile, watch..." />
+                                <label className="font-weight-bold" htmlFor="type">Product Type <sup><FaStarOfLife style={{color: 'red', fontSize:'8px'}}/></sup></label><br/>
+                                    <select name="type" id="type" onChange={this.changeHandler}>
+                                        <option value="">Please select product type</option>
+                                        <option value="Electric & Parts">Electric & Parts</option>
+                                        <option value="Electronics and Appliance">Electronics and Appliance</option>
+                                        <option value="Watch & Clock">Watch & Clock</option>
+                                        <option value="Men">Men</option>
+                                        <option value="Women">Women</option>
+                                        <option value="other">other</option>
+                                    </select>
                                 <div className="invalid-feedback">{error.type}</div>
                             </div>
                             <div className="form-group">
-                                <label className="font-weight-bold" htmlFor="tag">Product Tag <sup><FaStarOfLife style={{color: 'red', fontSize:'8px'}}/></sup></label>
-                                <input name="tag" type="text" onChange={this.changeHandler} className={error.tag ? "is-invalid form-control" : "form-control"} placeholder="trending, best-seller..." />
+                                <label className="font-weight-bold" htmlFor="tag">Product Tag <sup><FaStarOfLife style={{color: 'red', fontSize:'8px'}}/></sup></label><br/>
+                                <select name="tag" id="tag" onChange={this.changeHandler}>
+                                        <option value="">Please select product tag</option>
+                                        <option value="Best Seller">Best Seller</option>
+                                        <option value="Trending">Trending</option>
+                                        <option value="Featured Products">Featured Products</option>
+                                        <option value="other">other</option>
+                                </select>
                                 <div className="invalid-feedback">{error.tag}</div>
                             </div> 
+                            <div className="form-group">
+                                <label className="font-weight-bold" htmlFor="details">Product Details</label>
+                                <textarea name="details" style={{height: '200px'}}type="text" onChange={this.changeHandler} className="form-control" placeholder="Type product information..."/>
+                            </div>
                         
 
                             <div className="custom">

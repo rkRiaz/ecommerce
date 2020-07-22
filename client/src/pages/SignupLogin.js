@@ -4,6 +4,8 @@ import {connect} from 'react-redux'
 import {FaStarOfLife} from 'react-icons/fa'
 import { signup, login } from '../store/actions/customerAction'
 import MegaMenu from '../components/MegaMenu'
+import Footer from '../components/Footer'
+
 
 
 class SignupLogin extends Component {
@@ -109,6 +111,7 @@ class SignupLogin extends Component {
                     </div>
 
                 </div> 
+                <Footer/>
             </div>
         );
     }

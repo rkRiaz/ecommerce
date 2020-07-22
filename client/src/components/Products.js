@@ -1,11 +1,12 @@
 import React from 'react'
+import './Products.css'
 
 import {Link} from 'react-router-dom'
 
 
 
 
-function TrendingComponent(props) {
+function Products(props) {
 
     // const [singleProduct, setsingleProduct] = useState('')
     // const [productPrice, setProductPrice] = useState('rr')
@@ -30,10 +31,10 @@ function TrendingComponent(props) {
     
 
     return (
-        <div className="trendingContainer container-fluid">
+        <div className="products container-fluid">
             
             
-            <div className="font-weight-bolder text-center"><h3> --- Trending --- </h3></div>
+            <div className="font-weight-bolder text-center"><h3> --- {props.heading} --- </h3></div>
             <div className="text-center"><h6> top view in this week </h6></div>
 
             <div className="row mt-5">
@@ -43,10 +44,11 @@ function TrendingComponent(props) {
                     <div key={product._id} className="col-6 col-sm-4 col-md-3 p-2">
                         <div className="productCard">
                             <Link to={`products/${product._id}`} style={{textDecoration: 'none'}}>
-                                <img className="" 
-                                        src={`/images/${product.productImgs[0]}`} alt="" 
-                                        style={{background: '#eaeaea', maxWidth: '100%'}}/>
-                                
+                                <img className="trending__image" 
+                                    src={`/images/${product.productImgs[0]}`} alt="" 
+                                    style={{background: '#eaeaea', maxWidth: '100%'}}
+                                />
+                                {product.soldOut === "true" ? <div className="soldOutProduct">Unavailable</div> : ''}
                                 <div className="px-3 mt-3 font-weight-bold text-dark">{product.name}</div>
                                 <div className="px-3 pb-3 text-dark font-weight-bold">Price: TK-{product.price}</div>
                             </Link>
@@ -60,7 +62,7 @@ function TrendingComponent(props) {
     )
 }
 
-export default TrendingComponent
+export default Products
 
 
 

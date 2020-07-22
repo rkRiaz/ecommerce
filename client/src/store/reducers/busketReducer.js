@@ -9,10 +9,11 @@ const busketReducer = (state=init, action) => {
     switch (action.type) {
         case Types.ADD_TO_BUSKET: {
             let selectedProduct = action.payload.product
-         
+            let quantity = state.cart_products.map(p => {return p.quantity})   
+            let totalQuantity = quantity.reduce((a, b) => a + b, 0)        
             if(selectedProduct) {
                 return {
-                    busketNumbers: state.busketNumbers + selectedProduct.quantity ,
+                    busketNumbers: totalQuantity + selectedProduct.quantity,
                     cart_products: [selectedProduct,...state.cart_products]
                 }
             }
@@ -32,8 +33,8 @@ const busketReducer = (state=init, action) => {
                 }
             } else {
                 return {
+                    busketNumbers: state.busketNumbers -= 1,
                     cart_products: state.cart_products.filter(p => p._id !== action.payload.productId),
-                    busketNumbers: state.busketNumbers = 0
                 }
             }
         }
