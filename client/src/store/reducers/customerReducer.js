@@ -4,6 +4,7 @@ const init = {
     customerLoggedIn: false,
     customer: {},
     error: {},
+    updateError: {}
 }
 
 const customerReducer = (state=init, action) => {
@@ -11,14 +12,20 @@ const customerReducer = (state=init, action) => {
         case Types.SET_CUSTOMER: {
             return {
                 ...state,
-                customer: action.payload.newCustomer,
-                customerLoggedIn: Object.keys(action.payload.newCustomer).length !== 0,
+                customer: action.payload.customer,
+                customerLoggedIn: Object.keys(action.payload.customer).length !== 0,
             }
         }
         case Types.SET_CUSTOMER_ERROR: {
             return {
                 ...state,
                 error: action.payload.error,
+            }
+        }
+        case Types.UPDATE_CUSTOMER_ERROR: {
+            return {
+                ...state,
+                updateError: action.payload.updateError
             }
         }
 

@@ -1,0 +1,7 @@
+.editProduct {
+    margin-top: 100px;
+    box-shadow: var(--darkShadow);
+    background: var(--mainWhite);
+    padding: 30px;
+    max-width: 1400px;
+}

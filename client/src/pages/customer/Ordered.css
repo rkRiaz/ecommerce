@@ -1,0 +1,38 @@
+
+.orderedBox{
+    box-shadow: var(--darkShadow);
+    background: var(--mainWhite);
+    border-radius: 5px;
+    overflow-x: scroll;
+}
+.orderedBox::-webkit-scrollbar {
+    display: none;
+  }
+.orderedBox .cart{
+    height: 0;
+    overflow-y: hidden;
+    /* transition: .5s !important; */
+}
+.orderedBox .openCart{
+    height: 100%;
+}
+.noOrder{
+    margin-top: 200px;
+}
+
+@media screen and (max-width: 576px) {
+    .cart th{
+        font-size: 15px;
+    }
+    .ordered{
+        margin-top: 50px ;
+        padding: 10px !important;
+    }
+    .orderedBox .h5{
+        font-size: 15px !important;
+    }
+    .orderedBox{
+        padding: 5px;
+        margin-top: 5px !important;
+    }
+}

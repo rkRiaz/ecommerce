@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './MegaMenu.css'
-import {Link} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom'
 import {FaSearch, FaUser, FaHeart, FaBars, FaShoppingCart,FaShoppingBag, FaTimes, FaPhone, FaEnvelope, FaStarOfLife} from 'react-icons/fa'
 import {login} from '../store/actions/customerAction'
 import {connect} from 'react-redux'
@@ -45,12 +45,15 @@ class MegaMenu extends Component {
 
     loginSubmitHandler = event => {
         event.preventDefault()
+        
         let {loginPhone, loginPassword} = this.state
         this.props.login({loginPhone, loginPassword}, this.props.history)
     }
 
     render() {
-        let{error} = this.props.customer
+        let{customerLoggedIn, error} = this.props.customer
+        let{adminLoggedIn} = this.props.admin
+
         return (
             <div className="megamenu">
                 <div className="megamenu__top-menu row text-center text-dark">
@@ -61,9 +64,9 @@ class MegaMenu extends Component {
                         <p>Summer sale discount off 50%!<Link to="">Shop Now</Link></p>   
                     </div>
                     <div className="col-lg-4">
-                        <p className="float-right"> Language <br/>
-                        <p className="text-dark"><Link to="/admin/login">Admin</Link></p>
-                        </p> 
+                    <p className="float-right"> Language {adminLoggedIn ? <Link to="/admin/dashboard">Admin</Link> : <Link to="/admin">Admin</Link>}</p>
+                        
+                        
                     </div>
                 </div>
                 <div className="megamenu__mid-menu pt-3 pb-5">
@@ -87,12 +90,15 @@ class MegaMenu extends Component {
                         <Link to="" className="pr-3 search-icon" ><FaSearch/></Link>
                         <Link to="/customer/cart" className="pr-3 shopping-icon" ><FaShoppingCart/> <sup className="cartAmount">{this.state.cart}</sup> </Link>
                         <Link to="" className="remove-icon pr-3" ><FaHeart/></Link>
+                        {customerLoggedIn ? <Link to="/customer/dashboard" className="remove-icon pr-3"><FaUser/></Link> : 
                         <Link to="" className="remove-icon pr-3" onClick={this.login__openNav}><FaUser/></Link>
+                        } 
                     </div>
                 </div>
                 <div className="megamenu__bottom-menu text-center" style={{fontSize: 12}}>
-                    <Link to ="/"><FaShoppingBag style={{fontSize: 20}}/><br/>Shop</Link> 
-                    <Link to ="/customers/signup-login"><FaUser style={{fontSize: 20}} /><br/>Account</Link>
+                    <Link to ="/"><FaShoppingBag style={{fontSize: 20}}/><br/>Shop</Link>
+                    {customerLoggedIn ? <Link to="/customer/dashboard"><FaUser style={{fontSize: 20}}/><br/>Account</Link> :
+                    <Link to ="/customer/signup-login"><FaUser style={{fontSize: 20}} /><br/>Account</Link>}
                     <Link to =""><FaHeart style={{fontSize: 20}}/><br/>WishList</Link>
                     <Link to ="/customer/cart" className="shopping-icon"><FaShoppingCart style={{fontSize: 20}}/><sup className="cartAmount">{this.state.cart}</sup><br/>Cart</Link>
                     <Link to =""><FaSearch style={{fontSize: 20}}/><br/>Search</Link>
@@ -112,7 +118,7 @@ class MegaMenu extends Component {
                                 <input name="loginPassword" type="password" onChange={this.changeHandler} className={error.loginPassword ? "is-invalid form-control" : "form-control"} placeholder="" />
                                 <div className="invalid-feedback">{error.loginPassword}</div>
                             </div>
-                            <Link><button type="submit" className="my-3 btn btn-outline-dark">Login</button></Link>
+                            <button type="submit" className="my-3 btn btn-outline-dark">Login</button>
                             <Link to="/customer/signup-login"><p>Not have an account? <span className="text-primary">Click here to register</span></p></Link>
                         </form>
                     </div>
@@ -129,8 +135,9 @@ class MegaMenu extends Component {
 
 const mapStateToProps = state => ({
     customer: state.customer,
-    busket: state.busket
+    busket: state.busket,
+    admin: state.admin
 })
 
-export default connect(mapStateToProps, {login})(MegaMenu);
+export default connect(mapStateToProps, {login})(withRouter(MegaMenu));
 

@@ -1,0 +1,6 @@
+.admin__login {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 30px;
+    box-shadow: var(--darkShadow);
+}

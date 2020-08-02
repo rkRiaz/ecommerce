@@ -1,12 +1,47 @@
+
 .footer__top{
+    width: 100%;
     background: var(--lightGrey);
-    padding: 100px;
-    line-height: 40px;
 }
-.grid {
+.footer__top_container{
+    max-width: 1200px !important;
+    margin: 0 auto;
+    padding: 80px 20px;
+    line-height: 35px;
     display: grid;
     grid-template-columns: auto auto auto auto auto;
 }
  .newsLetter input {
     width: 200px;
+}
+.shopName{
+    margin-top: -10px;
+}
+
+@media screen and (max-width: 1200px) {
+  
+}
+@media screen and (max-width: 992px) {
+    .footer__top_container{
+        line-height: 30px;
+        grid-template-columns: auto auto auto;
+        grid-row-gap: 20px;
+    }
+}
+@media screen and (max-width: 768px) {
+    .footer__top_container{
+        line-height: 30px;
+        grid-template-columns: auto auto auto;
+        grid-row-gap: 20px;
+    }
+}
+@media screen and (max-width: 576px) {
+    .footer__top_container{
+        line-height: 30px;
+        grid-template-columns: auto auto;
+        grid-row-gap: 20px;
+    }
+}
+@media screen and (max-width: 350px) {
+
 }

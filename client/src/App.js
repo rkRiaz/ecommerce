@@ -4,63 +4,67 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import {connect} from 'react-redux'
 import Home from './pages/Home'
 import ProductExplorer from './pages/ProductExplorer'
-import AddProduct from './pages/admin pages/AddProduct'
-import EditProduct from './pages/admin pages/EditProduct'
+import AddProduct from './pages/admin/AddProduct'
+import EditProduct from './pages/admin/EditProduct'
+import Customers from './pages/admin/Customers'
+import AllOrders from './pages/admin/AllOrders'
+
+
+
 
 import SignupLogin from './pages/SignupLogin'
 import Cart from './pages/Cart'
-import AdminLogin from './pages/admin pages/AdminLogin'
-import AdminDashboard from './pages/admin pages/AdminDashboard'
-import { adminLogin } from './store/actions/adminAction'
+
+
+import CustomerDashboard from './pages/customer/CustomerDashboard'
+import Ordered from './pages/customer/Ordered'
+import OrderedDetails from './pages/customer/OrderedDetails'
+import UpdateCustomer from './pages/customer/UpdateCustomer'
+import ChangePassword from './pages/customer/ChangePassword'
 
 
 
 
+import AdminLogin from './pages/admin/AdminLogin'
+import AdminDashboard from './pages/admin/AdminDashboard'
+import TermsAndCondition from './pages/TermsAndCondition'
 
 
 
  class App extends Component {
   render() {
-  
     return (
-      <>
         <BrowserRouter>
             <Switch>
-              <Route path="/" exact component={Home}/>
-              <Route path="/products/:productId" exact component={ProductExplorer}/>
-           
-              <Route path="/customer/signup-login" exact component={SignupLogin}/>
-              <Route path="/customer/cart" exact component={Cart}/>
-              <Route path="/customer/dashboard" exact component={Cart}/>
+              <Route exact path="/" component={Home}/>
+              <Route exact path="/products/:productId" component={ProductExplorer}/>
+
+              <Route exact path="/customer/signup-login" component={SignupLogin} />
+              <Route exact path="/customer/cart" component={Cart}/>
+              <Route exact path="/customer/dashboard" component={CustomerDashboard}/>
+              <Route exact path="/customer/ordered" component={Ordered} />
+              <Route exact path="/customer/ordered/:orderId" component={OrderedDetails} />
+              <Route exact path="/customer/update" component={UpdateCustomer} />
+              <Route exact path="/customer/change-password" component={ChangePassword} />
 
 
 
-              <Route exact path="/admin/login" render={() =>(
-                this.props.admin.adminLoggedIn ? (<Route component={AdminDashboard} />)
-                : ( <Route  component={AdminLogin} />)
-              )}/>
-
-              <Route exact path="/admin/dashboard" render={() =>(
-                this.props.admin.adminLoggedIn ? ( <Route  component={AdminDashboard} /> )
-                : (<Route component={AdminLogin} />)
-              )}/>
-
-              <Route exact path="/admin/add-product" render={() =>(
-                this.props.admin.adminLoggedIn ? ( <Route  component={AddProduct} /> )
-                : (<Route component={Home} />)
-              )}/>
-              <Route exact path="/admin/edit-product/:productId" render={() =>(
-                this.props.admin.adminLoggedIn ? ( <Route  component={EditProduct} /> )
-                : (<Route component={Home} />)
-              )}/>
-
-
+               
+              <Route exact path="/admin"  component={AdminLogin} />
+              <Route exact path="/admin/dashboard"  component={AdminDashboard} />
+              <Route exact path="/admin/customers"  component={Customers} /> 
+              <Route exact path="/admin/all-orders"  component={AllOrders} /> 
+              <Route exact path="/admin/add-product" component={AddProduct} /> 
+              <Route exact path="/admin/edit-product/:productId" component={EditProduct} /> 
+               
+              <Route exact path="/terms-and-condition" component={TermsAndCondition}/>
             </Switch>
         </BrowserRouter>
-      </>
+      
     )
+    }
   }
-}
+
 
 const mapStateToProps = state => ({
   customer: state.customer,

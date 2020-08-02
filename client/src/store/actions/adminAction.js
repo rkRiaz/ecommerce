@@ -1,6 +1,7 @@
 import axios from 'axios'
 import * as Types from './types'
-
+// import jwtDecode from 'jwt-decode'
+import setAuthToken from '../../utils/setAuthToken'
 
 
 
@@ -9,14 +10,14 @@ export const adminLogin = (admin, history) => dispatch => {
         .then(res => {
             let admin_auth = res.data
             localStorage.setItem('admin_auth', admin_auth)
-            // setAuthToken(token)
+            setAuthToken(admin_auth)
             // let decodeToken = jwtDecode(token)
-            // dispatch({
-            //     type: Types.SET_CUSTOMER,
-            //     payload: {
-            //         user: decodeToken
-            //     }
-            // })
+            dispatch({
+                type: Types.ADMIN_AUTH,
+                payload: {
+                    admin: admin_auth
+                }
+            })
 
             history.push('/admin/dashboard')
         })
@@ -34,12 +35,12 @@ export const adminLogin = (admin, history) => dispatch => {
 
 export const adminLogout = history => dispatch => {
     localStorage.removeItem('admin_auth')
-    // dispatch({
-    //     type: Types.SET_USER,
-    //     payload: {
-    //         user: {}
-    //     }
-    // })
+    dispatch({
+        type: Types.ADMIN_AUTH,
+        payload: {
+            user: {}
+        }
+    })
     history.push('/')
 }
 

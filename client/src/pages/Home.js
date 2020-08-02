@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import Products from '../components/Products'
-import MegaMenu from '../components/MegaMenu'
 import Banner from '../components/Banner'
-import Footer from '../components/Footer'
+import Layout from '../components/Layout'
 import axios from 'axios'
 
 
@@ -35,11 +34,13 @@ class Home extends Component {
 
 
             
-            <MegaMenu />
-            <Banner />
-            <Products products = {this.state.trendingProducts} heading = "Trending"/>
-            <Products products = {this.state.bestSellerProducts} heading = "Best Seller"/>
-            <Footer/>
+          
+            <Layout>
+                <Banner />
+                <Products products = {this.state.trendingProducts} heading = "Trending"/>
+                <Products products = {this.state.bestSellerProducts} heading = "Best Seller"/>
+            </Layout>
+            
             
 
                          

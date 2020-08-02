@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import './ProductExplorer.css'
 import {FaBars, FaArrowCircleLeft, FaArrowCircleRight} from 'react-icons/fa'
 import axios from 'axios'
-import MegaMenu from '../components/MegaMenu'
-import Footer from '../components/Footer'
+
+import Layout from '../components/Layout'
+
 import {connect} from 'react-redux'
 import {addToBusket} from '../store/actions/busketActions'
 import {Link} from 'react-router-dom'
@@ -113,13 +114,11 @@ class ProductExplorer extends Component {
 
 
     render() {
-        let {productImgs, productId, soldOut, department, quantity, size} = this.state
-        
-        return (
-            <div>
-            <MegaMenu/>
+        let {productImgs, productId, soldOut, quantity, size} = this.state
 
-            <div className="top-menu">
+        return (
+            <Layout>
+                 <div className="top-menu">
                     <div className="container d-flex justify-content-between">
                         <div> Home > watch > {this.state.productName} </div>
                         <div><Link to=""> <FaArrowCircleLeft/> </Link>   <Link to=""><FaBars /></Link>    <Link to="">  <FaArrowCircleRight/></Link> </div>
@@ -130,18 +129,18 @@ class ProductExplorer extends Component {
                     <div className=" row">
                         <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                             <div className="flex-container row">
-                                <div className="col-xl-3 col-lg-3 col-12" >
+                                <div className="col-xl-3 col-lg-3 col-12 ">
                                     <div className="productImgs">
                                     { productImgs.map(img => (
                                         <div key={img} onClick={this.imgClickHandler} className="imgBox my-2" data-img={img} style={{cursor: 'pointer'}}>
-                                            <img style={{ maxWidth: "100%", maxHeight: '90px', background: '#eaeaea'}} src={`/images/${img}`} alt="img"/>
+                                            <img style={{maxWidth: "100%", maxHeight: '90px', background: '#eaeaea'}} src={`/images/${img}`} alt="img"/>
                                         </div> 
                                     ))}
                                     </div>
                                 </div>
-                                <div className="col-xl-9 col-lg-9 col-12">
+                                <div className="col-xl-9 col-lg-9 col-12 px-2">
                                     <div className="largeImg mt-1" style={{background: '#eaeaea'}}>
-                                        <img className="" style={{ maxWidth: '100%', maxHeight: '480px'}} src={`/images/${this.state.largeImg}`} alt=""/>
+                                        <img className="" style={{ width: '100%', maxHeight: '480px'}} src={`/images/${this.state.largeImg}`} alt=""/>
                                     </div>
                                 </div>
                             </div>
@@ -150,13 +149,13 @@ class ProductExplorer extends Component {
                             <div className="font-weight-bold h3">{this.state.productName}</div>
                             <div>
                                 <div className="price text-dark my-2" style={{fontSize: "20px"}}><small>TK-</small><strong>{this.state.price}</strong></div>
-                                <div className="product__rating">
+                                {/* <div className="product__rating">
                                     {Array(5)
                                     .fill()
                                     .map((_) => (
-                                        <p>&#11088;</p>
+                                        <span>&#11088;</span>
                                     ))}
-                                </div>
+                                </div> */}
                                 <p className="productInfo">{this.state.productDetails}</p>
                                 <p className="font-weight-bold">Please Select Your Size</p>
                                 <div className="font-weight-bold">Size: {this.state.size}</div>
@@ -208,8 +207,7 @@ class ProductExplorer extends Component {
                         </div>
                     </div>
                 </div>
-                <Footer/>
-            </div>
+            </Layout>
         );
     }
 }
@@ -217,6 +215,7 @@ class ProductExplorer extends Component {
 
 
 const mapStateToProps = state => ({
+    customer: state.customer,
     busket : state.busket,
     admin: state.admin
 })

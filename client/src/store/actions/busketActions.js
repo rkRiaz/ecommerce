@@ -3,7 +3,7 @@ import axios from 'axios'
 
 
 
-export const addToBusket = (productId, quantity, size, history) => dispatch => {
+export const addToBusket = ( productId, quantity, size, history) => dispatch => {
 
     axios.get(`/products/${productId}`)
         .then(res => {
@@ -14,7 +14,7 @@ export const addToBusket = (productId, quantity, size, history) => dispatch => {
            dispatch({
                type: Types.ADD_TO_BUSKET,
                payload: {
-                   product
+                   product,
                }
            })
 
@@ -34,4 +34,22 @@ export const productQuantity = (action, productId) => dispatch => {
         }
     })
 } 
-    
+
+
+export const orderedProducts = (customer, orderedProducts, history) => dispatch => {
+
+if(customer) {
+    dispatch({
+        type: Types.ORDERED_PRODUCTS,
+    }) 
+
+    axios.post("/admin/ordered-products", orderedProducts)
+    .then(res => console.log(res.data))
+    .catch(e => {console.log(e)})
+    history.push("/customer/ordered")
+} else {
+    history.push('/customer/signup-login')
+}
+
+} 
+

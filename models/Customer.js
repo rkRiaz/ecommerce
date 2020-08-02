@@ -22,25 +22,8 @@ const CustomerSchema = new Schema({
         type: String,
         require: true,
         trim: true
-    },
-    cart: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'Product'
-        }
-    ],
-    order: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'Product'
-        }
-    ],
-    wishList: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'Product'
-        }
-    ]
+    }
+ 
 }, {timestamps: true})
 
 const Customer = model('Customer', CustomerSchema)

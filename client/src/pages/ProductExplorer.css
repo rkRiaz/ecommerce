@@ -21,11 +21,10 @@ label{
     border: 2px solid black;
 }
 .product__rating{
-  display: flex;
+    display: flex;
 }
 
 @media screen and (max-width: 1040px) {
-
   .products{
       background: white !important;
    }

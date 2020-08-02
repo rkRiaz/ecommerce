@@ -1,0 +1,60 @@
+
+.leftBar{
+    position: fixed;
+    top: 60px;
+    width: 0;
+    height: 100vh;
+    transition: var(--mainTransition);
+    background: var(--darkGrey);
+    box-shadow: var(--darkShadow);
+    overflow-x: hidden;
+    padding-bottom: 100px;
+}
+.showLeftBar{
+    width: 300px;
+}
+
+.content{
+    max-width: 100%;
+    margin-left: 300px;
+    transition: .5s;
+}
+.contentMargin{
+    margin-left: 0;
+}
+
+.topbar{
+    width: 100%;
+    height: 200px;
+    background: var(--mainGrey);
+    margin-bottom: -150px;
+}
+.arrow{
+    font-size: 25px;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 768px) {
+    .leftBar{
+        width: 100%;
+        z-index: 100;
+    }
+    .showLeftBar{
+        width: 0;
+        z-index: 100;
+    }
+
+    .content{
+        margin-left: 0px;
+    }
+    .contentMargin{
+        margin-left: 0px;
+    }
+    .top {
+        width: 100% !important;
+    }
+
+ }
+
+
+

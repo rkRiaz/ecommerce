@@ -12,6 +12,8 @@ import App from './App';
 import jwtDecode from 'jwt-decode'
 import * as Types from './store/actions/types'
 import setAuthToken from './utils/setAuthToken'
+// import { createBrowserHistory } from 'history'
+// export const browserHistory = createBrowserHistory()
 
 
 let token = localStorage.getItem('customer_auth_token')
@@ -21,7 +23,7 @@ if(token) {
   store.dispatch({
       type: Types.SET_CUSTOMER,
       payload: {
-          newCustomer: decodeToken
+          customer: decodeToken
       },
   })
 }
@@ -54,7 +56,7 @@ ReactDOM.render(
     <Provider store = {store}>
         <App />
     </Provider>,
-  // </React.StrictMode>
+  //  </React.StrictMode>, 
 document.getElementById('root'));
 
 

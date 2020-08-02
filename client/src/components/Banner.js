@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import './Banner.css'
 import { Link } from 'react-router-dom'
 import banner1 from '../imgs/banner1.jpg'
-import banner2 from '../imgs/banner2.jpg'
-import banner3 from '../imgs/banner3.jpg'
+// import banner2 from '../imgs/banner2.jpg'
+// import banner3 from '../imgs/banner3.jpg'
 import subBanner1 from '../imgs/subBanner1.jpg'
 import subBanner2 from '../imgs/subBanner2.jpg'
 import subBanner3 from '../imgs/subBanner3.jpg'
@@ -55,15 +55,15 @@ class Banner extends Component {
                         </div>
                     </div>
                     <div id="slide2" className="mySlides">
-                        <img src={banner2} alt="banner" style={{ objectFit: "cover", height: "70vh", width: "100%" }} />
-                        <div className="text">
+                        <img src={banner1} alt="banner" style={{ objectFit: "cover", height: "70vh", width: "100%" }} />
+                        <div className="text text-mid">
                             <h4>SUMMER 2020</h4>
                             <div className="heading font-weight-bolder display-4">New Arrival Collection</div>
                             <Link to=""><button className="btn btn-dark" >Explore now </button></Link>
                         </div>
                     </div>
                     <div id="slide3" className="mySlides">
-                        <img src={banner3} alt="banner" style={{ objectFit: "cover", height: "70vh", width: "100%" }} />
+                        <img src={banner1} alt="banner" style={{ objectFit: "cover", height: "70vh", width: "100%" }} />
                         <div className="text">
                             <h4>SUMMER 2020</h4>
                             <div className="heading font-weight-bolder display-4">New Arrival Collection</div>

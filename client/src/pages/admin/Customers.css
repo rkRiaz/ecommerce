@@ -1,0 +1,12 @@
+.customers__chart{
+    max-width: 1400px;
+    margin: 0 auto;
+    margin-top: 100px;
+    padding: 30px;
+    background: var(--mainWhite);
+    box-shadow: var(--darkShadow);
+    overflow-x: scroll;
+}
+.customers__chart .table {
+    
+}
