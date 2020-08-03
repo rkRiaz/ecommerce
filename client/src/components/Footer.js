@@ -64,7 +64,7 @@ const Footer = () => {
                     </div>
                 </div>
 
-                <div className="footer__bottom p-3 text-center text-dark" style={{background: "#cfcfcf"}}>
+                <div className="footer__bottom p-3 text-center text-white">
                     <p className="">Copyright 2020. All Rights Reserved. <a href="https://www.facebook.com/bd.riaz1">About Developer</a> </p>
                 </div>
 

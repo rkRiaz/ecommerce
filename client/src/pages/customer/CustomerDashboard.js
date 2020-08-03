@@ -8,10 +8,11 @@ import Layout from './Layout'
 
 const CustomerDashboard = (props) => {
 
-
     return (
         <Layout>
-            <div className="display-4">Welcome To Your Dashboard</div>
+            <div className="customerdashboard d-flex justify-content-center align-items-center">
+                <div className="display-4">Welcome To Your Dashboard</div>
+            </div>
         </Layout>
     )
 }

@@ -56,12 +56,12 @@ class MegaMenu extends Component {
 
         return (
             <div className="megamenu">
-                <div className="megamenu__top-menu row text-center text-dark">
+                <div className="megamenu__top-menu row text-center text-white">
                     <div className="col-lg-4">
                         <p className="float-left"><FaPhone  style={{fontSize: 10}}/> +99011-XXXXX &nbsp;&nbsp; <FaEnvelope style={{fontSize: 10}}/> johnDoe@yahho.com</p>
                     </div>
                     <div className="col-lg-4">
-                        <p>Summer sale discount off 50%!<Link to="">Shop Now</Link></p>   
+                        <p>Summer sale discount off 50%! <Link to="">Shop Now</Link></p>   
                     </div>
                     <div className="col-lg-4">
                     <p className="float-right"> Language {adminLoggedIn ? <Link to="/admin/dashboard">Admin</Link> : <Link to="/admin">Admin</Link>}</p>

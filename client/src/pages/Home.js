@@ -37,8 +37,8 @@ class Home extends Component {
           
             <Layout>
                 <Banner />
-                <Products products = {this.state.trendingProducts} heading = "Trending"/>
-                <Products products = {this.state.bestSellerProducts} heading = "Best Seller"/>
+                <Products products = {this.state.trendingProducts} heading = "Trending" title="Top view in this week"/>
+                <Products products = {this.state.bestSellerProducts} heading = "Best Seller" title="Best selling in this week"/>
             </Layout>
             
             

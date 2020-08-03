@@ -1,8 +1,17 @@
-
+.ordered{
+    max-width: 1400px;
+    margin: 0 auto;
+    margin-top: 110px;
+    
+}
+.ordered__content{
+    margin: 0 10px;
+}
 .orderedBox{
     box-shadow: var(--darkShadow);
     background: var(--mainWhite);
-    border-radius: 5px;
+    margin-top: 10px;
+    padding: 20px;
     overflow-x: scroll;
 }
 .orderedBox::-webkit-scrollbar {
@@ -24,15 +33,9 @@
     .cart th{
         font-size: 15px;
     }
-    .ordered{
-        margin-top: 50px ;
-        padding: 10px !important;
-    }
+
     .orderedBox .h5{
         font-size: 15px !important;
     }
-    .orderedBox{
-        padding: 5px;
-        margin-top: 5px !important;
-    }
+
 }

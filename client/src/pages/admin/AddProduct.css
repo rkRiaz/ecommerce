@@ -1,8 +1,12 @@
 .addProduct{
     max-width: 1200px;
     margin: 0 auto;
-    margin-top: 50px;
+    margin-top: 110px;
+
+}
+.addProduct__content{
     padding: 30px;
+    margin: 0 10px;
     background: var(--mainWhite);
     box-shadow: var(--darkShadow);
 }

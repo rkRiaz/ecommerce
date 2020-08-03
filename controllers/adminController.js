@@ -24,7 +24,7 @@ exports.loginController = async (req, res, next) => {
 
 }
 
-exports.orderedGetController = async (req, res, next) => {
+exports.ordersGetController = async (req, res, next) => {
     let Orders = await Order.find()
     if(Orders) {
         res.status(200).json(Orders.reverse())
@@ -33,7 +33,7 @@ exports.orderedGetController = async (req, res, next) => {
     }
 }
 
-exports.orderedPostController = async (req, res, next) => {
+exports.ordersPostController = async (req, res, next) => {
     try{
         let {customer, customerId, cart_products, subTotal} = req.body
         let ordered = new Order({
@@ -65,7 +65,7 @@ exports.orderedPostController = async (req, res, next) => {
     }
 }
 
-exports.orderedPutController = async (req, res, next) => {
+exports.ordersPutController = async (req, res, next) => {
     let {orderId} = req.params
     try{
         let order = await Order.findById(orderId)

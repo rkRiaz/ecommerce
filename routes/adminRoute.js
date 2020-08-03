@@ -1,13 +1,13 @@
 const router = require('express').Router()
 const adminLoginValidator = require('../validators/adminValidator')
 
-let {loginController, orderedGetController, orderedPostController, orderedPutController} = require('../controllers/adminController')
+let {loginController, ordersGetController, ordersPostController, ordersPutController} = require('../controllers/adminController')
 
 
 router.post("/login", adminLoginValidator, loginController)
-router.get("/ordered-products", orderedGetController)
-router.post("/ordered-products", orderedPostController)
-router.put("/ordered-products/:orderId", orderedPutController)
+router.get("/ordered-products", ordersGetController)
+router.post("/ordered-products", ordersPostController)
+router.put("/ordered-products/:orderId", ordersPutController)
 
 module.exports = router
 

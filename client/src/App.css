@@ -5,23 +5,36 @@
 }
 
 :root {
-    --primaryColor: #af9a7d;
+    --mainBlue: #01579b;
+    --lightBlue: #0277bd;
+    --simpleBlue: #e1f5fe;
+    --primaryColor: #1d2b36;
     --mainWhite: #fff;
     --offWhite: #f7f7f7;
     --mainBlack: #222;
-    --mainGrey: #ececec;
+    --mainGrey: #fafafa;
     --darkGrey: #cfcfcf;
     --lightGrey: #f6f6f8;
+    --whiteBlackGradient: -webkit-linear-gradient(to bottom, rgba(255,255,255,0.7) 0%,rgba(255,255,255,1) 100%);
     --mainTransition: all 0.3s linear;
     --mainSpacing: 3px;
     --lightShadow: 2px 2px 3px 0px rgba(163, 180, 185, 0.5);
-    --darkShadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.5);
+    --darkShadow:   0 1px 2px rgba(0,0,0,0.07), 
+                    0 2px 4px rgba(0,0,0,0.07), 
+                    0 3px 8px rgba(0,0,0,0.07), 
+                    0 2px 8px rgba(0,0,0,0.07),
+                    0 2px 2px rgba(0,0,0,0.07), 
+                    0 2px 8px rgba(0,0,0,0.07);
+    --bottomShadow: 0 10px 5px -8px rgba(0,0,0,.4);
   }
+
 a{
     color: var(--primaryColor)
 }
 a:hover{
     text-decoration: none;
+    color: var(--mainBlue)
+
 }
 
 

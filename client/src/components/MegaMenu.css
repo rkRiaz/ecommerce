@@ -6,8 +6,16 @@
     padding-top: 10px;
     padding-left: 15px;
     padding-right: 15px;
-    background: #f6f6f8;
+    background: #232526;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to top, #414345, #232526);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to top, #414345, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
     font-size: 15px;
+    box-shadow: var(--darkShadow);
+  }
+  .megamenu__top-menu a{
+    color: var(--mainWhite);
+    opacity: .6;
   }
   .megamenu__mid-menu{
     display: grid;

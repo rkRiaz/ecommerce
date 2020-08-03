@@ -20,6 +20,17 @@ const Layout = (props) => {
     }
 
     useEffect(() => {
+        
+        // let leftBarId = document.getElementById("leftBarId")
+        // let sticky = leftBarId.offsetTop
+        // window.onscroll = function() {
+        //     if (window.pageYOffset >= sticky) {
+        //         document.getElementById("leftBarId").style.top = "0px";
+        //     } else {
+        //         document.getElementById("leftBarId").style.top = "70px";
+        //     }
+        // }
+        
         async function fetchData() {
             axios.get("/customers/dashboard")
             .then(res => {
@@ -32,15 +43,6 @@ const Layout = (props) => {
 
         }, [])
 
-          // let leftBarId = document.getElementById("leftBarId")
-        // let sticky = leftBarId.offsetTop
-        // window.onscroll = function() {
-        //     if (window.pageYOffset >= sticky) {
-        //         document.getElementById("leftBarId").style.top = "0px";
-        //     } else {
-        //         document.getElementById("leftBarId").style.top = "70px";
-        //     }
-        // }
 
 
     return (

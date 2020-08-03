@@ -40,11 +40,9 @@ class Banner extends Component {
 
 
     render() {
-
         return (
-
             <div className="banner">
-                
+
                 <div className="slideshow-container">
                     <div id="slide1" className="mySlides">
                         <img src={banner1} alt="banner" style={{ objectFit: "cover", height: "70vh", width: "100%" }} />
@@ -83,7 +81,7 @@ class Banner extends Component {
 
                 </div>
 
-                <div className="subBanner row mt-4">
+                <div className="subBanner row mt-3">
                     <div className="col-12 col-md-6 leftColumn">
                         <Link to="">
                             <div style={{ position: "relative", height: "87%" }}>

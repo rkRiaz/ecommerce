@@ -1,8 +1,12 @@
 .update{
     margin-top: 100px !important;
-    padding: 30px;
-    max-width: 1000px;
+    max-width: 800px;
     margin: 0 auto;
+ 
+}
+.update__content{
     background: var(--mainWhite);
     box-shadow: var(--darkShadow);
+    padding: 20px;
+    margin: 0 10px;
 }

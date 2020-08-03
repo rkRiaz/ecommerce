@@ -1,14 +1,15 @@
 .products{
     max-width: 1200px !important;
-    padding: 20px;
+    padding: 0 40px;
+    margin: 0 auto;
   }
   .productCard {
     position: relative;
-    border-radius: 10px;
-    box-shadow: 0 3px 5px #b2bec3;
-    font-size: 16px;
-    line-height: 18px;
-    background: #fff9f9;
+    /* border-radius: 10px; */
+    box-shadow: var(--darkShadow);
+    font-size: 15px;
+    line-height: 15px;
+    /* background: #fff9f9; */
   }
 
   .soldOutProduct {
@@ -19,8 +20,21 @@
     top: 0;
     width: 100%;
     padding: 10px 0;
-    border-radius: 10px 10px 0px 0px;
+    /* border-radius: 10px 10px 0px 0px; */
   }
   .productCard img{
-    border-radius: 10px 10px 0px 0px;
+    /* border-radius: 10px 10px 0px 0px; */
+  }
+
+
+  @media screen and (max-width: 768px) {
+ 
+  }
+  @media screen and (max-width: 576px) {
+    .products{
+      padding: 0 20px;
+    }
+  }
+  @media screen and (max-width: 350px) {
+
   }
