@@ -25,7 +25,7 @@ const Cart = (props) => {
 
     let checkOut = () => {
 
-        props.orderedProducts(customer, orderedProducts, props.history)
+        props.orderedProducts(customerId, orderedProducts, props.history)
 
     }
 

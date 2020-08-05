@@ -39,9 +39,9 @@ export const productQuantity = (action, productId) => dispatch => {
 } 
 
 
-export const orderedProducts = (customer, orderedProducts, history) => dispatch => {
+export const orderedProducts = (customerId, orderedProducts, history) => dispatch => {
 
-if(customer) {
+if(customerId) {
     dispatch({
         type: Types.ORDERED_PRODUCTS,
     }) 
