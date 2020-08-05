@@ -10,7 +10,7 @@ const jwt = require('jsonwebtoken')
 exports.allCustomers = async(req, res, next) => {
    try{
     let customers = await Customer.find()
-    res.status(200).json(customers)
+    res.status(200).json(customers.reverse())
    }catch(e) {
        next(e)
    }

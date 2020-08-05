@@ -8,7 +8,7 @@
     background: #232526;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to top, #414345, #232526);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to top, #414345, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    
+    z-index: 1000;
     box-shadow: var(--darkShadow);
     color: #cfcfcf;
     overflow-x: hidden;
@@ -44,7 +44,7 @@
     box-shadow: var(--darkShadow);
     position: fixed;
     top: 0;
-
+    z-index: 100;
 }
 .arrow{
     font-size: 25px;

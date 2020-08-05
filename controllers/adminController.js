@@ -71,11 +71,11 @@ exports.ordersPutController = async (req, res, next) => {
         let order = await Order.findById(orderId)
         let {paid, picked, shipped, delivered, processing} = req.body
         let update = {
-            paid: paid || order.paid,
+            paid: paid ? paid : delivered ? {message: "true",createAt: delivered.createAt} : picked ? {message: "true", createAt: picked.createAt} : shipped ? {message: "true", createAt: shipped.createAt} :  order.paid,
             processing: processing || order.processing,
-            picked: picked || order.picked,
-            shipped: shipped || order.shipped,
-            delivered: delivered || order.delivered,
+            picked: picked ? picked : delivered ? {message: order.picked.message === "false" ? "Your Product is picked by Admin" : order.picked.message, createAt: order.picked.createAt ? order.picked.createAt : delivered.createAt} : shipped ? {message: order.picked.message === "false" ? "Your product is picked by Seller" : order.picked.message, createAt: order.picked.createAt ? order.picked.createAt : shipped.createAt} : order.picked,
+            shipped: shipped ? shipped : delivered ? {message: order.shipped.message === "false" ? "Your Product is being shipped soon" : order.shipped.message, createAt: order.shipped.createAt ? order.shipped.createAt : delivered.createAt} : order.shipped,
+            delivered: delivered || order.delivered
         }
 
         let updatedOrder = await Order.findOneAndUpdate(

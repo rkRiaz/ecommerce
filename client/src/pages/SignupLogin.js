@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux'
 // import { Link } from 'react-router-dom'
 import {FaStarOfLife} from 'react-icons/fa'
-import { signup, login } from '../store/actions/customerAction'
+import { login } from '../store/actions/customerAction'
 import Layout from '../components/Layout'
+import axios from 'axios'
 
 
 
@@ -15,10 +16,19 @@ class SignupLogin extends Component {
         password: '',
         confirmPassword: '',
         address: '',
+        newCustomer: {},
+        signUpError: {},
 
 
         loginPhone: '',
-        loginPassword: ''
+        loginPassword: '',
+        loginError: {}
+    }
+
+    static getDerivedStateFromProps = (nextProps, prevState) => {
+            return {
+                loginError: nextProps.customer.error
+            }
     }
 
     changeHandler = event => {
@@ -36,17 +46,35 @@ class SignupLogin extends Component {
     signupSubmitHandler = event => {
         event.preventDefault()
         let {name, phone, email, address, password, confirmPassword} = this.state
-        this.props.signup({name, phone, email, address, password, confirmPassword}, this.props.history)
+        let customer = {name, phone, email, address, password, confirmPassword}
+        // this.props.signup({name, phone, email, address, password, confirmPassword}, this.props.history)
+        axios.post('/customers/signup', customer)
+        .then((res) => {
+            this.setState({
+                newCustomer: res.data
+            })
+        })
+        .catch(error => {
+            this.setState({
+                signUpError: error.response.data
+            })
+        })
     }
 
 
 
     render() {
-        let{error} = this.props.customer
+        let{newCustomer, signUpError, loginError} = this.state
         return (
             <Layout>
+            <div className="h2 text-center text-dark" style={{padding: "4% 0", background: '#eaeaea'}}> My Account </div>
                     <div>
-                        <div className="h2 text-center text-dark" style={{padding: "4% 0", background: '#eaeaea'}}> My Account </div>
+                        {Object.keys(newCustomer) == 0 ? '' : 
+                        <div style={{position: "fixed", width: "100vw", top: 0, left: 0, zIndex: 1000}} className="alert alert-success text-center" role="alert">
+                            Successfully SignIn. Please Login to enter your dashboard!
+                        </div> 
+                        }
+             
                         <div className="container my-5">
                             <div className="row">
                                 <div className="col-md-6">
@@ -54,13 +82,13 @@ class SignupLogin extends Component {
                                     <form onSubmit={this.loginSubmitHandler}>
                                     <div className="form-group">
                                         <label className="text-dark" htmlFor="name">Enter phone number <sup><FaStarOfLife style={{color: 'red', fontSize:'6px'}}/></sup></label>
-                                        <input name="loginPhone" type="number" onChange={this.changeHandler} className={error.loginPhone ? "is-invalid form-control" : "form-control"} placeholder="0168-XXXXXXX" />
-                                        <div className="invalid-feedback">{error.loginPhone}</div>
+                                        <input name="loginPhone" type="number" onChange={this.changeHandler} className={loginError.loginPhone ? "is-invalid form-control" : "form-control"} placeholder="0168-XXXXXXX" />
+                                        <div className="invalid-feedback">{loginError.loginPhone}</div>
                                     </div>
                                     <div className="form-group">
                                         <label className="text-dark" htmlFor="type">Enter password</label>
-                                        <input name="loginPassword" type="password" onChange={this.changeHandler} className={error.loginPassword ? "is-invalid form-control" : "form-control"} placeholder="" />
-                                        <div className="invalid-feedback">{error.loginPassword}</div>
+                                        <input name="loginPassword" type="password" onChange={this.changeHandler} className={loginError.loginPassword ? "is-invalid form-control" : "form-control"} placeholder="" />
+                                        <div className="invalid-feedback">{loginError.loginPassword}</div>
                                     </div>
                                     <button type="submit" className="btn btn-outline-dark">Login</button>
                                     </form>
@@ -71,8 +99,8 @@ class SignupLogin extends Component {
                                     <form onSubmit={this.signupSubmitHandler}>
                                     <div className="form-group">
                                         <label className="text-dark" htmlFor="name">Enter your name </label>
-                                        <input name="name" type="text" onChange={this.changeHandler} className={error.name ? "is-invalid form-control" : "form-control"} placeholder="John Doe" />
-                                        <div className="invalid-feedback">{error.name}</div>
+                                        <input name="name" type="text" onChange={this.changeHandler} className={signUpError.name ? "is-invalid form-control" : "form-control"} placeholder="John Doe" />
+                                        <div className="invalid-feedback">{signUpError.name}</div>
                                     </div>
                                     <div className="form-group">
                                         <label className="text-dark" htmlFor="email">Enter your email </label>
@@ -80,23 +108,23 @@ class SignupLogin extends Component {
                                     </div>
                                     <div className="form-group">
                                         <label className="text-dark" htmlFor="phone">Enter phone number <sup><FaStarOfLife style={{color: 'red', fontSize:'6px'}}/></sup> </label>
-                                        <input name="phone" type="number" onChange={this.changeHandler} className={error.phone ? "is-invalid form-control" : "form-control"} placeholder="0168-XXXXXXX" />
-                                        <div className="invalid-feedback">{error.phone}</div>
+                                        <input name="phone" type="number" onChange={this.changeHandler} className={signUpError.phone ? "is-invalid form-control" : "form-control"} placeholder="0168-XXXXXXX" />
+                                        <div className="invalid-feedback">{signUpError.phone}</div>
                                     </div>
                                     <div className="form-group">
                                         <label className="text-dark" htmlFor="address">Please enter your address <sup><FaStarOfLife style={{color: 'red', fontSize:'6px'}}/></sup></label>
-                                        <input name="address" type="text" onChange={this.changeHandler} className={error.address ? "is-invalid form-control" : "form-control"} placeholder="299/272, Kandirpar, Cumilla-3500" />
-                                        <div className="invalid-feedback">{error.address}</div>
+                                        <input name="address" type="text" onChange={this.changeHandler} className={signUpError.address ? "is-invalid form-control" : "form-control"} placeholder="299/272, Kandirpar, Cumilla-3500" />
+                                        <div className="invalid-feedback">{signUpError.address}</div>
                                     </div>
                                     <div className="form-group">
                                         <label className="text-dark" htmlFor="password">Please enter your password <sup><FaStarOfLife style={{color: 'red', fontSize:'6px'}}/></sup></label>
-                                        <input name="password" type="password" onChange={this.changeHandler} className={error.password ? "is-invalid form-control" : "form-control"} placeholder="" />
-                                        <div className="invalid-feedback">{error.password}</div>
+                                        <input name="password" type="password" onChange={this.changeHandler} className={signUpError.password ? "is-invalid form-control" : "form-control"} placeholder="" />
+                                        <div className="invalid-feedback">{signUpError.password}</div>
                                     </div>
                                     <div className="form-group">
                                         <label className="text-dark" htmlFor="confirmPassword">Confirm your password <sup><FaStarOfLife style={{color: 'red', fontSize:'6px'}}/></sup></label>
-                                        <input name="confirmPassword" type="password" onChange={this.changeHandler} className={error.confirmPassword ? "is-invalid form-control" : "form-control"} placeholder="" />
-                                        <div className="invalid-feedback">{error.confirmPassword}</div>
+                                        <input name="confirmPassword" type="password" onChange={this.changeHandler} className={signUpError.confirmPassword ? "is-invalid form-control" : "form-control"} placeholder="" />
+                                        <div className="invalid-feedback">{signUpError.confirmPassword}</div>
                                     </div>
                                     <button type="submit" className="btn btn-outline-dark">SignUp</button>
                                     </form>
@@ -120,4 +148,4 @@ const mapStateToProps = state => ({
     customer: state.customer
 })
 
-export default connect(mapStateToProps, { login, signup })(SignupLogin);
+export default connect(mapStateToProps, { login })(SignupLogin);

@@ -44,22 +44,22 @@ import Moment from 'react-moment'
                         {/* <div className="heading h3 my-3 text-white">Order Timeline</div> */}
                     <div className="timeline__aglance">
                         <ul className="timeline__aglance__bar">
-                            <li className={orderedProduct.paid.message && orderedProduct.delivered.message === "false" ? "li" : "li complete"}>
+                            <li className={orderedProduct.paid.message === "false" ? "li" : "li complete"}>
                                 <div className="status">
                                 <h4> Paid </h4>
                                 </div>
                             </li>
-                            <li className={orderedProduct.paid.message && orderedProduct.delivered.message === "false" ? "li" : "li complete"}>
+                            <li className={orderedProduct.paid.message === "false" ? "li" : "li complete"}>
                                 <div className="status ">
                                 <h4> Processing </h4>
                                 </div>
                             </li>
-                            <li className={orderedProduct.picked.message && orderedProduct.delivered.message === "false" ? "li" : "li complete"}>
+                            <li className={orderedProduct.picked.message === "false" ? "li" : "li complete"}>
                                 <div className="status">
                                 <h4> Picked </h4>
                                 </div>
                             </li>
-                            <li className={orderedProduct.shipped.message && orderedProduct.delivered.message === "false" ? "li" : "li complete"}>
+                            <li className={orderedProduct.shipped.message === "false" ? "li" : "li complete"}>
                                 <div className="status">
                                 <h4> Shipped </h4>
                                 </div>
@@ -73,61 +73,67 @@ import Moment from 'react-moment'
                     </div>
 
                     <div className="timeline__details">
+                        <h4 className="text-dark text-right">Order Timeline Details</h4>
                         {
                             orderedProduct.delivered.message === "false" ? "" :
-                            <div className="box left bg-success">
+                            <div className="box">
                                 <div className="box-content">
-                                    <div className="h5">Delivered</div>
+                                    <div className="title">Delivered</div>
                                     <div><Moment format="D MMMM, h:mm A" date={orderedProduct.delivered.createdAt}/></div>
-                                    <div className="">{orderedProduct.delivered.message ? orderedProduct.delivered.message : "Product is delivered"}. If any issues conatct 017141xxxxx</div>
+                                   
+                                    <div className="message">{orderedProduct.delivered.message ? orderedProduct.delivered.message : "Product is delivered"}. If any issues conatct 017141xxxxx</div>
                                 </div>
                             </div>
                             
                         }
                         {   orderedProduct.shipped.message === "false" ? "" :
-                            <div className="box left">
+                            <div className="box">
+                                
                                 <div className="box-content">
-                                    <div className="h5">Shipped</div>
+                                    <div className="title">Shipped</div>
                                     <div><Moment format="D MMMM, h:mm A" date={orderedProduct.shipped.createdAt}/></div>
-                                    <div className="">{orderedProduct.shipped.message ? orderedProduct.shipped.message : "Your product is being shipped soon"}</div>
+                                    <div className="message">{orderedProduct.shipped.message ? orderedProduct.shipped.message : "Your product is being shipped soon"}</div>
                                 </div>
                             </div> 
                         }
                         {
                             orderedProduct.picked.message === "false" ? "" :
-                            <div className="box left">
+                            <div className="box">
+                                   
                                 <div className="box-content">
-                                    <div className="h5">Picked</div>
+                                    <div className="title">Picked</div>
                                     <div><Moment format="D MMMM, h:mm A" date={orderedProduct.picked.createdAt}/></div>
-                                    <div className="">{orderedProduct.picked.message ? orderedProduct.picked.message : "Your Product is picked by Admin"}</div>
+
+                                    <div className="message">{orderedProduct.picked.message ? orderedProduct.picked.message : "Your Product is picked by Admin"}</div>
                                 </div>
                             </div> 
                         }
                         {
                             orderedProduct.paid.message === "false"  ? "" :
-                            <div className="box left">
+                            <div className="box">
                                 <div className="box-content">
-                                    <div className="h5">Processing</div>
-                                    <div className="">Your Order is Selected for Processing</div>
+                                    <div className="title">Processing</div>
+                                    <div className="message">Your Order is Selected for Processing</div>
                                 </div>
                             </div> 
                         }
                         {
                             orderedProduct.paid.message === "false"  ? "" :
-                            <div className="box left">
+                            <div className="box">
                                 <div className="box-content">
-                                    <div className="h5">Paid</div>
+                                    <div className="title">Paid</div>
                                     <div><Moment format="D MMMM, h:mm A" date={orderedProduct.paid.createdAt}/></div>
-                                    <div className="">Payment Confirmed. Thank you for your order</div>
+            
+                                    <div className="message">Payment Confirmed. Thank you for your order</div>
                                 </div>
                             </div> 
                         }
                         {
                             orderedProduct.paid.message === "false"  ? 
-                            <div className="box left">
+                            <div className="box">
                                 <div className="box-content">
-                                    <div className="h5">Pending</div>
-                                    <div className="">Purchansing Policy and Terms & Condition accepted. Penidng For Payment</div>
+                                    <div className="title">Pending</div>
+                                    <div className="message">Purchansing Policy and Terms & Condition accepted. Penidng For Payment</div>
                                 </div>
                             </div> : "" 
                             
@@ -136,7 +142,7 @@ import Moment from 'react-moment'
                 
             
                     </div>
-                    <div className="details mt-4">
+                    <div className="details mt-3">
                         <div className="h3 my-1 ">Order Details</div>
                         <table className="table ">
                             <thead>

@@ -3,20 +3,7 @@ import * as Types from './types'
 import jwtDecode from 'jwt-decode'
 import setAuthToken from '../../utils/setAuthToken'
 
-export const signup = (customer, history) => dispatch => {
-    axios.post('/customers/signup', customer)
-        .then((res) => {
-            history.push('/customer/signup-login')
-        })
-        .catch(error => {
-            dispatch({
-                type: Types.SET_CUSTOMER_ERROR,
-                payload: {
-                    error: error.response.data
-                }
-            })
-        })
-}
+
 
 export const update = (customer, history) => dispatch => {
     axios.put('/customers/update', customer)

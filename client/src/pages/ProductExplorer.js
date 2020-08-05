@@ -26,15 +26,18 @@ class ProductExplorer extends Component {
         soldOut: '',
         department: '',
         productImgs: [],
-        largeImg: ''
+        largeImg: '',
+        busketChange: false,
     }
 
     // static getDerivedStateFromProps = (nextProps, prevState) => {
         
     //         return {
-    //             productName: nextProps.product.aProduct.name,
-    //             productDetails: nextProps.product.aProduct.details,
-    //             price: nextProps.product.aProduct.price,
+    //             busketChange: nextProps.busket.busketNumbers,
+
+    //             // productName: nextProps.product.aProduct.name,
+    //             // productDetails: nextProps.product.aProduct.details,
+    //             // price: nextProps.product.aProduct.price,
     //             // productImgs: nextProps.product.aProduct.productImgs,
     //             // largeImg: nextProps.product.aProduct.productImgs[0]
     //         }
@@ -114,18 +117,24 @@ class ProductExplorer extends Component {
 
 
     render() {
-        let {productImgs, productId, soldOut, quantity, size} = this.state
+        let {productImgs, productId, soldOut, quantity, size, busketChange} = this.state
 
         return (
             <Layout>
+                        {/* {busketChange ?  
+                        <div style={{position: "fixed", width: "100vw", top: 0, left: 0, zIndex: 1000}} className="alert alert-success text-center" role="alert">
+                            Added To Cart!
+                        </div> : '' 
+                        }
+                        {console.log(this.props.busket.busketNumbers)} */}
                  <div className="top-menu">
-                    <div className="container d-flex justify-content-between">
-                        <div> Home > watch > {this.state.productName} </div>
-                        <div><Link to=""> <FaArrowCircleLeft/> </Link>   <Link to=""><FaBars /></Link>    <Link to="">  <FaArrowCircleRight/></Link> </div>
+                    <div className="container d-flex justify-content-between font-weight-bold">
+                        <div> <Link to="/">Home</Link> &#8594; <Link to="/">{this.state.type}</Link> &#8594; <Link to="/">{this.state.productName}</Link></div>
+                        <div className=""><Link to="/customer/cart">&#8594; Go To Cart </Link> </div>
                     </div>
                 </div>
 
-                <div className="productDetails container mt-5">
+                <div className="productDetails container mt-4">
                     <div className=" row">
                         <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                             <div className="flex-container row">
@@ -179,13 +188,13 @@ class ProductExplorer extends Component {
                                             <div onClick={this.addHandler} className="" style={{cursor: 'pointer'}}>+</div>
                                         </div>
 
-                                        <label htmlFor="other">Product Quantity</label><br/>
+                                        <label htmlFor="other" className="font-weight-bold">Product Quantity</label><br/>
 
 
 
                                       {soldOut === "true" ? <button type="button" className="btn btn-primary" disabled>Sold Out</button>
                                        :
-                                       <button to="" onClick={() => this.props.addToBusket(productId, quantity, size, this.props.history)} className="btn btn-primary"> Add to Cart </button>
+                                       <button onClick={() => this.props.addToBusket(productId, quantity, size, this.props.history)} className="btn btn-primary"> Add to Cart </button>
                                        }
                                     {
                                         this.props.admin.adminLoggedIn ? 
@@ -198,8 +207,8 @@ class ProductExplorer extends Component {
                                 </div>
                             </div>
 
-
-                            <div className="d-flex mt-3">
+                                
+                            <div className="d-flex mt-3 font-weight-bold" style={{lineHeight: "15px"}}>
                                 <div className="">Size guide</div>
                                 <div className="mx-3" style={{}}>Delevary and return</div>
                                 <div className="">Ask a question</div>

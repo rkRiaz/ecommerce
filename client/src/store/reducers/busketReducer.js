@@ -27,7 +27,7 @@ const busketReducer = (state=init, action) => {
                     }
                 } else {
                     return {
-                        ...state,
+                        ...state,           
                         busketNumbers: totalQuantity + selectedProduct.quantity,
                         cart_products: [selectedProduct, ...state.cart_products],
                         ordered_products: {

@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Footer.css'
 import {Link} from 'react-router-dom'
 import {FaMapMarker, FaEnvelope, FaPhone, FaFacebook, FaGithub, FaInstagram, FaTwitter} from 'react-icons/fa'
 
+
 const Footer = () => {
+    const [email, setEmail] = useState('')
     return (
             <div className="footer mt-5">
 
@@ -57,14 +59,16 @@ const Footer = () => {
                             <div className="newsLetter d-flex flex-column">
                                 <h5>Newsletter Signup</h5>
                                 <p style={{lineHeight: "20px"}}>Subscribe to our newsletter and <br/>get 10% off your first purchase</p>
-                                <input type="email" placeholder="enter your email"/>
-                                <input value="Subscribe" type="button" className="btn btn-outline-dark"/>
+                                <div className="footer__subscribe__box">
+                                    <input onChange={e => setEmail(e.target.value)} className="footer__input" type="email" placeholder="Your Email"/>
+                                    <input onClick={e => {console.log(email)}}className="footer__subscribe" value="Subscribe" type="button"/>
+                                </div>
                             </div>
                         
                     </div>
                 </div>
 
-                <div className="footer__bottom p-3 text-center text-white">
+                <div className="footer__bottom p-3 text-white">
                     <p className="">Copyright 2020. All Rights Reserved. <a href="https://www.facebook.com/bd.riaz1">About Developer</a> </p>
                 </div>
 

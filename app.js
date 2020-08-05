@@ -3,7 +3,7 @@ const chalk = require('chalk')
 const mongoose = require('mongoose')
 const config = require('config')
 const passport = require('passport');
-
+const path = require('path')
 const adminRoute = require('./routes/adminRoute')
 const productsRoute = require('./routes/productsRoute')
 const customersRoute = require('./routes/customersRoute')
@@ -32,11 +32,24 @@ app.use('/products', productsRoute)
 app.use('/customers', customersRoute)
 app.use('/uploads', uploadsRoute)
 
+
+if(app.process.NODE_ENV === "production") {
+    app.use(express.static('client/build'))
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+    })
+}
+// if(app.get('env') === 'development') {
+//     app.use('dev')
+// }
+
+
 app.get('/', (req, res) => {
     res.send('<h1>Welcome To My Frist MERN-STACK-Project</h1>')
 })
 
 //error handling
+
 
 app.use((req, res, next) => {
     let error = new Error('404 page not found')
@@ -53,7 +66,7 @@ app.use((error, req, res, next) => {
 })
 
 const PORT = process.env.PORT || 8080
-const MONGODB_URI = `mongodb+srv://rkRiaz:r!@z0!726@cluster0-p4dm8.mongodb.net/ecommerce?retryWrites=true&w=majority`
+const MONGODB_URI = `mongodb+srv://${process.env.DB_ADMIN}:${process.env.DB_PASSWORD}@cluster0-p4dm8.mongodb.net/ecommerce?retryWrites=true&w=majority`
 
 
 mongoose.connect(MONGODB_URI, 

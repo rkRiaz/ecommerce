@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import './CustomerDashboard.css'
 import Layout from './Layout'
 // import axios from 'axios'

@@ -69,7 +69,7 @@ class MegaMenu extends Component {
                         
                     </div>
                 </div>
-                <div className="megamenu__mid-menu pt-3 pb-5">
+                <div className="megamenu__mid-menu pt-3 pb-3">
                     <div onClick={this.openNav} className="megamenu___mid__menu_bar-icon d-none">
                         <FaBars className="text-left" style={{fontSize: 25}}/>
                     </div>

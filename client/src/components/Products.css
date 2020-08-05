@@ -22,9 +22,19 @@
     padding: 10px 0;
     /* border-radius: 10px 10px 0px 0px; */
   }
-  .productCard img{
-    /* border-radius: 10px 10px 0px 0px; */
+  .addToCart{
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    background: rgba(255, 23, 68, .5);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
   }
+  /* .productCard img{
+    border-radius: 10px 10px 0px 0px;
+  } */
 
 
   @media screen and (max-width: 768px) {

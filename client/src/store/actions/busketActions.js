@@ -3,14 +3,17 @@ import axios from 'axios'
 
 
 
-export const addToBusket = ( productId, quantity, size, history) => dispatch => {
+export const addToBusket = ( productId, quantity, size, color, weight, history) => dispatch => {
 
     axios.get(`/products/${productId}`)
         .then(res => {
             let product = res.data
-            product.quantity = quantity
-            product.size  = size
-           
+            product.quantity = quantity ? quantity : 1 
+            product.size  = size ? size : ''
+            product.color = color ? color: ''
+            product.weight = weight ? weight: ''
+            
+
            dispatch({
                type: Types.ADD_TO_BUSKET,
                payload: {
@@ -18,7 +21,7 @@ export const addToBusket = ( productId, quantity, size, history) => dispatch => 
                }
            })
 
-           history.push("/customer/cart")
+        //    (history ? history.push("/customer/cart") : null)
        
         })
         .catch(e => {

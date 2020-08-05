@@ -1,9 +1,21 @@
 .cart{
+    width: 100%;
+}
+.cart__content{
     max-width: 1200px;
+    margin: 0 auto;
 }
-.table{
-    max-width: 100%;
+.cart__details {
+    overflow-x: scroll;
 }
+.cart__details::-webkit-scrollbar{
+    display: none;
+}
+.checkOut{
+    line-height: 15px;
+}
+
+
 
 @media screen and (max-width: 576px) {
     .productQuantityController{

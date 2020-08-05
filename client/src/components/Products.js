@@ -1,15 +1,16 @@
-import React from 'react'
+import React, {useState} from 'react'
 import './Products.css'
-
+import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
+import { addToBusket } from '../store/actions/busketActions'
 
 
 
 
 function Products(props) {
 
-    // const [singleProduct, setsingleProduct] = useState('')
-    // const [productPrice, setProductPrice] = useState('rr')
+    
+    const productId = useState('')
 
 
     // const exploreProduct = event => {
@@ -37,8 +38,10 @@ function Products(props) {
                 {/* <div className="display-4">No Products Available</div>  */}
                 
                 {props.products.reverse().map(product => (
+                    
                     <div key={product._id} className="col-6 col-sm-4 col-md-2 p-2">
                         <div className="productCard">
+                            {product.soldOut !== "true" ? <div onClick={() => props.addToBusket(product._id)} className="addToCart"> + </div> : ''}
                             <Link to={`products/${product._id}`} style={{textDecoration: 'none'}}>
                                 <img className="trending__image" 
                                     src={`/images/${product.productImgs[0]}`} alt="" 
@@ -58,7 +61,7 @@ function Products(props) {
     )
 }
 
-export default Products
+export default connect(null, {addToBusket})(Products)
 
 
 

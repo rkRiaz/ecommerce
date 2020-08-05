@@ -4,9 +4,10 @@
   "main": "index.js",
   "scripts": {
     "start": "node app.js",
-    "server": "nodemon app.js",
+    "server": "node app.js",
     "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "repository": {
     "type": "git",
@@ -41,6 +42,9 @@
     "passport-jwt": "^4.0.0",
     "path": "^0.12.7",
     "request": "^2.88.2"
+  },
+  "engines": {
+    "node": "12.16.1"
   },
   "devDependencies": {},
   "description": ""
