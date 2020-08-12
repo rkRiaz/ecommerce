@@ -1,16 +1,18 @@
 const Product = require('../models/Product')
 const { body } = require('express-validator')
 
-const productValidator = [
+const productAddValidator = [
     
         body('name')
-        .not().isEmpty().withMessage('Product Name Required'),
-        // .custom(async name => {
-        //     let product = await Product.findOne({name: name})
-        //     if(product) {
-        //         return Promise.reject('This Name Of Product is Already Added. Add Unique Name')
-        //     } 
-        // }),
+        .not().isEmpty().withMessage('Product Name Required')
+        .custom(async name => {
+            let product = await Product.findOne({name: name})
+            if(product) {
+                return Promise.reject('This Name Of Product is Already Added. Add Unique Name')
+            } 
+        }),
+        body('quantity')
+        .not().isEmpty().withMessage('Please Eneter Product Quantity'),
         body('price')
         .not().isEmpty().withMessage('Please Eneter Product Price'),
         body('department')
@@ -27,5 +29,5 @@ const productValidator = [
 
 ]
 
-module.exports = productValidator
+module.exports = productAddValidator
 

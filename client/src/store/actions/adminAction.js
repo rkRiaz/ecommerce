@@ -18,7 +18,6 @@ export const adminLogin = (admin, history) => dispatch => {
                     admin: admin_auth
                 }
             })
-
             history.push('/admin/dashboard')
         })
 
@@ -29,7 +28,7 @@ export const adminLogin = (admin, history) => dispatch => {
                     error: error.response.data
                 }
             })
-            console.log(error)
+            // console.log(error)
         })
 }
 

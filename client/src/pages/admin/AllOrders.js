@@ -5,12 +5,14 @@ import Layout from './Layout'
 import {Link} from "react-router-dom"
 import Moment from 'react-moment';
 import TextField from '@material-ui/core/TextField';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 
 
 
 
 const AllOrders = (props) => {
-    const [order, setOrders] = useState([])
+    const [order, setOrders] = useState(null)
     const [message, setMessage] = useState('')
     const [createAt] = useState(new Date().toJSON())
     const [update, setUpdate] = useState({})
@@ -73,8 +75,11 @@ const AllOrders = (props) => {
         <Layout>
             <div className="allOrders">
                 <div className="allOrders__content">
-                    {order.length === 0 ? <div className="noOrder display-4 text-center ">No Orders Available ?</div>:""}
-                    {order.map(order => (
+                    {
+                    order === null ? <div className="noOrder text-center "><CircularProgress/></div>
+                    :
+                    order.length === 0 ? <div className="noOrder display-4 text-center ">No Orders</div>:
+                    order.map(order => (
                         <div key={order._id} className={`allOrders__orderedBox ${order.delivered.message !== "false" && "completeDelivery"}`}>
                             <div className="d-flex justify-content-between">
                                 <div className="h5 mr-2">{order._id}</div>
@@ -85,7 +90,7 @@ const AllOrders = (props) => {
                                 }
                             </div>
                             <hr/>
-                            <div className=" h5 text-danger justify-content-between">
+                            <div className="allOrders__customer__info h5 text-danger justify-content-between">
                                 <div className="">{order.customer.name}</div>
                                 <div className="my-2">Phone: {order.customer.phone}</div>
                                 <div className="">{order.customer.address}</div>
@@ -147,15 +152,6 @@ export default AllOrders
 
 
 
-{/* <div className={classes.paper}>
-<h4 id="transition-modal-title">Enter Your Message to Customer <br/>Or Just Click Submit to Update Order Timeline</h4>
-<TextField onChange={e => setMessage(e.target.value)} id="standard-basic" label="Enter Message to Customer" />
-
-<button onClick={pickedHandler} data-id={order._id} disabled={order.picked.message === "false" ? "" : "disabled" }  className="btn btn-primary mt-4" >Picked</button>
-<button onClick={shippedHandler} data-id={order._id} disabled={order.shipped.message === "false" ? "" : "disabled" } className="btn btn-warning mt-2">Shipped</button>
-<button onClick={deliveredHandler} data-id={order._id} disabled={order.delivered.message === "false" ? "" : "disabled" } className="btn btn-success mt-2" >Delivered</button>
-<button onClick={handleClose} className="btn btn-danger mt-2">Close</button>
-</div> */}
 
 
 

@@ -3,7 +3,6 @@ import Layout from '../../components/Layout'
 import {FaStarOfLife} from 'react-icons/fa'
 import { adminLogin } from '../../store/actions/adminAction'
 import { connect } from 'react-redux'
-import {useHistory} from 'react-router-dom'
 import './AdminLogin.css'
 
 
@@ -12,13 +11,13 @@ function AdminLoginPage(props) {
     const [loginPhone, setLoginPhone] = useState(null)
     const [loginPassword, setLoginPassword] = useState(null)
 
-    const history = useHistory()
+
     let {error} = props.admin
 
     return (
         <Layout>
             <div className="admin__login">
-                <div className="">
+                <div className="admin__login__content">
                     <div className="h4 my-3 text-dark">ADMIN LOGIN</div>
                 
                     <div className="form-group">
@@ -31,7 +30,7 @@ function AdminLoginPage(props) {
                         <input name="loginPassword" type="password" onChange={e => setLoginPassword(e.target.value)} className={error.loginPassword ? "is-invalid form-control" : "form-control"} placeholder="Enter Password" />
                         <div className="invalid-feedback">{error.loginPassword}</div>
                     </div>
-                    <button onClick={() => props.adminLogin({loginPhone, loginPassword}, history)} className="btn btn-outline-dark">Login</button>
+                    <button onClick={() => props.adminLogin({loginPhone, loginPassword}, props.history)} className="btn btn-outline-dark">Login</button>
                     
                 </div>
             </div>

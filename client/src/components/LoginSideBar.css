@@ -1,0 +1,28 @@
+.login__sidebar{
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    box-shadow: var(--darkShadow);
+    background: white;
+    z-index: 1;
+    overflow-x: hidden;
+    width: 0px;
+    transition: var(--mainTransition);
+  }
+  .login__sidebar__on{
+    width: 300px;
+  }
+
+  .login__closebtn{
+    cursor: pointer;
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    transform: rotate(-180deg);
+    transition: var(--mainTransition);
+  }
+  .login__closebtn:hover{
+    transform: rotate(180deg);
+    color: var(--mainBlue)
+}

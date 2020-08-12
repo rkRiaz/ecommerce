@@ -1,7 +1,7 @@
 const express = require('express')
 const chalk = require('chalk')
 const mongoose = require('mongoose')
-const config = require('config')
+// const config = require('config')
 const passport = require('passport');
 const path = require('path')
 const adminRoute = require('./routes/adminRoute')
@@ -9,13 +9,6 @@ const productsRoute = require('./routes/productsRoute')
 const customersRoute = require('./routes/customersRoute')
 const uploadsRoute = require('./routes/uploadsRoute')
 const paymentRoute = require('./routes/paymentRoute')
-
-
-
-
-
-
-
 
 const app = express()
 
@@ -67,7 +60,6 @@ app.use((error, req, res, next) => {
 
 const PORT = process.env.PORT || 8080
 const MONGODB_URI = `mongodb+srv://${process.env.DB_ADMIN || "rkRiaz"}:${process.env.DB_PASSWORD || "r!@z0!726"}@cluster0-p4dm8.mongodb.net/ecommerce?retryWrites=true&w=majority`
-
 
 mongoose.connect(MONGODB_URI, 
     {

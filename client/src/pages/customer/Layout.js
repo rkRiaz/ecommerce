@@ -8,7 +8,7 @@ import {logout} from '../../store/actions/customerAction'
 // import Layout from '../../../components/Layout'
 
 import profilePic from '../../imgs/profilePic.png'
-import {ExitToApp, ShoppingCart, AttachMoney, Create, VpnKey, Menu, Home} from '@material-ui/icons';
+import {ExitToApp, ShoppingCart, AttachMoney, Create, VpnKey, Menu, Home, Person} from '@material-ui/icons';
 
 
 const Layout = (props) => {
@@ -64,7 +64,8 @@ const Layout = (props) => {
     
                     </div>
                     <div className="d-flex flex-column p-4">
-                        <Link to="/customer/ordered" className="h5"><ShoppingCart/>&nbsp;&nbsp;&nbsp;Orders</Link> 
+                        <Link to="/customer/dashboard" className="h5"><Person/>&nbsp;&nbsp;&nbsp;Dashboard</Link> 
+                        <Link to="/customer/ordered" className="h5 mt-4"><ShoppingCart/>&nbsp;&nbsp;&nbsp;Orders</Link> 
                         <Link to="" className="h5 mt-4"><AttachMoney/>&nbsp;&nbsp;&nbsp;Transaction History</Link> 
                         <Link to="/customer/update" className="h5 mt-4"><Create/>&nbsp;&nbsp;&nbsp;Edit Personal Info</Link> 
                         <Link to="/customer/change-password" className="h5 mt-4"><VpnKey/>&nbsp;&nbsp;&nbsp;Change Password</Link> 

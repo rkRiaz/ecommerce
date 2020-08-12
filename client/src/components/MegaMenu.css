@@ -1,5 +1,6 @@
 
   .megamenu{
+    width: 100%;
     overflow-x: hidden;
   }
   .megamenu__top-menu {
@@ -23,30 +24,41 @@
   }
   .megamenu__mid-menu_logo{
     padding-left: 5px;
+    line-height: 65px;
   }
   .megamenu___mid__menu_bar-icon{
     margin-top: 5px;
+    line-height: 55px;
   }
   .megamenu__mid-menu_menu .child{
     display: flex;
     justify-content: center;
+    align-items: center;
     font-weight: bold;
   }
-  .login__sidebar{
-    position: fixed;
-    top: 0;
-    right: 0;
-    height: 100%;
-    box-shadow: 0 2px 2px black;
-    background: white;
-    z-index: 1;
-    overflow-x: hidden;
-    width: 0px;
-    transition: .5s;
+  .megamenu___mid-menu_menu-icons{
+    line-height: 65px;
   }
-  .login__closebtn{
-    margin-left: 200px;
-  }
+
+.department__details{
+  display: none;
+}
+.products__details{
+  display: none;
+}.sale__details{
+  display: none;
+}
+.megamenu__mid_menu__menu__department:hover .department__details{
+  display: block;
+}
+.megamenu__mid_menu__menu__products:hover .products__details{
+  display: block;
+}
+.megamenu__mid_menu__menu__sale:hover .sale__details{
+  display: block;
+}
+
+
   
   .shopping-icon{
     position: relative;
@@ -76,6 +88,7 @@
     background: var(--primaryColor);
     color: white;
     border-radius: 50%;
+  
   }
   
   .megamenu__bottom-menu {
@@ -106,29 +119,7 @@
       padding-left: 5px;
     }
     .megamenu__mid-menu_menu {
-      position: fixed;
-      width: 0;
-      background: white;
-      box-shadow: 2px 5px 18px #888888;
-      height: 100%;
-      top: 0;
-      left: 0;
-      z-index: 2;
-      overflow-x: hidden;
-      font-size: 20px;
-      line-height: 50px;
-      transition: .3s;
-    }
-    .megamenu__mid-menu_menu .child{
-      display: block;
-      padding-left: 40px;
-    }
-    .sidenav-closebtn{
-      display: block !important;
-      font-size: 25px;
-      position: absolute;
-      top: 20px;
-      left: 200px;
+      display: none;
     }
     .megamenu__mid-menu_logo{
       text-align: center;

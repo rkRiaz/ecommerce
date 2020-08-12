@@ -16,7 +16,7 @@ class SignupLogin extends Component {
         password: '',
         confirmPassword: '',
         address: '',
-        newCustomer: {},
+        newCustomer: null,
         signUpError: {},
 
 
@@ -69,7 +69,7 @@ class SignupLogin extends Component {
             <Layout>
             <div className="h2 text-center text-dark" style={{padding: "4% 0", background: '#eaeaea'}}> My Account </div>
                     <div>
-                        {Object.keys(newCustomer) == 0 ? '' : 
+                        {!newCustomer ? '' : 
                         <div style={{position: "fixed", width: "100vw", top: 0, left: 0, zIndex: 1000}} className="alert alert-success text-center" role="alert">
                             Successfully SignIn. Please Login to enter your dashboard!
                         </div> 

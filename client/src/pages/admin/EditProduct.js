@@ -12,6 +12,7 @@ class EditProduct extends Component {
         productId: '',
         name: '',
         price: '',
+        quantity: '',
         details: '',
         department:'',
         soldOut: false,
@@ -29,7 +30,7 @@ class EditProduct extends Component {
         axios.get(`/products/${params.productId}`)
         
             .then(res => {
-                let {name, price, details, department, soldOut, type, tag, productImgs, productImgsName} = res.data
+                let {name, price, quantity, details, department, soldOut, type, tag, productImgs, productImgsName} = res.data
                 this.setState({
                     productId: params.productId,
                     name,
@@ -37,7 +38,7 @@ class EditProduct extends Component {
                     size: 'M',
                     department,
                     soldOut,
-                    quantity: 1,
+                    quantity,
                     price: price,
                     type: type,
                     tag: tag,
@@ -68,8 +69,8 @@ class EditProduct extends Component {
     submitHandler = event => {
         event.preventDefault()
 
-        let {name, price, details, department, soldOut, type, tag, productImgsName} = this.state 
-        let product = {name, price, department, soldOut, details, type, tag, productImgsName}
+        let {name, price, details, department, soldOut, quantity, type, tag, productImgsName} = this.state 
+        let product = {name, price, quantity, department, soldOut, details, type, tag, productImgsName}
     
         axios.put(`/products/edit-product/${this.state.productId}`, product)
             .then(res => {
@@ -98,7 +99,7 @@ class EditProduct extends Component {
 
     render() {
         console.log(this.state.updatedProduct)
-        let {name, price, details, department, type, tag, error } = this.state
+        let {name, price, details,quantity, department, type, tag, error } = this.state
    
         return (
             <Layout>
@@ -119,59 +120,70 @@ class EditProduct extends Component {
                                         <div className="invalid-feedback">{error.price}</div>
                                     </div>
                                     <div className="form-group">
+                                            <label className="font-weight-bold" htmlFor="quantity">Product Quantity <sup><FaStarOfLife style={{color: 'red', fontSize:'8px'}}/></sup></label><br/>
+                                            <input required type="number" id="quantity" name="quantity" onChange={this.changeHandler} min="1" max="500" value={quantity}/>
+                                            <div className="invalid-feedback">{error.quantity}</div>
+                                        </div>
+                                    <div className="form-group">
                                         <label className="font-weight-bold" htmlFor="details">Product Details</label>
                                         <textarea name="details" style={{height: '200px'}}type="text" onChange={this.changeHandler} className="form-control" value={details}/>
-                                    </div>
-
-
-                                    <div className="form-group">
-                                        <label className="font-weight-bold" htmlFor="department">Department<sup><FaStarOfLife style={{color: 'red', fontSize:'8px'}}/></sup></label>
-                                        <div className="">
-                                            <select required name="department" id="department" onChange={this.changeHandler}>
-                                                <option value={department}>{department}</option>
-                                                <option value="Electronics">Electronics</option>
-                                                <option value="Fashion And Fashion Accessories">Fashion And Fashion Accessories</option>
-                                                <option value="Grocery, Household, Food & Pets">Grocery, Household, Food & Pets</option>
-                                                <option value="Baby">Baby</option>
-                                                <option value="Vehicles, Tires & Industria">Vehicles, Tires & Industria</option>
-                                                <option value="Property, Construction & Improvements">Property, Construction & Improvements</option>
-                                                <option value="Home, Furniture & Appliances">Home, Furniture & Appliances</option>
-                                                <option value="Pharmacy, Health & Beauty">Pharmacy, Health & Beauty</option>
-                                                <option value="Movies, Music, Books & Stationaries">Movies, Music, Books & Stationaries</option>
-                                                <option value="Sports, Fitness & Outdoor">Sports, Fitness & Outdoor</option>
-                                                <option value="Service">Service</option>
-                                                <option value="Corporate">Corporate</option>
-                                                <option value="Art, Craft, Personalized shops">Art, Craft, Personalized shops</option>
-                                                <option value="Agricultural">Agricultural</option>
-                                                <option value="Other">Other</option>
-                                            </select>
-                                        </div>
-                                        <div className="invalid-feedback">{error.department}</div>
-                                    </div>
-                                    <div className="form-group">
-                                        <label className="font-weight-bold" htmlFor="type">Product Type <sup><FaStarOfLife style={{color: 'red', fontSize:'8px'}}/></sup></label><br/>
-                                            <select required name="type" id="type" onChange={this.changeHandler}>
-                                                <option value={type}>{type}</option>
-                                                <option value="Electric & Parts">Electric & Parts</option>
-                                                <option value="Electronics and Appliance">Electronics and Appliance</option>
-                                                <option value="Watch & Clock">Watch & Clock</option>
-                                                <option value="Men">Men</option>
-                                                <option value="Women">Women</option>
-                                                <option value="other">other</option>
-                                            </select>
-                                        <div className="invalid-feedback">{error.type}</div>
                                     </div>
                                     <div className="form-group">
                                         <label className="font-weight-bold" htmlFor="tag">Product Tag <sup><FaStarOfLife style={{color: 'red', fontSize:'8px'}}/></sup></label><br/>
                                         <select required name="tag" id="tag" onChange={this.changeHandler}>
                                                 <option value={tag}>{tag}</option>
-                                                <option value="Best Seller">Best Seller</option>
-                                                <option value="Trending">Trending</option>
-                                                <option value="Featured Products">Featured Products</option>
+                                                <option value="best-seller">Best Seller</option>
+                                                <option value="trending">Trending</option>
+                                                <option value="featured-products">Featured Products</option>
+                                                <option value="new-arrival">New Arrival</option>
                                                 <option value="other">other</option>
                                         </select>
-                                        <div className="invalid-feedback">{error.tag}</div>
+                                        {/* <div className="invalid-feedback">{error.tag}</div> */}
                                     </div> 
+                                    <div className="form-group">
+                                        <label className="font-weight-bold" htmlFor="department">Department<sup><FaStarOfLife style={{color: 'red', fontSize:'8px'}}/></sup></label>
+                                        <div className="">
+                                        <select required name="department" id="department" onChange={this.changeHandler}>
+                                                    <option value={department}>{department}</option>
+                                                    <option value="electronics">Electronics</option>
+                                                    <option value="fashion-and-fashion-accessories">Fashion And Fashion Accessories</option>
+                                                    <option value="grocery-household-food-pets">Grocery, Household, Food & Pets</option>
+                                                    <option value="baby">Baby</option>
+                                                    <option value="vehicles-tires-industrial">Vehicles, Tires & Industria</option>
+                                                    <option value="property-construction-improvements">Property, Construction & Improvements</option>
+                                                    <option value="home-furniture-appliances">Home, Furniture & Appliances</option>
+                                                    <option value="pharmacy-health-beauty">Pharmacy, Health & Beauty</option>
+                                                    <option value="movies-music-books-stationaries">Movies, Music, Books & Stationaries</option>
+                                                    <option value="sports-fitness-outdoor">Sports, Fitness & Outdoor</option>
+                                                    <option value="service">Service</option>
+                                                    <option value="corporate">Corporate</option>
+                                                    <option value="art-craft-personalizedshops">Art, Craft, Personalized shops</option>
+                                                    <option value="agricultural">Agricultural</option>
+                                                    <option value="other">Other</option>
+                                                </select>
+                                        </div>
+                                        {/* <div className="invalid-feedback">{error.department}</div> */}
+                                    </div>
+                                    <div className="form-group">
+                                        <label className="font-weight-bold" htmlFor="type">Product Type <sup><FaStarOfLife style={{color: 'red', fontSize:'8px'}}/></sup></label><br/>
+                                                <select required name="type" id="type" onChange={this.changeHandler}>
+                                                    <option value={type}>{type}</option>
+                                                    <option value="electric-parts">Electric & Parts</option>
+                                                    <option value="electronics-and-appliance">Electronics and Appliance</option>
+                                                    <option value="watch-clock">Watch & Clock</option>
+                                                    <option value="pant">Pant</option>
+                                                    <option value="shirt">Shirt</option>
+                                                    <option value="grocery">Grocery</option>
+                                                    <option value="mobile">Mobile</option>
+                                                    <option value="headphone">Headphone</option>
+                                                    <option value="laptop">Laptop</option>
+                                                    <option value="cosmetics">Cosmetics</option>
+                                                    <option value="medicine">Medicine</option>
+                                                    <option value="other">other</option>
+                                                </select>
+                                        {/* <div className="invalid-feedback">{error.type}</div> */}
+                                    </div>
+
 
 
 

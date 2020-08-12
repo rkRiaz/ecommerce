@@ -1,14 +1,22 @@
 
-import React from 'react';
+import React, {useState} from 'react';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Layout from '../components/Layout'
 import { productQuantity, orderedProducts } from '../store/actions/busketActions'
 import { FaTrash } from 'react-icons/fa'
+import {cartSideBar__off} from '../store/actions/sideBarAction'
+import ReportProblemOutlinedIcon from '@material-ui/icons/ReportProblemOutlined';
 import './Cart.css'
 
 
 const Cart = (props) => {
+    const [checked, setChecked] = useState(false)
+    const [warning, setWarning] = useState(null)
+
+
+
+
     let { cart_products } = props.busket
     let customerId = props.customer.customer._id
     let customer = props.customer.customer
@@ -20,15 +28,20 @@ const Cart = (props) => {
     orderedProducts.subTotal = subTotal
     orderedProducts.customer= customer ? customer : ''
     orderedProducts.customerId = customerId ? customerId : ''
-    console.log(orderedProducts)
+    // console.log(orderedProducts)
 
-
-    let checkOut = () => {
-
+    let checkOut = (e) => {
+        e.preventDefault()
+        checked === false ? setWarning("You must agree with the terms and conditions of sales to check out.") : 
         props.orderedProducts(customerId, orderedProducts, props.history)
-
+    }
+    let termsHandler = e => {
+        e.preventDefault()
+        props.cartSideBar__off()
+        props.history.push("/terms-and-condition")
     }
 
+    
 
     return (
         <div>
@@ -37,8 +50,8 @@ const Cart = (props) => {
                 {cart_products.length !== 0 ?
                     <div className="cart">                    
                         <div className="text-center text-dark" style={{padding: "2% 0", background: '#eaeaea'}}>
-                            <div className="h2">My Account </div>
-                            <Link to="/"><div className="badge badge-secondary text-center">Go To Shop &#8594;</div></Link> 
+                            <div className="h2">My Cart</div>
+                            <Link to="/"><div className="badge badge-secondary text-center">&#8594; Go To Shop</div></Link> 
                         </div>
                         <div className="cart__content">
                                 <div className="cart__details mt-5 px-3">
@@ -71,16 +84,26 @@ const Cart = (props) => {
                                 </div>
                                 <hr/>
                                 <div className="checkOut text-right mt-4 px-3">
-                                    <div className="h3 font-weight-bold">SubTotal Amount: <strong>{subTotal}</strong> <small>TK-Only</small></div>
+                                    <div className="h3 font-weight-bold">SubTotal Amount: &#2547;<strong>{subTotal}</strong></div>
                                     <p>Taxes, shipping and discounts codes calculated at checkout</p>
-                                    <p>
-                                        <input type="checkbox"  value=""/> &nbsp;
-                                        <Link to="/terms-and-condition">I agree with the terms and conditions.</Link>    
-                                    </p>
-                                    <button onClick={checkOut} className="btn btn-primary font-weight-bold" style={{width: 300, borderRadius: 50}}>CHECK OUT</button>
+                                    <div className="d-flex justify-content-end my-2">
+                                        <input onChange={e => setChecked(!checked)} className="mt-1" type="checkbox" /> &nbsp;&nbsp;
+                                        <div className="text-danger" style={{textDecorationLine: "underline"}} onClick={termsHandler}>I agree with the terms and conditions.</div>    
+                                    </div>
+                                    <button onClick={checkOut} className="btn btn-primary font-weight-bold mt-2" style={{width: 300, borderRadius: 50}}>CHECK OUT</button>
                                 </div>
+                                {
+                                warning === null ? "" : 
+                                <div style={{position: "fixed", bottom: 0, left: 0, width: "100%", zIndex: 1}} className="alert alert-warning alert-dismissible fade show" role="alert">
+                                    <ReportProblemOutlinedIcon className="mb-1"/><strong>&nbsp;&nbsp;&nbsp;{warning}</strong>
+                                    <button onClick={e => setWarning(null)} type="button" className="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                }
                             </div>
                         </div>
+
                     :
                     <div className="display-4 text-center">Your Cart is Empty<br /> <Link className="text-success" to="/">Go to shop</Link></div>
                 }
@@ -93,5 +116,5 @@ const mapStateToProps = state => ({
     customer: state.customer,
     busket: state.busket
 })
-export default connect(mapStateToProps, { productQuantity, orderedProducts })(Cart);
+export default connect(mapStateToProps, { productQuantity, orderedProducts, cartSideBar__off })(Cart);
 

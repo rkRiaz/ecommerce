@@ -1,11 +1,13 @@
 const router = require('express').Router()
-const productValidator = require('../validators/productValidator')
+const productAddValidator = require('../validators/productAddValidator')
+const productEditValidator = require('../validators/productEditValidator')
+
 const { allProducts, product, addProduct, editProduct, deleteProduct } = require('../controllers/productsController')
 
 router.get('/', allProducts)
 router.get('/:productId', product)
-router.post('/add-product', productValidator, addProduct)
-router.put('/edit-product/:productId',productValidator, editProduct)
+router.post('/add-product', productAddValidator, addProduct)
+router.put('/edit-product/:productId',productEditValidator, editProduct)
 router.delete('/delete/:productId', deleteProduct)
 
 

@@ -1,62 +1,65 @@
-import React, {useState} from 'react'
+import React from 'react'
 import './Products.css'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import { addToBusket } from '../store/actions/busketActions'
-
-
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 function Products(props) {
+    // const [products, setProducts] = useState(null)
 
+    // useEffect(() => {
+    //     setProducts(props.products)
+    // }, [props])
     
-    const productId = useState('')
-
-
-    // const exploreProduct = event => {
-     
-    //         let target = event.target.parentElement
-    //         let productId = target.dataset.product
-            
-    //         let product = props.products.find((value, index, array) => {
-    //             return value._id == productId
-    //         })
-    //         // console.log(product)
-    //         // setProductId(productId)
-    //         //redux action will go on here
-    //         setsingleProduct(product)
-
-    // }
 
     return (
         <div className="products py-3">
-
-            <div className="font-weight-bolder text-center"><h3> --- {props.heading} --- </h3></div>
+            <div className="font-weight-bolder text-center text-uppercase h5">{props.heading}</div>
             <div className="text-center"><h6> {props.title} </h6></div>
 
             <div className="row mt-4">
-                {/* <div className="display-4">No Products Available</div>  */}
                 
-                {props.products.reverse().map(product => (
+                {
+                props.products.length === 0 ?  
+                <div className="h5 ml-auto mr-auto">
+                    <CircularProgress />
+                </div> 
+                 :
+                 props.products.reverse().map(product => (
                     
-                    <div key={product._id} className="col-6 col-sm-4 col-md-2 p-2">
+                    <div key={product._id} className="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2 m-0 p-0">
                         <div className="productCard">
                             {product.soldOut !== "true" ? <div onClick={() => props.addToBusket(product._id)} className="addToCart"> + </div> : ''}
-                            <Link to={`products/${product._id}`} style={{textDecoration: 'none'}}>
-                                <img className="trending__image" 
-                                    src={`/images/${product.productImgs[0]}`} alt="" 
-                                    style={{background: '#eaeaea', maxWidth: '100%'}}
-                                />
-                                {product.soldOut === "true" ? <div className="soldOutProduct">Unavailable</div> : ''}
-                                <div className="px-2 mt-3 font-weight-bold text-dark">{product.name}</div>
-                                <div className="px-2 pb-2 text-dark font-weight-bold">Price: TK-{product.price}</div>
+                            <Link to={`/products/${product._id}`} style={{textDecoration: 'none'}}>
+                                <div className="products__image">
+                                    <img className="trending__image" 
+                                        src={`/images/${product.productImgs[0]}`} alt="" 
+                                        style={{objectFit: "fill", width: '100%', height: "100%"}}
+                                    />
+                                </div>
+                                <div className="products__info">
+                                    {product.soldOut === "true" ? <div className="soldOutProduct">Unavailable</div> : ''}
+                                        <div className="px-2 mt-1 font-weight-bold text-dark">{product.name.slice(0 ,35)}</div>
+                                        <div className="px-2 mt-2 text-danger font-weight-bold">&#2547;{product.price}</div>
+                                </div>
+
                             </Link>
                         </div>
                     </div>
-                ))}
+                ))
 
-                
+             
+                }
+
+
             </div>
+            {props.type === "tag" ? <div className="text-center ml-auto"><Link to={`/products/tag/${props.link}`} className="loadMoreBtn my-5 btn btn-outline-dark">View All</Link></div> :
+             props.type === "department" ? <div className="text-center ml-auto"><Link to={`/products/department/${props.link}`} className="loadMoreBtn my-5 btn btn-outline-dark">View All</Link></div> :
+             props.type === "type" ? <div className="text-center ml-auto"><Link to={`/products/type/${props.link}`} className="loadMoreBtn my-5 btn btn-outline-dark">View All</Link></div> :
+             ''
+             }
         </div>
     )
 }

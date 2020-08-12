@@ -4,10 +4,12 @@ import axios from 'axios'
 import './Ordered.css'
 import Layout from './Layout'
 import Moment from 'react-moment';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 
 
  const Ordered = (props) => {
-    const[ordered, setOrdered] = useState([])
+    const[ordered, setOrdered] = useState(null)
     // const[isOpen, setIsOpen] = useState(true)
 
 
@@ -33,8 +35,13 @@ import Moment from 'react-moment';
         <Layout>
             <div className="ordered">
                <div className="ordered__content">
-                    {ordered.length === 0 ? <div className="noOrder display-4 text-center ">Not Ordered Yet ? <br /> <Link className="text-success" to="/">Go to shop</Link></div>:""}
-                    {ordered.map(orderedProduct => (
+                    {
+
+                    ordered === null ? <div className="noOrder text-center "><CircularProgress/></div>
+                    :
+                    ordered.length === 0 ? <div className="noOrder display-4 text-center ">Not Ordered Yet ? <br /> <Link className="text-success" to="/">Go to shop</Link></div>
+                    :
+                    ordered.map(orderedProduct => (
                         <div key={orderedProduct._id} className="orderedBox">
                             <div className="d-flex justify-content-between">
                                 <div className="h5 mr-2">{orderedProduct._id}</div>
@@ -58,7 +65,8 @@ import Moment from 'react-moment';
                             </div>
                             
                         </div>
-                    ))}
+                    ))
+                    }
 
 
                </div>

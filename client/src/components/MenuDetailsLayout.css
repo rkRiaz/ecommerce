@@ -1,0 +1,26 @@
+.menuProducts{
+    width: 900px;
+    padding: 10px 30px;
+    background-color: var(--mainWhite);
+    box-shadow: var(--darkShadow);
+    z-index: 100;
+    position: absolute;
+    top: 120px;
+    left: 50%;
+    transform: translate(-50%);
+    transition: var(--mainTransition);
+}
+
+
+.menuProducts__closebtn{
+    cursor: pointer;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    transform: rotate(-180deg);
+    transition: var(--mainTransition);
+}
+.menuProducts__closebtn:hover{
+    transform: rotate(180deg);
+    color: var(--mainBlue)
+}

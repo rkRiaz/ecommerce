@@ -4,7 +4,7 @@ import {Link, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {adminLogout} from '../../store/actions/adminAction'
 import profilePic from '../../imgs/profilePic.png'
-import {ExitToApp, ShoppingCart, SupervisorAccount, Create, Menu} from '@material-ui/icons';
+import {ExitToApp, ShoppingCart, SupervisorAccount, Create, Menu, Person} from '@material-ui/icons';
 
 const AdminDashboard = (props) => {
     const [isOpen, setIsOpen] = useState(true)
@@ -43,7 +43,8 @@ const AdminDashboard = (props) => {
                 </div>
                 </Link>
                 <div className="d-flex flex-column p-4">
-                    <Link to="/admin/all-orders" className="h5"><ShoppingCart/>&nbsp;&nbsp;&nbsp;Orders</Link> 
+                    <Link to="/admin/dashboard" className="h5"><Person/>&nbsp;&nbsp;&nbsp;Dashboard</Link> 
+                    <Link to="/admin/all-orders" className="h5 mt-4"><ShoppingCart/>&nbsp;&nbsp;&nbsp;Orders</Link> 
                     <Link to="/admin/customers" className="h5 mt-4"><SupervisorAccount/>&nbsp;&nbsp;&nbsp;Customers</Link> 
                     <Link to="/admin/add-product" className="h5 mt-4"><Create/>&nbsp;&nbsp;&nbsp;Add Product</Link> 
                     <Link to="" onClick={() => props.adminLogout(props.history)} className="h5 mt-4"><ExitToApp/>&nbsp;&nbsp;&nbsp;LogOut</Link>

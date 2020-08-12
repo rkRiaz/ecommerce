@@ -34,11 +34,12 @@ exports.product = async(req, res, next) => {
 
 
 exports.addProduct = async(req, res, next) => {
-    let { name, price, details, department, type, tag, productImgsName } = req.body
+    let { name, price, details, quantity, department, type, tag, productImgsName } = req.body
     let errors = validationResult(req).formatWith(errorFormatter)
 
     if(!errors.isEmpty()) {
         return res.status(400).json(errors.mapped())
+        
     } 
 
     try{
@@ -51,6 +52,7 @@ exports.addProduct = async(req, res, next) => {
                 details,
                 department,
                 type,
+                quantity,
                 tag,
                 productImgs: productImgs,
                 soldOut: false
@@ -64,7 +66,7 @@ exports.addProduct = async(req, res, next) => {
 }
 
 exports.editProduct = async(req, res, next) => {
-    let { name, price, details, department, type, tag, soldOut } = req.body
+    let { name, price, details, quantity, department, type, tag, soldOut } = req.body
     let { productId } = req.params
     let errors = validationResult(req).formatWith(errorFormatter)
 
@@ -76,7 +78,7 @@ exports.editProduct = async(req, res, next) => {
         if(errors.isEmpty()) {
             const updatedProduct = await Product.findOneAndUpdate(
                 {_id: productId},
-                {$set: {name, price, details, department, type, tag, soldOut}},
+                {$set: {name, price, details, quantity, department, type, tag, soldOut}},
                 {new: true}
             ) 
             // const updatedProduct = await product.

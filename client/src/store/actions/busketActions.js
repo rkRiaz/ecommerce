@@ -3,7 +3,7 @@ import axios from 'axios'
 
 
 
-export const addToBusket = ( productId, quantity, size, color, weight, history) => dispatch => {
+export const addToBusket = (productId, quantity, size, color, weight, history) => dispatch => {
 
     axios.get(`/products/${productId}`)
         .then(res => {
@@ -20,8 +20,12 @@ export const addToBusket = ( productId, quantity, size, color, weight, history) 
                    product,
                }
            })
-
-        //    (history ? history.push("/customer/cart") : null)
+           dispatch({
+            type: Types.SIDE_BARS,
+            payload: {
+                addProduct: res.data,
+            }
+        })
        
         })
         .catch(e => {
@@ -51,7 +55,13 @@ if(customerId) {
     .catch(e => {console.log(e)})
     history.push("/customer/ordered")
 } else {
-    history.push('/customer/signup-login')
+    dispatch({
+        type: Types.SIDE_BARS,
+        payload: {
+            addProduct: '',
+            open: true,
+        }
+    }) 
 }
 
 } 

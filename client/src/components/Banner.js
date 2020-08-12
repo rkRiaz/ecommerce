@@ -14,6 +14,7 @@ import subBanner3 from '../imgs/subBanner3.jpg'
 
 class Banner extends Component {
 
+
     currentSlide = (n) => {
         if (n === 1) {
             document.getElementById('slide3').style.display = "none"
@@ -42,14 +43,13 @@ class Banner extends Component {
     render() {
         return (
             <div className="banner">
-
                 <div className="slideshow-container">
                     <div id="slide1" className="mySlides">
                         <img src={banner1} alt="banner" style={{ objectFit: "cover", height: "70vh", width: "100%" }} />
                         <div className="text">
                             <h4>SUMMER 2020</h4>
                             <div className="heading font-weight-bolder display-4">New Arrival Collection</div>
-                            <Link to=""><button className="btn btn-dark" >Explore now </button></Link>
+                            <Link to="/products/tag/new-arrival"><button className="btn btn-dark" >Explore now </button></Link>
                         </div>
                     </div>
                     <div id="slide2" className="mySlides">

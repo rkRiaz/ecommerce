@@ -40,6 +40,16 @@ export const login = (customer, history) => dispatch => {
                     customer: decodeToken
                 }
             })
+            dispatch({
+                type: Types.SIDE_BARS,
+                payload: {
+                    addProduct: '',
+                    open: false,
+                }
+            })
+            
+            history.location.pathname === "/customer/cart" ? 
+            history.push("/customer/cart") :
             history.push("/customer/dashboard")
         })
         .catch(error => {
@@ -47,6 +57,13 @@ export const login = (customer, history) => dispatch => {
                 type: Types.SET_CUSTOMER_ERROR,
                 payload: {
                     error: error.response.data
+                },
+            })
+            dispatch({
+                type: Types.SIDE_BARS,
+                payload: {
+                    addProduct: '',
+                    open: true,
                 }
             })
             console.log(error)

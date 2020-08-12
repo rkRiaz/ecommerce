@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './ProductExplorer.css'
-import {FaBars, FaArrowCircleLeft, FaArrowCircleRight} from 'react-icons/fa'
+// import {FaBars, FaArrowCircleLeft, FaArrowCircleRight} from 'react-icons/fa'
 import axios from 'axios'
 
 import Layout from '../components/Layout'
@@ -20,6 +20,8 @@ class ProductExplorer extends Component {
         productDetails: '',
         size: 'Please Select Your Size',
         quantity: 1,
+        color: '',
+        weight: '',
         type:'',
         tag:'',
         price: '',
@@ -27,7 +29,7 @@ class ProductExplorer extends Component {
         department: '',
         productImgs: [],
         largeImg: '',
-        busketChange: false,
+        // busketChange: false,
     }
 
     // static getDerivedStateFromProps = (nextProps, prevState) => {
@@ -117,7 +119,7 @@ class ProductExplorer extends Component {
 
 
     render() {
-        let {productImgs, productId, soldOut, quantity, size, busketChange} = this.state
+        let {productImgs, productId, soldOut, quantity, size, color, weight} = this.state
 
         return (
             <Layout>
@@ -129,10 +131,11 @@ class ProductExplorer extends Component {
                         {console.log(this.props.busket.busketNumbers)} */}
                  <div className="top-menu">
                     <div className="container d-flex justify-content-between font-weight-bold">
-                        <div> <Link to="/">Home</Link> &#8594; <Link to="/">{this.state.type}</Link> &#8594; <Link to="/">{this.state.productName}</Link></div>
-                        <div className=""><Link to="/customer/cart">&#8594; Go To Cart </Link> </div>
+                        <div> <Link to="/">Home</Link> &#8594; <Link to={`/products/type/${this.state.type}`} >{this.state.type}</Link> &#8594; {this.state.productName}</div>
+                        <div className=""><Link to="/customer/cart">&#8594; Cart </Link> </div>
                     </div>
                 </div>
+
 
                 <div className="productDetails container mt-4">
                     <div className=" row">
@@ -166,21 +169,30 @@ class ProductExplorer extends Component {
                                     ))}
                                 </div> */}
                                 <p className="productInfo">{this.state.productDetails}</p>
-                                <p className="font-weight-bold">Please Select Your Size</p>
-                                <div className="font-weight-bold">Size: {this.state.size}</div>
-                                <div className="sizeRadio">
-                                        <div className="sizing d-flex">
-                                            <input type="radio" id="xs" name="size" value="XS" onChange={this.changeHandler}/>
-                                            <label htmlFor="male">XS</label>
-                                            <input type="radio" id="s" name="size" value="S" onChange={this.changeHandler}/>
-                                            <label htmlFor="female">S</label>
-                                            <input type="radio" id="m" name="size" value="M" onChange={this.changeHandler}/>
-                                            <label htmlFor="other">M</label>
-                                            <input type="radio" id="l" name="size" value="L" onChange={this.changeHandler}/>
-                                            <label htmlFor="other">L</label>
-                                            <input type="radio" id="xl" name="size" value="XL" onChange={this.changeHandler}/>
-                                            <label htmlFor="other">XL</label>
-                                        </div>
+                                
+                                
+                                
+                                {
+                                this.state.department === "Fashion And Fashion Accessories" ?
+                                <div>
+                                    <div className="font-weight-bold">Size: {this.state.size}</div> 
+                                    <div className="sizing d-flex mt-2">
+                                        <input type="radio" id="xs" name="size" value="XS" onChange={this.changeHandler}/>
+                                        <label htmlFor="male">XS</label>
+                                        <input type="radio" id="s" name="size" value="S" onChange={this.changeHandler}/>
+                                        <label htmlFor="female">S</label>
+                                        <input type="radio" id="m" name="size" value="M" onChange={this.changeHandler}/>
+                                        <label htmlFor="other">M</label>
+                                        <input type="radio" id="l" name="size" value="L" onChange={this.changeHandler}/>
+                                        <label htmlFor="other">L</label>
+                                        <input type="radio" id="xl" name="size" value="XL" onChange={this.changeHandler}/>
+                                        <label htmlFor="other">XL</label>
+                                    </div>
+                                </div>
+                                :
+                                ''
+                                }
+                          
 
                                         <div className="productQuantityController d-flex justify-content-center font-weight-bolder my-3">
                                             <div onClick={this.subtractHandler} className="" style={{cursor: 'pointer'}}>-</div>
@@ -194,17 +206,17 @@ class ProductExplorer extends Component {
 
                                       {soldOut === "true" ? <button type="button" className="btn btn-primary" disabled>Sold Out</button>
                                        :
-                                       <button onClick={() => this.props.addToBusket(productId, quantity, size, this.props.history)} className="btn btn-primary"> Add to Cart </button>
+                                       <button onClick={() => this.props.addToBusket(productId, quantity, size, color, weight, this.props.history)} className="btn btn-primary"> Add to Cart </button>
                                        }
                                     {
                                         this.props.admin.adminLoggedIn ? 
                                         <div className="">
                                             <Link to={`/admin/edit-product/${productId}`} className="btn btn-warning mr-2 mt-2"> Edit this product </Link>
-                                            <Link to="" onClick={this.removeHandler} className="btn btn-danger mt-2"> Remove this product </Link> 
+                                            <Link to="#" onClick={this.removeHandler} className="btn btn-danger mt-2"> Remove this product </Link> 
                                         </div> : ''
                                     }
                                   
-                                </div>
+                                
                             </div>
 
                                 
@@ -220,8 +232,6 @@ class ProductExplorer extends Component {
         );
     }
 }
-
-
 
 const mapStateToProps = state => ({
     customer: state.customer,

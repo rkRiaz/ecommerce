@@ -17,6 +17,7 @@ export const ADMIN_AUTH = 'ADMIN_AUTH'
 export const ADMIN_ERROR = 'ADMIN_ERROR'
 
 
+export const SIDE_BARS = 'SIDE_BARS'
 
 
 

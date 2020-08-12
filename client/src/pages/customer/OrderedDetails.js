@@ -171,6 +171,7 @@ import Moment from 'react-moment'
                     <div className="h3 text-right mt-3">SubTotal Amount: <strong className="">&#2547; {orderedProduct.subTotal}</strong></div>
                     <div className="payment text-right">
                         {orderedProduct.paid.message === "false" ?
+        
                             <div className="btn btn-danger my-2">Make Payment</div>
                             :<div className="btn btn-success my-2">Paid</div>
                         }
