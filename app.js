@@ -9,6 +9,8 @@ const productsRoute = require('./routes/productsRoute')
 const customersRoute = require('./routes/customersRoute')
 const uploadsRoute = require('./routes/uploadsRoute')
 const paymentRoute = require('./routes/paymentRoute')
+const searchRoute = require('./routes/searchRoute')
+
 
 const app = express()
 
@@ -24,6 +26,8 @@ app.use('/admin', adminRoute)
 app.use('/products', productsRoute)
 app.use('/customers', customersRoute)
 app.use('/uploads', uploadsRoute)
+app.use('/search', searchRoute)
+
 
 
 if(process.env.NODE_ENV === "production") {

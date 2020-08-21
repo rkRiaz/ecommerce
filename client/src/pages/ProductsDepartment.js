@@ -8,7 +8,7 @@ import Layout from '../components/Layout'
 
 const ProductsDepartment = (props) => {
     
-    const [productsDepartment, setProductsDepartment] = useState([])
+    const [productsDepartment, setProductsDepartment] = useState(null)
     const [department, setDepartment] = useState(null)
 
 
@@ -17,21 +17,27 @@ const ProductsDepartment = (props) => {
         const { match: { params } } = props;
         setDepartment(params.department)
         
-        axios.get('/products')
+        axios.get(`/products/department/${department}`)
         .then(res => {
-            let productsDepartment = res.data.filter(p => p.department === department)
-            setProductsDepartment(productsDepartment)
+            setProductsDepartment(res.data)
         })
         .catch(e => alert(e))
-    }, [department, props])
+    }, [props, department])
     
     return (
         <Layout>
             <div className="text-center">
                 <Link to="/" className="badge badge-secondary text-center">&#8594; Go To Shop</Link> 
             </div>
-            
-            <Products products = {productsDepartment} heading={department} title=""/>
+            {
+                // productsDepartment === null || productsDepartment.length === 0? 
+                // <div className="h5 ml-auto mr-auto">
+                // <CircularProgress />
+                // </div> 
+                // :
+                <Products products = {productsDepartment} heading={department} title=""/>
+            }
+         
         </Layout>
     );
 }

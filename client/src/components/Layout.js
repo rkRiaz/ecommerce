@@ -3,7 +3,7 @@ import MegaMenu from './MegaMenu'
 import Footer from './Footer'
 import CartSideBar from './CartSideBar'
 import LoginSideBar from './LoginSideBar'
-
+import MenuSideBar from './MenuSideBar'
 
 
 
@@ -11,6 +11,7 @@ import LoginSideBar from './LoginSideBar'
     return (
         <div>
             <MegaMenu/>
+            <MenuSideBar/>
             <CartSideBar/>
             <LoginSideBar/>
                 {children}

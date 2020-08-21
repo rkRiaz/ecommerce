@@ -161,13 +161,13 @@ class ProductExplorer extends Component {
                             <div className="font-weight-bold h3">{this.state.productName}</div>
                             <div>
                                 <div className="price text-dark my-2" style={{fontSize: "20px"}}><small>TK-</small><strong>{this.state.price}</strong></div>
-                                {/* <div className="product__rating">
+                                <div className="product__rating">
                                     {Array(5)
                                     .fill()
-                                    .map((_) => (
-                                        <span>&#11088;</span>
+                                    .map((_, index) => (
+                                        <span key={index}>&#11088;</span>
                                     ))}
-                                </div> */}
+                                </div>
                                 <p className="productInfo">{this.state.productDetails}</p>
                                 
                                 

@@ -45,7 +45,7 @@ class Banner extends Component {
             <div className="banner">
                 <div className="slideshow-container">
                     <div id="slide1" className="mySlides">
-                        <img src={banner1} alt="banner" style={{ objectFit: "cover", height: "70vh", width: "100%" }} />
+                        <img src={banner1} alt="banner" style={{ objectFit: "cover", height: "60vh", width: "100%" }} />
                         <div className="text">
                             <h4>SUMMER 2020</h4>
                             <div className="heading font-weight-bolder display-4">New Arrival Collection</div>
@@ -53,7 +53,7 @@ class Banner extends Component {
                         </div>
                     </div>
                     <div id="slide2" className="mySlides">
-                        <img src={banner1} alt="banner" style={{ objectFit: "cover", height: "70vh", width: "100%" }} />
+                        <img src={banner1} alt="banner" style={{ objectFit: "cover", height: "60vh", width: "100%" }} />
                         <div className="text text-mid">
                             <h4>SUMMER 2020</h4>
                             <div className="heading font-weight-bolder display-4">New Arrival Collection</div>
@@ -61,7 +61,7 @@ class Banner extends Component {
                         </div>
                     </div>
                     <div id="slide3" className="mySlides">
-                        <img src={banner1} alt="banner" style={{ objectFit: "cover", height: "70vh", width: "100%" }} />
+                        <img src={banner1} alt="banner" style={{ objectFit: "cover", height: "60vh", width: "100%" }} />
                         <div className="text">
                             <h4>SUMMER 2020</h4>
                             <div className="heading font-weight-bolder display-4">New Arrival Collection</div>

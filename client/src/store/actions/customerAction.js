@@ -63,7 +63,7 @@ export const login = (customer, history) => dispatch => {
                 type: Types.SIDE_BARS,
                 payload: {
                     addProduct: '',
-                    open: true,
+                    open: history.location.pathname === "/customer/signup-login" ? false : true,
                 }
             })
             console.log(error)

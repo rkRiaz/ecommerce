@@ -10,7 +10,7 @@
     background: #232526;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to top, #414345, #232526);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to top, #414345, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    
+  
     font-size: 15px;
     box-shadow: var(--darkShadow);
   }
@@ -106,7 +106,7 @@
     top: -25%;
     left: 20px;
   }
-  
+
   @media screen and (max-width: 992px) {
     .megamenu__top-menu{
       line-height: 0;
@@ -138,6 +138,10 @@
       display: flex;
      }
   }
+
+  @media screen and (max-width: 576px) {
+
+  }
   
   @media screen and (max-width: 450px) {
     .megamenu__top-menu {
@@ -146,7 +150,7 @@
     .search-icon{
       padding-right: 10px !important;
     }
-    .megamenu___mid-menu_menu-icons .shopping-icon{
-      display: none;
+    .megamenu___mid-menu_menu-icons .search-icon{
+      display: none ;
     }
   }

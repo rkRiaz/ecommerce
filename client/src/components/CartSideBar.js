@@ -109,6 +109,7 @@ const CartSideBar = (props) => {
                                             <input onChange={e => setChecked(!checked)} className="mt-1" type="checkbox" />
                                             <div className="text-danger" style={{textDecorationLine: "underline"}} onClick={termsHandler}>I agree with the terms and conditions.</div>    
                                         </div> */}
+                                        <div className="h3 font-weight-bold">SubTotal Amount: &#2547;<strong>{subTotal}</strong></div>
                                         <button onClick={closeBar} className="btn btn-warning font-weight-bold" style={{width: 200, borderRadius: 40}}>View Cart</button>
                                         {/* <button onClick={checkOut} className="btn btn-primary font-weight-bold mt-2" style={{width: 200, borderRadius: 40}}>CHECK OUT</button> */}
                                     </div>

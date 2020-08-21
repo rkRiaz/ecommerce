@@ -18,7 +18,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
         axios.get("/customers/dashboard")
         .then(res => {
             setOrdered(res.data.orderedProducts)
-            console.log(res.data)
+            // console.log(res.data)
         })
         .catch(e => console.log(e))
 

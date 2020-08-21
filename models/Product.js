@@ -18,7 +18,6 @@ const productSchema = new Schema({
     },
     details: {
         type: 'String',
-        trim: true,
     },
     department: {
         type: String,

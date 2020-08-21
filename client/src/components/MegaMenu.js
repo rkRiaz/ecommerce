@@ -3,9 +3,13 @@ import './MegaMenu.css'
 import { Link, withRouter } from 'react-router-dom'
 import { FaSearch, FaUser, FaHeart, FaBars, FaShoppingCart, FaShoppingBag, FaPhone, FaEnvelope } from 'react-icons/fa'
 import { connect } from 'react-redux'
-import { loginSideBar__on } from '../store/actions/sideBarAction'
+import { loginSideBar__on, menuSideBar__on } from '../store/actions/sideBarAction'
 import MenuDetailsDepartment from './MenuDetailsDepartment'
 import MenuDetailsProducts from './MenuDetailsProducts'
+import Search from './Search'
+
+
+
 
 
 
@@ -26,7 +30,6 @@ const MegaMenu = (props) => {
 
     return (
         <div className="megamenu">
-            {/* {openDepartment ? <MenuDetailsDepartment/> : ''} */}
             <div className="megamenu__top-menu row text-center text-white">
                 <div className="col-lg-4">
                     <p className="float-left"><FaPhone style={{ fontSize: 10 }} /> +99011-XXXXX &nbsp;&nbsp; <FaEnvelope style={{ fontSize: 10 }} /> johnDoe@yahho.com</p>
@@ -40,23 +43,24 @@ const MegaMenu = (props) => {
                 </div>
             </div>
             <div className="megamenu__mid-menu">
-
-                <div className="megamenu___mid__menu_bar-icon d-none">
+                <div onClick={() => props.menuSideBar__on()} className="megamenu___mid__menu_bar-icon d-none">
                     <FaBars className="text-left" style={{ fontSize: 25 }} />
+
                 </div>
 
                 <div className="megamenu__mid-menu_logo h2 font-weight-bolder"><Link className="text-left" to="/">Ecommerce</Link> </div>
                 <div className="megamenu__mid-menu_menu">
                     <div className="child">
-                        <div className="py-4 px-3 megamenu__mid_menu__menu__department" style={{cursor: "pointer"}}> <div className="department__details"><MenuDetailsDepartment/></div> Departments</div>
-                        <div className="py-4 px-3 megamenu__mid_menu__menu__products" style={{cursor: "pointer"}}><div className="products__details"><MenuDetailsProducts/></div>Products</div>
-                        <div className="py-4 px-3 " style={{cursor: "pointer"}}>Sale</div>
-                        <div className="py-4 px-3" style={{cursor: "pointer"}}>Portfolio</div>
-                        <div className="py-4 px-3" style={{cursor: "pointer"}}>LookBook</div>
-                        <div className="py-4 px-3" style={{cursor: "pointer"}}>Blog</div>
-                        
-                    
+                        <div className="py-4 px-3 megamenu__mid_menu__menu__department" style={{ cursor: "pointer" }}> <div className="department__details"><MenuDetailsDepartment /></div> Departments</div>
+                        <div className="py-4 px-3 megamenu__mid_menu__menu__products" style={{ cursor: "pointer" }}><div className="products__details"><MenuDetailsProducts /></div>Products</div>
+                        <div className="py-4 px-3 " style={{ cursor: "pointer" }}>Sale</div>
+                        <div className="py-4 px-3" style={{ cursor: "pointer" }}>Portfolio</div>
+                        <div className="py-4 px-3" style={{ cursor: "pointer" }}>LookBook</div>
+                        <div className="py-4 px-3" style={{ cursor: "pointer" }}>Blog</div>
+
+
                     </div>
+
                 </div>
                 <div className="megamenu___mid-menu_menu-icons text-right" style={{ fontSize: 20 }}>
                     <Link to="#" className="pr-3 search-icon" ><FaSearch /></Link>
@@ -68,6 +72,7 @@ const MegaMenu = (props) => {
                 </div>
             </div>
 
+
             <div className="megamenu__bottom-menu text-center" style={{ fontSize: 12 }}>
                 <Link to="/"><FaShoppingBag style={{ fontSize: 20 }} /><br />Shop</Link>
                 {customerLoggedIn ? <Link to="/customer/dashboard"><FaUser style={{ fontSize: 20 }} /><br />Account</Link> :
@@ -78,6 +83,10 @@ const MegaMenu = (props) => {
             </div>
 
 
+
+            <div className="megamenu__search">
+                <Search />
+            </div>
         </div>
 
 
@@ -91,5 +100,5 @@ const mapStateToProps = state => ({
     admin: state.admin,
 })
 
-export default connect(mapStateToProps, { loginSideBar__on })(withRouter(MegaMenu));
+export default connect(mapStateToProps, { loginSideBar__on, menuSideBar__on })(withRouter(MegaMenu));
 

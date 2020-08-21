@@ -3,11 +3,13 @@ import Products from '../components/Products'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
 import Layout from '../components/Layout'
+// import CircularProgress from '@material-ui/core/CircularProgress';
+
 
 const ProductsTag = (props) => {
     
-    const [productsTag, setProductsTag] = useState([])
-    const [tag, setTag] = useState('')
+    const [productsTag, setProductsTag] = useState(null)
+    const [tag, setTag] = useState(null)
 
 
 
@@ -15,20 +17,30 @@ const ProductsTag = (props) => {
         const { match: { params } } = props;
         setTag(params.tag)
         
-        axios.get('/products')
+        axios.get(`/products/tag/${tag}`)
         .then(res => {
-            let productsTag = res.data.filter(p => p.tag === tag)
-            setProductsTag(productsTag)
+            // console.log(res.data)
+            setProductsTag(res.data)
         })
-        .catch(e => alert(e))
+        .catch(e => console.log(e))
     }, [props, tag]) 
+
+    
     
     return (
         <Layout>
             <div className="text-center">
                 <Link to="/" className="badge badge-secondary text-center">&#8594; Go To Shop</Link> 
             </div>
-            <Products products = {productsTag} heading={tag} title=""/>
+            {
+                // productsTag === null ? 
+                // <div className="h5 ml-auto mr-auto">
+                // <CircularProgress />
+                // </div> 
+                // :
+                <Products products = {productsTag} heading={tag} title=""/>
+            }
+            
         </Layout>
     );
 }

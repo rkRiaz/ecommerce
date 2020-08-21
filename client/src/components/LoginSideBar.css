@@ -5,13 +5,24 @@
     height: 100%;
     box-shadow: var(--darkShadow);
     background: white;
-    z-index: 1;
+    z-index: 2;
     overflow-x: hidden;
-    width: 0px;
+    width: 300px;
     transition: var(--mainTransition);
   }
-  .login__sidebar__on{
-    width: 300px;
+  .loginSideBar__closeBtn{
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100vh;
+    background-color: black;
+    opacity: .5;
+    transition: var(--mainTransition);
+}
+  .login__sidebar__off{
+    width: 0px !important;
   }
 
   .login__closebtn{
@@ -22,6 +33,7 @@
     transform: rotate(-180deg);
     transition: var(--mainTransition);
   }
+
   .login__closebtn:hover{
     transform: rotate(180deg);
     color: var(--mainBlue)

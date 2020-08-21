@@ -67,7 +67,7 @@ const Cart = (props) => {
                                         <tbody>
                                             {cart_products.map((p, index) => (
                                                 <tr className="tableRow" key={index}>
-                                                    <td><img style={{ width: 70, height: 50 }} className="img-thumbnail mr-3" src={`/images/${p.productImgs[0]}`} alt="" />{p.name}</td>
+                                                    <td><Link to={`/products/${p._id}`}><img style={{ width: 70, height: 50 }} className="img-thumbnail mr-3" src={`/images/${p.productImgs[0]}`} alt="" />{p.name}</Link></td>
                                                     <td>{p.price}</td>
                                                     <td>
                                                         <div className="productQuantityController d-flex justify-content-center font-weight-bolder">

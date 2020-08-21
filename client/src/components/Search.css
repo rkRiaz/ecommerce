@@ -1,0 +1,36 @@
+
+.search_box{
+	margin: 0 auto;
+	margin-bottom: 10px;
+	width: 70%;
+	background: var(--lightGrey);
+	box-shadow: var(--darkShadow);
+	border-radius: 3px;
+	padding: 5px;
+	display: flex;
+}
+.search_text{
+	flex: 1;
+	border:none;
+	background:none;
+	outline:none;
+	color: black;
+	font-size:16px;
+	margin-left: 10px;
+}
+.search_icon{
+	color: #f95700;
+	background: #474242;
+	padding: 3px;
+	border-radius: 3px;
+}
+.search_box:hover > .search_icon{
+	background: var(--lightGrey);
+}
+
+
+@media screen and (max-width: 576px) {
+	.search_box{
+		width: 90%;
+	}
+}

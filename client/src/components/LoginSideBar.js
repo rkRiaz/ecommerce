@@ -10,9 +10,9 @@ import {loginSideBar__off} from '../store/actions/sideBarAction'
 import './LoginSideBar.css'
 
 const LoginSideBar = (props) => {
-    const[loginPhone, setLoginPhone] = useState('')
-    const[loginPassword, setLoginPassword] = useState('')
-    const[error, setError] = useState({})
+    const [loginPhone, setLoginPhone] = useState('')
+    const [loginPassword, setLoginPassword] = useState('')
+    const [error, setError] = useState({})
     const [isOpen, setIsOpen] = useState(false)
 
     useEffect(() => {
@@ -39,7 +39,7 @@ const LoginSideBar = (props) => {
 
     return (
         <div>
-            <div className={isOpen ? "login__sidebar login__sidebar__on" : "login__sidebar"}>
+            <div className={isOpen ? "login__sidebar" : "login__sidebar login__sidebar__off"}>
                     <div className="p-3">
                         <div className="h3">Login</div> 
                         <div onClick={toggle} className={isOpen ? "login__closebtn" : ''}><CloseSharpIcon/></div>
@@ -60,6 +60,7 @@ const LoginSideBar = (props) => {
                         </form>
                     </div>
                 </div>
+                <div onClick={toggle} className={isOpen ? "loginSideBar__closeBtn" : "loginSideBar__closeBtn login__sidebar__off"}></div>
         </div>
     );
 }

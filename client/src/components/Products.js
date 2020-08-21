@@ -20,15 +20,14 @@ function Products(props) {
             <div className="text-center"><h6> {props.title} </h6></div>
 
             <div className="row mt-4">
-                
                 {
-                props.products.length === 0 ?  
+                props.products === null ? 
                 <div className="h5 ml-auto mr-auto">
                     <CircularProgress />
                 </div> 
-                 :
-                 props.products.reverse().map(product => (
-                    
+                :
+                props.products.length !== 0 ?
+                 props.products.reverse().map(product => (              
                     <div key={product._id} className="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2 m-0 p-0">
                         <div className="productCard">
                             {product.soldOut !== "true" ? <div onClick={() => props.addToBusket(product._id)} className="addToCart"> + </div> : ''}
@@ -49,7 +48,12 @@ function Products(props) {
                         </div>
                     </div>
                 ))
-
+                :
+               
+                <div className="h5 ml-auto mr-auto">
+                    products comming soon
+                </div> 
+                 
              
                 }
 
