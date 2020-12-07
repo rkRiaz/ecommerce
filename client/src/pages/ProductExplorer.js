@@ -215,14 +215,14 @@ class ProductExplorer extends Component {
                                             <Link to="#" onClick={this.removeHandler} className="btn btn-danger mt-2"> Remove this product </Link> 
                                         </div> : ''
                                     }
-                                  
                                 
+    
                             </div>
 
                                 
                             <div className="d-flex mt-3 font-weight-bold" style={{lineHeight: "15px"}}>
                                 <div className="">Size guide</div>
-                                <div className="mx-3" style={{}}>Delevary and return</div>
+                                <div className="mx-3">Delevary and return</div>
                                 <div className="">Ask a question</div>
                             </div>
                         </div>

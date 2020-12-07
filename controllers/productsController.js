@@ -73,7 +73,6 @@ exports.addProduct = async (req, res, next) => {
 
     try {
         if (errors.isEmpty()) {
-
             let productImgs = productImgsName ? productImgsName : ['no-image.jpg']
             const product = new Product({
                 name,

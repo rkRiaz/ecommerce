@@ -1,10 +1,10 @@
 const router = require("express").Router()
 
-const  { searchResultgetController }  = require('../controllers/searchController')
+const  { searchController }  = require('../controllers/searchController')
 
 
 
-router.get("/" , searchResultgetController)
+router.get("/:term" , searchController)
 
 
 module.exports = router

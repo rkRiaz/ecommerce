@@ -8,6 +8,20 @@
 	border-radius: 3px;
 	padding: 5px;
 	display: flex;
+	position: relative;
+}
+.searchList{
+	width: 70%;
+	height: 80%;
+	background: white;
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%);
+	z-index: 1;
+    overflow-y: scroll;
+}
+.searchList::-webkit-scrollbar{
+    display: none;
 }
 .search_text{
 	flex: 1;
@@ -19,7 +33,7 @@
 	margin-left: 10px;
 }
 .search_icon{
-	color: #f95700;
+	color: #f95700 !important;
 	background: #474242;
 	padding: 3px;
 	border-radius: 3px;
@@ -31,6 +45,10 @@
 
 @media screen and (max-width: 576px) {
 	.search_box{
+		width: 90%;
+	}
+	.searchList{
+		margin-top: -10px;
 		width: 90%;
 	}
 }

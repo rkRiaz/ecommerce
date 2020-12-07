@@ -6,6 +6,54 @@ import Layout from './Layout'
 import Moment from 'react-moment'
 
  const OrderedDetails = (props) => {
+
+    //ssl ecommerce starts
+    const [$post_data, set$post_data ] = useState([])
+    $post_data['store_id'] = "your-store-id";
+    $post_data['store_passwd'] = "your-store-password";
+    $post_data['total_amount'] = "50";
+    $post_data['currency'] = "BDT";
+    // $post_data['tran_id'] = "your unique order id".uniqid();
+    $post_data['success_url'] = "your payment application success url";
+    $post_data['fail_url'] = "your payment application fail url";
+    $post_data['cancel_url'] = "your payment application cancel url";
+
+    // # CUSTOMER INFORMATION
+$post_data['cus_name'] = "";
+$post_data['cus_email'] = "";
+$post_data['cus_add1'] = "Dhaka";
+$post_data['cus_add2'] = "Dhaka";
+$post_data['cus_city'] = "Dhaka";
+$post_data['cus_state'] = "Dhaka";
+$post_data['cus_postcode'] = "1000";
+$post_data['cus_country'] = "Bangladesh";
+$post_data['cus_phone'] = '';
+$post_data['cus_fax'] = "";
+
+// # SHIPMENT INFORMATION
+$post_data['ship_name'] = "Store Test";
+$post_data['ship_add1 '] = "Dhaka";
+$post_data['ship_add2'] = "Dhaka";
+$post_data['ship_city'] = "Dhaka";
+$post_data['ship_state'] = "Dhaka";
+$post_data['ship_postcode'] = "1000";
+$post_data['ship_country'] = "Bangladesh";
+
+// # OPTIONAL PARAMETERS
+$post_data['value_a'] = "ref001";
+$post_data['value_b '] = "ref002";
+$post_data['value_c'] = "ref003";
+$post_data['value_d'] = "ref004";
+
+// # EMI STATUS
+$post_data['emi_option'] = "1";
+
+//ssl ecommerce ends
+
+
+
+
+
     const[orderedProduct, setOrderedProduct]=  useState({
         paid: {
             message: "false",
@@ -35,6 +83,21 @@ import Moment from 'react-moment'
             })
             .catch(e => console.log(e))
     }, [params.orderId])
+
+
+    //ssl ecommerce starts
+    useEffect(() => {
+        (function (window, document) {
+            var loader = function () {
+                var script = document.createElement("script"), tag = document.getElementsByTagName("script")[0];
+                script.src = "https://sandbox.sslcommerz.com/embed.min.js?" + Math.random().toString(36).substring(7);
+                tag.parentNode.insertBefore(script, tag);
+            };
+        
+            window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);
+        })(window, document);
+    }, [])
+    //ssl ecommerce ends
 
     return (
         <Layout>
@@ -172,7 +235,13 @@ import Moment from 'react-moment'
                     <div className="payment text-right">
                         {orderedProduct.paid.message === "false" ?
         
-                            <div className="btn btn-danger my-2">Make Payment</div>
+                            <div className="btn btn-danger my-2"
+                                id="sslczPayBtn"
+                                token="if you have any token validation"
+                                postdata="your javascript arrays or objects which requires in backend"
+                                order="If you already have the transaction generated for current order"
+                                endpoint="An URL where backend code will initiate the payment to SSLCOMMERZ"
+                            >Make Payment</div>
                             :<div className="btn btn-success my-2">Paid</div>
                         }
                     </div>

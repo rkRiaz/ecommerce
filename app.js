@@ -20,7 +20,6 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(passport.initialize())
 require('./passport')(passport)
-
 app.use('/payment', paymentRoute)
 app.use('/admin', adminRoute)
 app.use('/products', productsRoute)
@@ -63,13 +62,17 @@ app.use((error, req, res, next) => {
 })
 
 const PORT = process.env.PORT || 8080
-const MONGODB_URI = `mongodb+srv://${process.env.DB_ADMIN || "rkRiaz"}:${process.env.DB_PASSWORD || "r!@z0!726"}@cluster0-p4dm8.mongodb.net/ecommerce?retryWrites=true&w=majority`
+
+const MONGODB_URI = `mongodb://localhost:27017/ecommerce`
+
+
 
 mongoose.connect(MONGODB_URI, 
     {
         useNewUrlParser: true,
         useUnifiedTopology: true,
-        useFindAndModify: false
+        useFindAndModify: false,
+        useCreateIndex: true,
     })
     .then(() => {
         console.log(chalk.red(`Database Connected`))

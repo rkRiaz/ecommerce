@@ -32,13 +32,23 @@ const productSchema = new Schema({
     tag: {
         type: String,
         require: true,
-        trim: true 
+        trim: true
     },
     productImgs: {
         type: [],
     },
     soldOut: false
-}, {timestamps: true})
+}, { timestamps: true })
+
+productSchema.index({ 
+    name: 'text',
+    details: 'text' 
+},{
+    weights : {
+        name: 5,
+        details: 5
+    }
+})
 
 const Product = model('Product', productSchema)
 module.exports = Product
