@@ -34,9 +34,7 @@ const productSchema = new Schema({
         require: true,
         trim: true
     },
-    productImgs: {
-        type: [],
-    },
+    productImgs: [],
     soldOut: false
 }, { timestamps: true })
 

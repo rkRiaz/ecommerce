@@ -18,63 +18,95 @@ class AddProductPage extends Component {
         type: '',
         tag: '',
         productImgs: [],
-        productImgsName: null,
         error: {},
-        newProduct: {}
+        newProduct: {},
+        formData: new FormData()
     }
     
-    fileSelectHandler = event => {
-        let productImgsName = []
-        for(const key of Object.keys(event.target.files)) {
-            let files = event.target.files
-            productImgsName.push(`productImgs-${files[key].name}`)
-        }
-        this.setState({
-            productImgs: event.target.files,
-            productImgsName: productImgsName
-        })  
-    }
+    // fileSelectHandler = event => {
+    //     let productImgsName = []
+    //     for(const key of Object.keys(event.target.files)) {
+    //         let files = event.target.files
+    //         productImgsName.push(`productImgs-${files[key].name}`)
+    //     }
+    //     this.setState({
+    //         productImgs: event.target.files,
+    //         productImgsName: productImgsName
+    //     })  
+    // }
+
     changeHandler = event => {
-        this.setState({
-            [event.target.name]: event.target.value
-        })
+        if(event.target.name == 'productImgs') {
+            for(const key of Object.keys(event.target.files)) {
+                this.state.formData.append('productImgs', event.target.files[key])
+            }
+    //   clearImmediate
+
+        } else {
+            this.state.formData.set(event.target.name, event.target.value)
+            // this.setState({
+            //     ...this.state,
+            //     [event.target.name]: event.target.value
+            // })
+        }
+          
+       
+ 
+
+
+
+        // if(event.target.name == 'productImgs') {
+        //     this.setState({
+        //         ...this.state,
+        //         [event.target.name]: event.target.value
+        //     })
+        //     this.state.formData.set('productImgs', event.target.files[0])
+        // } else {
+        //     this.setState({
+        //         ...this.state,
+        //         [event.target.name]: event.target.value
+        //     })
+        //     this.state.formData.set(event.target.name, event.target.value)
+        // }
+        console.log(this.state.formData)
     }
+
+
     submitHandler = event => {
         event.preventDefault()
-
-
-        let {name, price, details, department, quantity, type, tag, productImgsName} = this.state 
-        let product = { name, price, details, quantity, department, type, tag, productImgsName }
+        let {name, price, details, department, quantity, type, tag, productImgs, formData} = this.state 
+        let product = { name, price, details, quantity, department, type, tag, productImgs, formData }
         
-      
-        axios.post('/products/add-product', product)
-            .then(res => {
-                this.setState({
-                    newProduct: res.data
-                })
-            })
-            .catch(err => {
-                this.setState({
-                    error: err.response.data
-                })
-                
-            })
-            
-    
+     
 
-                let formData = new FormData()
-                for(const key of Object.keys(this.state.productImgs)) {
-                    formData.append('productImgs', this.state.productImgs[key])
-                }
-              
-                axios.post('/uploads/product-imgs', formData)
+        // console.log(product)
+      
+        axios.post('/products/add-product', formData)
+        // .then(res => {
+        //     this.setState({
+        //         newProduct: res.data
+        //     })
+        // })
+        // .catch(err => {
+        //     this.setState({
+        //         error: err.response.data
+        //     })
+        // })
+            
+
+
+        // let formData = new FormData()
+        // for(const key of Object.keys(this.state.productImgs)) {
+        //     formData.append('productImgs', this.state.productImgs[key])
+        // }
+        // axios.post('/uploads/product-imgs', formData)
 
     }
 
 
 
     render() {
-        console.log(this.state)
+        
         let { tag, error, newProduct } = this.state
         return (
            <Layout>
@@ -168,7 +200,7 @@ class AddProductPage extends Component {
 
                                         <div className="custom">
                                             <label className="font-weight-bold" htmlFor="productImgs">Please select min one image of your product (required) <sup><FaStarOfLife style={{color: 'red', fontSize:'8px'}}/></sup></label>
-                                            <input name="productImgs" type="file" className={` ${error.productImgsName ? 'is-invalid': ''}`} accept="image/*" onChange={this.fileSelectHandler} multiple />
+                                            <input name="productImgs" type="file" className={` ${error.productImgsName ? 'is-invalid': ''}`} accept="image/*" onChange={this.changeHandler} multiple />
                                             <div className="invalid-feedback">{error.productImgsName}</div>
                                         </div>
 

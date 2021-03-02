@@ -95,7 +95,7 @@ exports.update = async (req, res, next) => {
                 name,
                 phone,
                 address,
-                email,   
+                  email,   
             }
             let updatedCustomer = await Customer.findOneAndUpdate(
                 {_id: customer._id},

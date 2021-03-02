@@ -88,9 +88,7 @@
     background: var(--primaryColor);
     color: white;
     border-radius: 50%;
-  
   }
-  
   .megamenu__bottom-menu {
     display: none;
     background: var(--mainWhite);
@@ -138,11 +136,9 @@
       display: flex;
      }
   }
-
   @media screen and (max-width: 576px) {
 
   }
-  
   @media screen and (max-width: 450px) {
     .megamenu__top-menu {
       font-size: 12px;

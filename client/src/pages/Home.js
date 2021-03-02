@@ -63,7 +63,6 @@ class Home extends Component {
                     bestSellerProducts,
                     featuredProducts,
                     newArrival,
-
                     electronics,
                     fashionAndFashionAccessories,
                     groceryHouseholdFoodPets,

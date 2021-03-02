@@ -1,36 +1,28 @@
 const Product = require('../models/Product')
 
-exports.searchController = async(req, res, next) => {
-    let term = req.params.term
-    // let currentPage = parseInt(req.query.page) || 1
-    // let itemPerPage = 10  
-    console.log(term)
-    // res.status(200).json(term)
 
+exports.searchController = async (req, res, next) => {
 
     try {
-        let products = await Product.find({
-                name: {
-                    $regex: term
-                }
-        })
-        
-        // .skip((itemPerPage * currentPage) - itemPerPage)
-        // .limit(itemPerPage)
+        const query = req.params.term.replace(/ /g, '-');
+        // const results = await Product.fuzzySearch({ query: query, prefixOnly: false, minSize: 1 })
+        if(query) {
+            const results = await Product.find({
+               
+                        name:  {$regex: new RegExp(query)},
+                    
+            })
+            res.status(200).json({
+                products: results
+            });
+        } else {
+            const results = await Product.find()
+            res.status(200).json({
+                products: results
+            });
+        }
 
-        // let totalPost = await Post.countDocuments({
-        //     $text: {
-        //         $search: term
-        //     }
-        // })
-
-        // let totalPage = totalPost / itemPerPage
-        // console.log(products)
-        res.status(200).json(Array.isArray(products)  ? products : [])
-
-
-    } catch(e) {
-        console.log(e)
+    } catch (e) {
         next(e)
     }
 }

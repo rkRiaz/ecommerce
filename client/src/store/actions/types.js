@@ -24,8 +24,6 @@ export const SIDE_BARS = 'SIDE_BARS'
 
 
 
-
-
 export const GET_NUMBERS_BUSKET = 'GET_NUMBERS_BUSKET'
 
 

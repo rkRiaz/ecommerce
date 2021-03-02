@@ -220,7 +220,7 @@ $post_data['emi_option'] = "1";
                             <tbody>
                                 {orderedProduct.cart_products.map((p, index) => (
                                     <tr className="tableRow" key={index}>                                   
-                                        <td><Link to={`/products/${p._id}`}><img style={{ width: 70, height: 50 }} className="img-thumbnail mr-3" src={`/images/${p.productImgs[0]}`} alt="" />{p.name}</Link></td>                                       
+                                        <td><Link to={`/products/${p._id}`}><img style={{ width: 70, height: 50 }} className="img-thumbnail mr-3" src={`https://res.cloudinary.com/riazcloud/image/upload/v1614437427/${p.productImgs[0]}`} alt="" />{p.name}</Link></td>                                       
                                         <td>{p.price}</td>
                                         <td>
                                             <div className="mx-3">{p.quantity}</div>      

@@ -15,8 +15,6 @@ const Cart = (props) => {
     const [warning, setWarning] = useState(null)
 
 
-
-
     let { cart_products } = props.busket
     let customerId = props.customer.customer._id
     let customer = props.customer.customer
@@ -40,6 +38,148 @@ const Cart = (props) => {
         props.cartSideBar__off()
         props.history.push("/terms-and-condition")
     }
+
+
+    // useEffect(() => {
+    //     // if(!props.customer.customerLoggedIn) {
+    //         fetchData()
+    //     // }
+    //     props.orderAction(
+    //             {
+    //                 customerId: props.customer.customerLoggedIn ? props.customer.customerInfo._id : '',
+    //                 cart_products, 
+    //                 subTotal
+    //             }
+    //         )
+
+    // }, [props.busket.busketNumbers, subTotal])
+
+
+
+    // const fetchData = async () => {
+    //     let cartProducts = []
+    //     for(let i = 0; i < props.busket.cart_products.length; i++ ) {
+    //         let {data} = await axios.get(`/api/product/get-single-product-by-id/${props.busket.cart_products[i]._id}`)
+    //         cartProducts.push({
+    //             _id: data.product._id,
+    //             productName: data.product.productName,
+    //             salePrice: data.product.salePrice,
+    //             quantity: props.busket.cart_products[i].quantity,
+    //             productImage: data.product.productImages[0],
+    //         })
+    //     }
+    //     setCart_products(cartProducts)
+    //     if(cartProducts.length > 0) {
+    //         let total = cartProducts.map(p => { return p.salePrice * p.quantity })
+    //         setSubTotal(total.reduce((a, b) => a + b, 0))
+    //     }
+    // }
+
+        // fetch cart from customer database
+        // useEffect(() => {
+        //     if(props.customer.customerLoggedIn) {
+        //         let cartProducts = []
+
+        //         axios.get(`http://localhost:8080/api/customer/loginCustomerInfo`, {
+        //             headers: {
+        //                 Authorization: `Bearer ${props.customer.customerToken}`
+        //             }
+        //         }) 
+        //         .then(res => {
+        //             if(res.data.customerInfo.cart.length !== 0) {
+        //                 // return console.log(res.data.customerInfo)
+        //                 // setCart_products (res.data.customerInfo.cart)
+        //                 let quantity = res.data.customerInfo.cart.map(p => {return p.quantity})   
+        //                 let busketNumbers = quantity.reduce((a, b) => a + b, 0)
+        //                 props.setBusketFromDB(res.data.customerInfo.cart, busketNumbers)
+        //             }
+        //         })
+        //         .catch(e => console.log(e))
+
+
+        //         const fetchData = async() => {
+        //             for(let i = 0; i < props.busket.cart_products.length; i++ ) {
+        //                 let {data} = await axios.get(`http://localhost:8080/api/product/get-single-product-by-id/${props.busket.cart_products[i]._id}`)
+        //                 cartProducts.push({
+        //                     _id: data.product._id,
+        //                     productName: data.product.productName,
+        //                     salePrice: data.product.salePrice,
+        //                     quantity: props.busket.cart_products[i].quantity,
+        //                     productImage: data.product.productImages[0],
+        //                 })
+        //             }
+        //             setCart_products(cartProducts)
+        //             if(cartProducts.length > 0) {
+        //                 let total = cartProducts.map(p => { return p.salePrice * p.quantity })
+        //                 setSubTotal(total.reduce((a, b) => a + b, 0))
+        //             }
+        //         }
+        //         fetchData()
+
+        //         axios.put(`http://localhost:8080/api/customer/editInfo`, props.busket.cart_products, {
+        //             headers: {
+        //                 'Authorization': `Bearer ${props.customer.customerToken}` 
+        //             }
+        //         })
+
+
+        //     }
+        // },[props.busket.busketNumbers])
+
+
+
+
+    // let fetchData = async() => {
+    //     props.busket.cart_products.map(async busket_product => {  
+    //         let {data} =  await axios.get(`http://localhost:8080/api/product/get-single-product-by-id/${busket_product._id}`)
+    //         busket_product.productName = data.product.productName
+    //         busket_product.salePrice = data.product.salePrice
+    //         busket_product.productImage = data.product.productImages[0]
+    //    })
+      
+    // }
+
+    // fetchData()
+
+    // useEffect(() => {
+        
+    //     // console.log(props.busket.cart_products) 
+    //     let fetchProducts = []
+
+    //      for(let i=0; i<props.busket.cart_products.length; i++) {
+    //          axios.get(`http://localhost:8080/api/product/get-single-product-by-id/${props.busket.cart_products[i]._id}`)
+    //          .then(res => {
+    //             let product = res.data
+    //             product.quantity = props.busket.cart_products[i].quantity ? props.busket.cart_products[i].quantity : 1 
+    //             product.size  = props.busket.cart_products[i].size ? props.busket.cart_products[i].size : ''
+    //             product.color = props.busket.cart_products[i].color ? props.busket.cart_products[i].color: ''
+    //             product.weight = props.busket.cart_products[i].weight ? props.busket.cart_products[i].weight: 1
+    //             fetchProducts.push(product)
+    //             setLoading(false)
+    //          })
+    //      }
+
+    //     setCart_products(fetchProducts)
+        
+         
+    //     //  console.log(fetchProducts)
+       
+    // }, [props.busket.busketNumbers])
+
+
+    // let { cart_products } = props.busket
+    // let customerId = props.customer.customerInfo._id
+    // let customer = props.customer.customer
+
+    // let total = cart_products.length !== 0 && cart_products !== '' ? cart_products.map(p => { return p.salePrice * p.quantity }) : ''
+    // let subTotal = total.reduce((a, b) => a + b, 0)
+    
+    // let orderedProducts = props.busket.ordered_products
+
+    // orderedProducts.subTotal = subTotal
+    // orderedProducts.customer= customer ? customer : ''
+    // orderedProducts.customerId = customerId ? customerId : ''
+    // console.log(orderedProducts)
 
     
 
@@ -67,7 +207,7 @@ const Cart = (props) => {
                                         <tbody>
                                             {cart_products.map((p, index) => (
                                                 <tr className="tableRow" key={index}>
-                                                    <td><Link to={`/products/${p._id}`}><img style={{ width: 70, height: 50 }} className="img-thumbnail mr-3" src={`/images/${p.productImgs[0]}`} alt="" />{p.name}</Link></td>
+                                                    <td><Link to={`/products/${p._id}`}><img style={{ width: 70, height: 50 }} className="img-thumbnail mr-3" src={`https://res.cloudinary.com/riazcloud/image/upload/v1614437427/${p.productImgs[0]}`} alt="" />{p.name}</Link></td>
                                                     <td>{p.price}</td>
                                                     <td>
                                                         <div className="productQuantityController d-flex justify-content-center font-weight-bolder">

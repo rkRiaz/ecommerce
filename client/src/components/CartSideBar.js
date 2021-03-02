@@ -83,7 +83,7 @@ const CartSideBar = (props) => {
                                                     <div className="tableRow " key={index}>
                                                        <hr/>
                                                         <div className="d-flex">
-                                                        <div className="mr-1" style={{ width: "170px"}}><img style={{ width: "100%", height: "150px" }} className="img-thumbnail" src={`/images/${p.productImgs[0]}`} alt="" /></div>
+                                                        <div className="mr-1" style={{ width: "170px"}}><img style={{ width: "100%", height: "150px" }} className="img-thumbnail" src={`https://res.cloudinary.com/riazcloud/image/upload/v1614437427/${p.productImgs[0]}`} alt="" /></div>
                                                         <div className="ml-4 " style={{ width: "130px"}}>
                                                             <p className="font-weight-bold" style={{lineHeight: "17px"}}>{p.name}</p>
                                                             <p className="text-danger font-weight-bold">&#2547; {p.price}</p> 

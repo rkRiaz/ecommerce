@@ -34,7 +34,7 @@ function Products(props) {
                             <Link to={`/products/${product._id}`} style={{textDecoration: 'none'}}>
                                 <div className="products__image">
                                     <img className="trending__image" 
-                                        src={`/images/${product.productImgs[0]}`} alt="" 
+                                        src={`https://res.cloudinary.com/riazcloud/image/upload/v1614437427/${product.productImgs[0]}`} alt="" 
                                         style={{objectFit: "fill", width: '100%', height: "100%"}}
                                     />
                                 </div>
@@ -43,18 +43,14 @@ function Products(props) {
                                         <div className="px-2 mt-1 font-weight-bold text-dark">{product.name.slice(0 ,35)}</div>
                                         <div className="px-2 mt-2 text-danger font-weight-bold">&#2547;{product.price}</div>
                                 </div>
-
                             </Link>
                         </div>
                     </div>
                 ))
                 :
-               
                 <div className="h5 ml-auto mr-auto">
                     products comming soon
                 </div> 
-                 
-             
                 }
 
 

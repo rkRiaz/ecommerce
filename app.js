@@ -1,7 +1,7 @@
 const express = require('express')
 const chalk = require('chalk')
 const mongoose = require('mongoose')
-// const config = require('config')
+require('dotenv').config();
 const passport = require('passport');
 const path = require('path')
 const adminRoute = require('./routes/adminRoute')
@@ -11,9 +11,7 @@ const uploadsRoute = require('./routes/uploadsRoute')
 const paymentRoute = require('./routes/paymentRoute')
 const searchRoute = require('./routes/searchRoute')
 
-
 const app = express()
-
 
 app.use(express.static('public')),  //make the public directory public
 app.use(express.json())
@@ -28,7 +26,6 @@ app.use('/uploads', uploadsRoute)
 app.use('/search', searchRoute)
 
 
-
 if(process.env.NODE_ENV === "production") {
     app.use(express.static('client/build'))
     app.get('*', (req, res) => {
@@ -38,7 +35,6 @@ if(process.env.NODE_ENV === "production") {
 // if(app.get('env') === 'development') {
 //     app.use('dev')
 // }
-
 
 app.get('/', (req, res) => {
     res.send('<h1>Welcome To My Frist MERN-STACK-Project</h1>')
@@ -62,8 +58,8 @@ app.use((error, req, res, next) => {
 })
 
 const PORT = process.env.PORT || 8080
-
-const MONGODB_URI = `mongodb://localhost:27017/ecommerce`
+const MONGODB_URI = `mongodb+srv://${process.env.DB_ADMIN}:${process.env.DB_PASSWORD}@cluster0-p4dm8.mongodb.net/ecommerce?retryWrites=true&w=majority`
+// const MONGODB_URI = `mongodb://localhost:27017/ecommerce`
 
 
 

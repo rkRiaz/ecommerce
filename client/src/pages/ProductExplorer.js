@@ -67,10 +67,7 @@ class ProductExplorer extends Component {
                     largeImg: productImgs[0]
                 })
 
-        
-            
             })
-
 
     }
 
@@ -100,7 +97,7 @@ class ProductExplorer extends Component {
     removeHandler = event => {
         event.preventDefault()
         axios.delete(`/products/delete/${this.state.productId}`)
-        this.props.history.push("/")
+        // this.props.history.push("/")
     }
 
     imgClickHandler = event => {
@@ -145,14 +142,14 @@ class ProductExplorer extends Component {
                                     <div className="productImgs">
                                     { productImgs.map(img => (
                                         <div key={img} onClick={this.imgClickHandler} className="imgBox my-2" data-img={img} style={{cursor: 'pointer'}}>
-                                            <img style={{maxWidth: "100%", maxHeight: '90px', background: '#eaeaea'}} src={`/images/${img}`} alt="img"/>
+                                            <img style={{maxWidth: "100%", maxHeight: '90px', background: '#eaeaea'}} src={`https://res.cloudinary.com/riazcloud/image/upload/v1614437427/${img}`} alt="img"/>
                                         </div> 
                                     ))}
                                     </div>
                                 </div>
                                 <div className="col-xl-9 col-lg-9 col-12 px-2">
                                     <div className="largeImg mt-1" style={{background: '#eaeaea'}}>
-                                        <img className="" style={{ width: '100%', maxHeight: '480px'}} src={`/images/${this.state.largeImg}`} alt=""/>
+                                        <img className="" style={{ width: '100%', maxHeight: '480px'}} src={`https://res.cloudinary.com/riazcloud/image/upload/v1614437427/${this.state.largeImg}`} alt=""/>
                                     </div>
                                 </div>
                             </div>
