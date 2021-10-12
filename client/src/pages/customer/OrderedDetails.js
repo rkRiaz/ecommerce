@@ -43,7 +43,7 @@ import Moment from 'react-moment'
     }, [params.orderId])
  
     const paymentHandler = e => {
-        axios.get(`http://localhost:8080/ssl-commerce`)
+        axios.get(`/ssl-commerce`)
         .then(res => {
             console.log(res )
             // return <Redirect to = {res.data} />
