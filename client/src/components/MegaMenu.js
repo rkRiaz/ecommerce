@@ -10,11 +10,6 @@ import Search from './Search'
 
 
 
-
-
-
-
-
 const MegaMenu = (props) => {
 
     const [cart, setCart] = useState(0)
@@ -29,8 +24,8 @@ const MegaMenu = (props) => {
 
 
     return (
-        <div className="megamenu">
-            <div className="megamenu__top-menu row text-center text-white">
+        <div className="megamenu ">
+            <div className="megamenu__top-menu row text-center text-white ">
                 <div className="col-lg-4">
                     <p className="float-left"><FaPhone style={{ fontSize: 10 }} /> +99011-XXXXX &nbsp;&nbsp; <FaEnvelope style={{ fontSize: 10 }} /> johnDoe@yahho.com</p>
                 </div>

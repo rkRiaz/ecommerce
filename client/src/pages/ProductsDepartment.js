@@ -20,6 +20,7 @@ const ProductsDepartment = (props) => {
         axios.get(`/products/department/${department}`)
         .then(res => {
             setProductsDepartment(res.data)
+            console.log(res.data)
         })
         .catch(e => alert(e))
     }, [props, department])

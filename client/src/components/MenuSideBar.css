@@ -1,7 +1,7 @@
 .menuSideBar{
     width: 100%;
     position: fixed;
-    z-index: 10000;
+    z-index: 1000;
 }
 .menuSideBar__content{
     width: 300px;

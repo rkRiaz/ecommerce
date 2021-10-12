@@ -3,6 +3,7 @@ const chalk = require('chalk')
 const mongoose = require('mongoose')
 require('dotenv').config();
 const passport = require('passport');
+const cors = require('cors')
 const path = require('path')
 const adminRoute = require('./routes/adminRoute')
 const productsRoute = require('./routes/productsRoute')
@@ -15,10 +16,11 @@ const app = express()
 
 app.use(express.static('public')),  //make the public directory public
 app.use(express.json())
+app.use(cors())
 app.use(express.urlencoded({extended: true}))
 app.use(passport.initialize())
 require('./passport')(passport)
-app.use('/payment', paymentRoute)
+app.use('/ssl-commerce', paymentRoute)
 app.use('/admin', adminRoute)
 app.use('/products', productsRoute)
 app.use('/customers', customersRoute)
@@ -42,7 +44,6 @@ app.get('/', (req, res) => {
 
 //error handling
 
-
 app.use((req, res, next) => {
     let error = new Error('404 page not found')
     error.status = 404
@@ -58,7 +59,7 @@ app.use((error, req, res, next) => {
 })
 
 const PORT = process.env.PORT || 8080
-const MONGODB_URI = `mongodb+srv://${process.env.DB_ADMIN}:${process.env.DB_PASSWORD}@cluster0-p4dm8.mongodb.net/ecommerce?retryWrites=true&w=majority`
+const MONGODB_URI = `mongodb+srv://${process.env.DB_ADMIN}:${process.env.DB_PASSWORD}@cluster0.p4dm8.mongodb.net/ecommerce?retryWrites=true&w=majority`
 // const MONGODB_URI = `mongodb://localhost:27017/ecommerce`
 
 

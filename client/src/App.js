@@ -30,9 +30,9 @@ import ProductsTag from './pages/ProductsTag'
 import ProductsType from './pages/ProductsType'
 
 import ErrorPage from './ErrorPage'
+import ScrollToTop from './utils/ScrollToTop';
 
-
-
+import Confirmation from './pages/customer/Confirmation'
 
 
 
@@ -40,7 +40,9 @@ import ErrorPage from './ErrorPage'
   render() {
     return (
         <BrowserRouter>
+        <ScrollToTop />
             <Switch>
+              
               <Route exact path="/" component={Home}/>
 
               <Route exact path="/products/:productId" component={ProductExplorer}/>
@@ -61,6 +63,8 @@ import ErrorPage from './ErrorPage'
               <Route exact path="/customer/ordered/:orderId" component={OrderedDetails} />
               <Route exact path="/customer/update" component={UpdateCustomer} />
               <Route exact path="/customer/change-password" component={ChangePassword} />
+              <Route exact path="/customer/confirmation" component={Confirmation} /> 
+
         
 
               
@@ -69,7 +73,10 @@ import ErrorPage from './ErrorPage'
               <Route exact path="/admin/all-orders"  component={AllOrders} /> 
               <Route exact path="/admin/add-product" component={AddProduct} /> 
               <Route exact path="/admin/edit-product/:productId" component={EditProduct} /> 
+
+
           
+              
 
               <Route component={ErrorPage}/>
             </Switch>

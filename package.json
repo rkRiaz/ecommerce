@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node app.js",
-    "server": "node app.js",
+    "server": "nodemon app.js",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
@@ -27,7 +27,6 @@
     "chalk": "^4.1.0",
     "cloudinary": "^1.23.0",
     "concurrently": "^5.2.0",
-    "config": "^3.3.3",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
@@ -45,7 +44,7 @@
     "passport-jwt": "^4.0.0",
     "path": "^0.12.7",
     "request": "^2.88.2",
-    "sslcommerz": "^1.0.4"
+    "sslcommerz": "^1.6.6"
   },
   "engines": {
     "node": "12.18.4"

@@ -88,9 +88,16 @@ exports.addProduct = async (req, res, next) => {
 
           const uploader = async (path) => await cloudinary.uploads(path, 'projects/ecommerce/product_images')
           const productImgs = files.productImgs
+        
          
-          for(const productImg of productImgs) {
-            const path = productImg.path
+          if(Array.isArray(productImgs)) {
+            for(const productImg of productImgs) {
+                const path = productImg.path
+                const newPath = await uploader(path)
+                product.productImgs.push(newPath.id)
+              }
+          } else {
+            const path = productImgs.path
             const newPath = await uploader(path)
             product.productImgs.push(newPath.id)
           }

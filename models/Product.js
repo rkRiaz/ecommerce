@@ -43,8 +43,8 @@ productSchema.index({
     details: 'text' 
 },{
     weights : {
-        name: 5,
-        details: 5
+        name: 1,
+        details: 1
     }
 })
 

@@ -15,7 +15,7 @@ function Products(props) {
     
 
     return (
-        <div className="products py-3">
+        <div className="products py-3 mt-5">
             <div className="font-weight-bolder text-center text-uppercase h5">{props.heading}</div>
             <div className="text-center"><h6> {props.title} </h6></div>
 

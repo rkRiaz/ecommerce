@@ -5,9 +5,7 @@
     position: relative;
     width: 100%;
   }
-  .active{
-    background: rgb(46, 46, 46) !important;
-  }
+
   #slide2, #slide3 {
     display: none;
   }
@@ -34,9 +32,11 @@
     height: 15px;
     width: 15px;
     border-radius: 50%;
-    background-color: #bbb;
+    background: #bbb;
   }
-  
+  .active{
+    background: rgb(46, 46, 46) !important;
+  }
   .prev, .next{
       cursor: pointer;
       position: absolute;
@@ -57,13 +57,7 @@
   .prev{
     left: 0;
   }
-  .subBanner{
-    padding: 0 10px; 
-    margin: 0 auto;
-    max-width: 1200px;
 
-  }
-  
   .women-btn, .watch-btn, .mid-btn{
     width: 150px;
     padding: 10px 30px; 
@@ -72,33 +66,16 @@
     box-shadow: var(--lightShadow);
     position: absolute;
     left: 50%;
-    top: 88%;
+    top: 50%;
     font-weight: bold;
     transform: translate(-50%);
     background: white !important;
   }
-  .mid-btn{
-    top: 75%;
-  }
+ 
   
   @media screen and (max-width: 992px) {
     .mySlides img{
       height: 60vh !important;
-    }
-    .leftColumn{
-      padding-right: 5px;
-    }
-    .rightColumn{
-      padding-left: 5px;
-    }
-    .rightColumn__left{
-      padding-right: 5px;
-    }
-    .rightColumn__right{
-      padding-left: 5px;
-    }
-    .rightColumn__left .box2{
-      margin-top: 10px !important;
     }
   }
   @media screen and (max-width: 768px) {
@@ -111,26 +88,16 @@
     .text .heading{
       font-size: 20px;
     }
-    .subBanner{
-     
-      padding-bottom: 50px;
-      
-    }
-    .leftColumn{
-      padding-right: 0px;
-      padding-left: 0px;
-    }
-    .rightColumn{
-      padding-left: 0px;
-      padding-right: 0px;
-    }
   }
   @media screen and (max-width: 576px) {
-  
+    .box{
+      height: 300px !important
+    }
+    .subBanner .women-btn, .watch-btn{
+      padding: 5px 20px; 
+      top: 60%;
+    }
   }
   @media screen and (max-width: 350px) {
-    .subBanner .women-btn, .watch-btn, .mid-btn{
-      padding: 5px 15px; 
-      width: 120px;
-    }
+  
   }
