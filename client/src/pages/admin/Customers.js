@@ -10,7 +10,7 @@ const Customers = () => {
 
     useEffect(() => {
         async function fetchData() {
-            axios.get("/customers")
+            axios.get(`${process.env.REACT_APP_APIENDPOINT}/customers`)
                 .then(res => {
                     setCustomers(res.data)
                 })

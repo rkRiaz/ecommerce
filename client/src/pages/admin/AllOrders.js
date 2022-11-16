@@ -19,7 +19,7 @@ const AllOrders = (props) => {
 
     useEffect(() => {
         async function fetchData() {
-            axios.get("/admin/ordered-products")
+            axios.get(`${process.env.REACT_APP_APIENDPOINT}/admin/ordered-products`)
                 .then(res => {
                     setOrders(res.data)
                 })
@@ -32,7 +32,7 @@ const AllOrders = (props) => {
     let pickedHandler = (e) => {
         let picked = {message, createAt}
         let orderUpdate = {picked}
-        axios.put(`/admin/ordered-products/${e.target.dataset.id}`, orderUpdate)
+        axios.put(`${process.env.REACT_APP_APIENDPOINT}/admin/ordered-products/${e.target.dataset.id}`, orderUpdate)
             .then(res => {
                 console.log(res.data)
                 setUpdate(res.data)
@@ -45,7 +45,7 @@ const AllOrders = (props) => {
         let shipped = {message, createAt}
         let orderUpdate = {shipped}
 
-        axios.put(`/admin/ordered-products/${e.target.dataset.id}`, orderUpdate)
+        axios.put(`${process.env.REACT_APP_APIENDPOINT}/admin/ordered-products/${e.target.dataset.id}`, orderUpdate)
             .then(res => {
                 console.log(res.data)
 
@@ -60,7 +60,7 @@ const AllOrders = (props) => {
         let delivered = {message, createAt}
         let orderUpdate = {delivered}
     
-        axios.put(`/admin/ordered-products/${e.target.dataset.id}`, orderUpdate)
+        axios.put(`${process.env.REACT_APP_APIENDPOINT}/admin/ordered-products/${e.target.dataset.id}`, orderUpdate)
             .then(res => {
                 console.log(res.data)
 

@@ -6,7 +6,7 @@ import setAuthToken from '../../utils/setAuthToken'
 
 
 export const update = (customer, history) => dispatch => {
-    axios.put('/customers/update', customer)
+    axios.put(`${process.env.REACT_APP_APIENDPOINT}/customers/update`, customer)
         .then((res) => {
             dispatch({
                 type: Types.SET_CUSTOMER,
@@ -27,7 +27,7 @@ export const update = (customer, history) => dispatch => {
 }
 
 export const login = (customer, history) => dispatch => {
-    axios.post('/customers/login', customer)
+    axios.post(`${process.env.REACT_APP_APIENDPOINT}/customers/login`, customer)
         .then(res => {
             let token = res.data.token
             localStorage.setItem('customer_auth_token', token)

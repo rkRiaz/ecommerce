@@ -17,7 +17,7 @@ const ProductsTag = (props) => {
         const { match: { params } } = props;
         setTag(params.tag)
         
-        axios.get(`/products/tag/${tag}`)
+        axios.get(`${process.env.REACT_APP_APIENDPOINT}/products/tag/${tag}`)
         .then(res => {
             // console.log(res.data)
             setProductsTag(res.data)

@@ -32,7 +32,7 @@ const Layout = (props) => {
         // }
         
         async function fetchData() {
-            axios.get("/customers/dashboard")
+            axios.get(`${process.env.REACT_APP_APIENDPOINT}/customers/dashboard`)
             .then(res => {
                 setCustomer(res.data.customer)
                 return res

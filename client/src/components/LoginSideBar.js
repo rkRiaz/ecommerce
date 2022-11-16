@@ -5,8 +5,6 @@ import {login} from '../store/actions/customerAction'
 import {FaStarOfLife} from 'react-icons/fa'
 import CloseSharpIcon from '@material-ui/icons/CloseSharp';
 import {loginSideBar__off} from '../store/actions/sideBarAction'
-
-
 import './LoginSideBar.css'
 
 const LoginSideBar = (props) => {

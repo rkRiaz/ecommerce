@@ -49,7 +49,7 @@ class ProductExplorer extends Component {
     componentDidMount() {
         const { match: { params } } = this.props;
         // this.props.aProduct(params.productId)
-        axios.get(`/products/${params.productId}`)
+        axios.get(`${process.env.REACT_APP_APIENDPOINT}/products/${params.productId}`)
             .then(res => {
                 let {name, price, details, department, soldOut, type, tag, productImgs} = res.data
                 this.setState({

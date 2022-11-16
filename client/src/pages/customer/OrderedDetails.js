@@ -35,7 +35,7 @@ import Moment from 'react-moment'
     const { match: { params } } = props;
 
     useEffect(() =>{
-        axios.get("/customers/dashboard")
+        axios.get(`${process.env.REACT_APP_APIENDPOINT}/customers/dashboard`)
             .then(res => {
                 setOrderedProduct(res.data.orderedProducts.find(o =>  o._id === params.orderId))
             })
@@ -43,7 +43,7 @@ import Moment from 'react-moment'
     }, [params.orderId])
  
     const paymentHandler = e => {
-        axios.get(`/ssl-commerce`)
+        axios.get(`${process.env.REACT_APP_APIENDPOINT}/ssl-commerce`)
         .then(res => {
             console.log(res )
             // return <Redirect to = {res.data} />

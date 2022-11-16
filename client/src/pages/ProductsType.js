@@ -17,7 +17,7 @@ const ProductsType = (props) => {
         const { match: { params } } = props;
         setType(params.type)
         
-        axios.get(`/products/type/${type}`)
+        axios.get(`${process.env.REACT_APP_APIENDPOINT}/products/type/${type}`)
         .then(res => {
             setProductsType(res.data)
         })

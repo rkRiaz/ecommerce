@@ -15,7 +15,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
     useEffect(() =>{
        async function fetchData() {
-        axios.get("/customers/dashboard")
+        axios.get(`${process.env.REACT_APP_APIENDPOINT}/customers/dashboard`)
         .then(res => {
             setOrdered(res.data.orderedProducts)
             // console.log(res.data)

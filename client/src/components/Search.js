@@ -18,7 +18,7 @@ function Search() {
 
     let submit = e => {
         e.preventDefault()
-        axios.get(`/search/${term}`)
+        axios.get(`${process.env.REACT_APP_APIENDPOINT}/search/${term}`)
             .then(res => {
                 console.log(res.data.products)
                 setSearchProducts(res.data.products)

@@ -81,7 +81,7 @@ class AddProductPage extends Component {
 
         // console.log(product)
       
-        axios.post('/products/add-product', formData)
+        axios.post(`${process.env.REACT_APP_APIENDPOINT}/products/add-product`, formData)
         // .then(res => {
         //     this.setState({
         //         newProduct: res.data

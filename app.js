@@ -20,26 +20,37 @@ app.use(cors())
 app.use(express.urlencoded({extended: true}))
 app.use(passport.initialize())
 require('./passport')(passport)
-app.use('/ssl-commerce', paymentRoute)
-app.use('/admin', adminRoute)
-app.use('/products', productsRoute)
-app.use('/customers', customersRoute)
-app.use('/uploads', uploadsRoute)
-app.use('/search', searchRoute)
+app.use('/api/ssl-commerce', paymentRoute)
+app.use('/api/admin', adminRoute)
+app.use('/api/products', productsRoute)
+app.use('/api/customers', customersRoute)
+app.use('/api/uploads', uploadsRoute)
+app.use('/api/search', searchRoute)
 
-
+//------for heroku hosting
 if(process.env.NODE_ENV === "production") {
-    app.use(express.static('client/build'))
+    app.use(express.static(path.resolve(__dirname, 'client', 'build')))
     app.get('*', (req, res) => {
         res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
     })
 }
+//------for heroku hosting
+
+//------ for vercel hosting 
+
+// app.use(express.static(path.join('./client/build')))
+// app.get('*', (req, res) => {
+//     res.sendFile(path.join(__dirname, "./client/build/index.html"))
+// })
+
+//------ for vercel hosting 
+
 // if(app.get('env') === 'development') {
 //     app.use('dev')
 // }
 
 app.get('/', (req, res) => {
-    res.send('<h1>Welcome To My Frist MERN-STACK-Project</h1>')
+    res.send('<h1>Welcome To Ecommerce One API site</h1>')
 })
 
 //error handling
@@ -60,6 +71,7 @@ app.use((error, req, res, next) => {
 
 const PORT = process.env.PORT || 8080
 const MONGODB_URI = `mongodb+srv://${process.env.DB_ADMIN}:${process.env.DB_PASSWORD}@cluster0.p4dm8.mongodb.net/ecommerce?retryWrites=true&w=majority`
+
 // const MONGODB_URI = `mongodb://localhost:27017/ecommerce`
 
 
@@ -80,3 +92,5 @@ mongoose.connect(MONGODB_URI,
     .catch(e => {
         console.log(e)
     })
+
+    

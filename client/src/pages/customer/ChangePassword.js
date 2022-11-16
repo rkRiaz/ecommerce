@@ -12,7 +12,7 @@ const ChangePassword = (props) => {
     const[confirmPassword, setConfirmPassword] = useState('')
 
      let submit = () => {
-        axios.put("/customers/change-password", {oldPassword, newPassword, confirmPassword})
+        axios.put(`${process.env.REACT_APP_APIENDPOINT}/customers/change-password`, {oldPassword, newPassword, confirmPassword})
             .then(res => {
                 console.log(res.data)
                 alert(res.data)

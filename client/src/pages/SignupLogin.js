@@ -48,7 +48,7 @@ class SignupLogin extends Component {
         let {name, phone, email, address, password, confirmPassword} = this.state
         let customer = {name, phone, email, address, password, confirmPassword}
         // this.props.signup({name, phone, email, address, password, confirmPassword}, this.props.history)
-        axios.post('/customers/signup', customer)
+        axios.post(`${process.env.REACT_APP_APIENDPOINT}/customers/signup`, customer)
         .then((res) => {
             this.setState({
                 newCustomer: res.data

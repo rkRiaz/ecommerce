@@ -16,11 +16,9 @@ const ProductsDepartment = (props) => {
     useEffect(() => {
         const { match: { params } } = props;
         setDepartment(params.department)
-        
-        axios.get(`/products/department/${department}`)
+        axios.get(`${process.env.REACT_APP_APIENDPOINT}/products/department/${department}`)
         .then(res => {
             setProductsDepartment(res.data)
-            console.log(res.data)
         })
         .catch(e => alert(e))
     }, [props, department])

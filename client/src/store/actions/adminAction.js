@@ -6,7 +6,7 @@ import setAuthToken from '../../utils/setAuthToken'
 
 
 export const adminLogin = (admin, history) => dispatch => {
-    axios.post('/admin/login', admin)
+    axios.post(`${process.env.REACT_APP_APIENDPOINT}/admin/login`, admin)
         .then(res => {
             let admin_auth = res.data
             localStorage.setItem('admin_auth', admin_auth)

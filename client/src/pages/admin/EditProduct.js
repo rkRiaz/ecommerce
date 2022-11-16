@@ -27,7 +27,7 @@ class EditProduct extends Component {
     componentDidMount() {
         const { match: { params } } = this.props;
         // this.props.aProduct(params.productId)
-        axios.get(`/products/${params.productId}`)
+        axios.get(`${process.env.REACT_APP_APIENDPOINT}/products/${params.productId}`)
         
             .then(res => {
                 let {name, price, quantity, details, department, soldOut, type, tag, productImgs, productImgsName} = res.data
@@ -72,7 +72,7 @@ class EditProduct extends Component {
         let {name, price, details, department, soldOut, quantity, type, tag, productImgsName} = this.state 
         let product = {name, price, quantity, department, soldOut, details, type, tag, productImgsName}
     
-        axios.put(`/products/edit-product/${this.state.productId}`, product)
+        axios.put(`${process.env.REACT_APP_APIENDPOINT}/products/edit-product/${this.state.productId}`, product)
             .then(res => {
                 this.setState({
                     updatedProduct: res.data.updatedProduct
@@ -89,7 +89,7 @@ class EditProduct extends Component {
             for(const key of Object.keys(this.state.productImgs)) {
                 formData.append('productImgs', this.state.productImgs[key])
             }
-            axios.post('/uploads/product-imgs', formData)
+            axios.post(`${process.env.REACT_APP_APIENDPOINT}/uploads/product-imgs`, formData)
 
             
 

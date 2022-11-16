@@ -21,7 +21,7 @@ function Products(props) {
 
             <div className="row mt-4">
                 {
-                props.products === null ? 
+                props.products == null ? 
                 <div className="h5 ml-auto mr-auto">
                     <CircularProgress />
                 </div> 

@@ -5,7 +5,7 @@ import axios from 'axios'
 
 export const addToBusket = (productId, quantity, size, color, weight, history) => dispatch => {
 
-    axios.get(`/products/${productId}`)
+    axios.get(`${process.env.REACT_APP_APIENDPOINT}/products/${productId}`)
         .then(res => {
             let product = res.data
             product.quantity = quantity ? quantity : 1 
@@ -50,7 +50,7 @@ if(customerId) {
         type: Types.ORDERED_PRODUCTS,
     }) 
 
-    axios.post("/admin/ordered-products", orderedProducts)
+    axios.post(`${process.env.REACT_APP_APIENDPOINT}/admin/ordered-products`, orderedProducts)
     .then(res => console.log(res.data))
     .catch(e => {console.log(e)})
     history.push("/customer/ordered")

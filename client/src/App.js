@@ -39,10 +39,10 @@ import Confirmation from './pages/customer/Confirmation'
  class App extends Component {
   render() {
     return (
-        <BrowserRouter>
+        <BrowserRouter basename='/'>
         <ScrollToTop />
             <Switch>
-              
+              {/* remove exact from path="/" for build purpose */}
               <Route exact path="/" component={Home}/>
 
               <Route exact path="/products/:productId" component={ProductExplorer}/>
